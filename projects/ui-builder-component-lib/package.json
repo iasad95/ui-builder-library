@@ -1,0 +1,60 @@
+{
+  "name": "ui-builder-component-lib",
+  "version": "1.0.99",
+  "author": "UI Builder",
+  "repository": {
+    "type": "git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.0.6",
+    "@angular/core": "^17.0.6",
+    "@angular/forms": "^17.0.6",
+    "@angular/material": "^17.3.10",
+    "@angular/google-maps": "^17.3.10",
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@ionic/angular": "^7.6.0 || ^8.0.0",
+    "@ngx-translate/core": "^15.0.0",
+    "lodash": "^4.17.21",
+    "@types/inputmask": "^5.0.3",
+    "ngx-image-cropper": "^7.1.2",
+    "ngx-image-compress": "^15.1.6",
+    "ngx-quill": "^25.0.3",
+    "primeicons": "^6.0.1",
+    "primeng": "^17.0.0",
+    "ngx-mask": ">14.2.0 ^17.0.4",
+    "google-libphonenumber": "^3.2.35",
+    "date-fns": "^2.30.0",
+    "inputmask": "^5.0.5",
+    "ngx-popperjs": "^17.0.0",
+    "ang-jsoneditor": "^3.1.1",
+    "jsoneditor": "^9.10.5",
+    "ng-otp-input": "^1.9.3",
+    "emoji-picker-element": "^1.21.3",
+    "@capacitor/motion": "^6.0.0"
+  },
+  "ngPackage": {
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/ui-builder-component-lib",
+    "assets": [
+      "./src/lib/shared-styles"
+    ],
+    "lib": {
+      "entryFile": "src/public-api.ts"
+    }
+  },
+  "keywords": [
+    "angular",
+    "ionic",
+    "javascript",
+    "typescript",
+    "typeahead",
+    "directive",
+    "angular-material"
+  ],
+  "license": "MIT",
+  "allowedNonPeerDependencies": {
+    "ngx-translate-testing": "^6.1.0",
+    "tslib": "^2.2.0"
+  },
+  "devDependencies": {}
+}
