@@ -1,0 +1,14 @@
+:root {
+  --mat-datepicker-calendar-container-background-color: var(--primary-background);
+  --mat-datepicker-calendar-date-selected-state-background-color: var(--cyrano-pink-shade-1);
+}
+
+.mat-datepicker-content {
+  background: var(--primary-background);
+
+  table,
+  th,
+  td {
+    border: unset;
+  }
+}

@@ -1,0 +1,1 @@
+export const DATA_PATH_EXTRACTOR_REGEX = /data:([a-zA-Z0-9]+\/[a-zA-Z0-9]+);/;

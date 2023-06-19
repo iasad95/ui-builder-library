@@ -1,0 +1,29 @@
+// Add figma properties to cropper square dots to make them circular
+[_nghost-ng-c2929550054] .ngx-ic-cropper[_ngcontent-ng-c2929550054] .ngx-ic-resize[_ngcontent-ng-c2929550054] .ngx-ic-square[_ngcontent-ng-c2929550054] {
+  display: inline-block !important;
+  background: #53535c !important;
+  width: 9.26px !important;
+  height: 9.26px !important;
+  border: 0.92px solid rgba(205, 202, 202, 1) !important;
+  border-radius: 6.56px !important;
+  box-sizing: content-box !important;
+}
+.lib-popup-modal[_ngcontent-ng-c2014900785] .popover-container[_ngcontent-ng-c2014900785] {
+  /* Border Radius and Border */
+  border-radius: 55.54px !important;
+  border-width: 1.85px !important;
+  border-style: solid !important;
+
+  /* Border with Linear Gradient */
+  border-image-source: linear-gradient(180deg, #424750 0%, #202326 100%) !important;
+  border-image-slice: 1 !important;
+
+  /* Background Gradient */
+  background: linear-gradient(90deg, #28252d -0.02%, #1c1a20 45.01%, #18161b 100.06%) !important;
+
+  /* Shadows and Blurs */
+  box-shadow:
+    inset 2px 2px 7px 0px rgba(56, 56, 56, 1),
+    5px 5px 16px 0px rgba(0, 0, 0, 0.32),
+    -3px -3px 16px 0px rgba(255, 255, 255, 0.1) !important; /* Light Outer Shadow */
+}

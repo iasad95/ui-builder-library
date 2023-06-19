@@ -1,0 +1,152 @@
+:root {
+  --lib-button-width: 100px;
+  --lib-button-font-color: #fff;
+  --lib-button-border-radius: 30.582px;
+  --lib-button-border: 1px solid rgba(10, 9, 9, 0.45);
+  --lib-button-background: linear-gradient(180deg, rgba(62, 64, 69, 0.5) 0%, rgba(62, 64, 69, 0) 8.33%),
+    radial-gradient(170.95% 118.01% at 8.39% 32.81%, rgba(67, 64, 70, 0.5) 0%, rgba(41, 37, 45, 0.5) 28.24%, rgba(10, 10, 11, 0.5) 100%);
+  --lib-button-container-background: linear-gradient(90deg, #353039 0.68%, #29252d 99.45%);
+  --lib-button-box-shadow: 6.11634px 6.11634px 12.23267px 0px rgba(0, 0, 0, 0.25);
+  --lib-button-icon-color: #f7416e;
+  --lib-button-padding: 0 20px;
+  --lib-button-container-hover-outline-color: rgba(0, 0, 0, 0.87);
+  --lib-button-hover-outline-color: #fe638e;
+
+  --lib-button-container-height: 50px;
+  --lib-button-height: 48.5px;
+  --lib-button-font-family: 'Calistoga', serif;
+  --lib-button-font-size: 14px;
+  --lib-primary-button-text-shadow: 0px 0px 20.000049591064453px #fe3c72, 0px 0px 20.000049591064453px #fe3c72, 0px 0px 4.000010013580322px #fff;
+  --lib-secondary-button-text-shadow: 0px 0px 47.31624221801758px #fe3c72, 0px 0px 16px #fe3c72;
+  --lib-secondary-button-font-color: #fe638e;
+
+  --lib-list-button-container-height: 43px;
+  --lib-list-button-height: 40px;
+  --lib-list-button-icon-color: #f7416e;
+  --lib-list-button-padding: 7.189px 34.251px 10.018px 18.349px;
+  --lib-list-button-font-size: 12.872px;
+  --lib-list-button-font-family: 'Gilroy-Regular', serif;
+
+  --lib-icon-button-container-height: 33px;
+  --lib-icon-button-container-width: 33px;
+  --lib-icon-button-height: 30px;
+  --lib-icon-button-width: 30px;
+  --lib-icon-button-border-radius: 50%;
+
+  --lib-hover-button-height: 40px;
+  --lib-hover-button-width: 160px;
+  --lib-hover-icon-button-height: 25px;
+  --lib-hover-icon-button-width: 25px;
+  --lib-hover-icon-left-margin: 6px;
+  --lib-hover-button-font-size: 14px;
+  --lib-hover-button-font-color: #fe3c72;
+  --lib-hover-button-font-family: 'Gilroy-Regular', serif;
+
+  --lib-menu-button-container-height: 38px;
+  --lib-menu-button-container-width: 38px;
+  --lib-menu-button-height: 35px;
+  --lib-menu-button-width: 35px;
+  --lib-menu-button-border-radius: 50%;
+  --lib-menu-button-panel-background: linear-gradient(180deg, #403d46 0%, #3e3b44 100%);
+  --lib-menu-button-panel-shadow: 0px -2px 8px 0px rgba(255, 255, 255, 0.2) inset, 2px -2px 3px 0px rgba(0, 0, 0, 0.4) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  --lib-menu-button-active-color: #fe3c72;
+  --lib-menu-button-font-size: 12px;
+  --lib-menu--button-font-family: 'Gilroy-Regular', serif;
+
+  --primary-button-background: linear-gradient(94.44deg, #fe3c72 1.26%, #e15561 100%) !important;
+  --black-button-background: #27242c;
+}
+
+.button {
+  text-align: center;
+  height: 46px;
+  --border-radius: 100px;
+  width: 300px;
+  text-transform: none !important;
+  font-family: 'Calistoga', serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.button-sm {
+  width: 200px !important;
+}
+
+.button-lg {
+  width: 600px !important;
+}
+
+.box-shadow-button {
+  --box-shadow: 11px 10px 27px 2.5px rgba(17, 16, 20, 0.65), -5px -5px 16px -3px rgba(203, 199, 209, 0.25) !important;
+}
+
+.app-outline-button {
+  @extend .button;
+  --border-color: rgba(255, 255, 255, 0.5);
+  --border-style: solid;
+  --border-width: 2px;
+  --color: rgba(255, 255, 255, 0.5);
+  --background: transparent;
+  font-family: 'Calistoga', serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.app-black-button {
+  --lib-button-background: var(--black-button-background);
+  --lib-button-font-color: white;
+}
+
+.app-primary-button {
+  @extend .button;
+  @extend .box-shadow-button;
+  --background: var(--primary-button-background) !important;
+  --color: white;
+}
+
+.app-round-button {
+  width: 48px;
+  height: 48px;
+  --border-radius: 50%;
+  --background: var(--black-button-background);
+  --color: white;
+}
+
+.primary-button,
+.mat-raised-button.primary-button {
+  background: var(--button-background);
+  box-shadow: var(--box-shadow);
+  border-radius: 100px;
+  padding: 10px 25px;
+  font-family: 'Calistoga', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 160%;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--cyrano-pink-shade-1);
+  text-shadow: 0 0 16px var(--cyrano-pink-shade-1);
+  display: flex;
+  min-width: auto;
+  border: none;
+  cursor: pointer;
+  img {
+    margin: 5px 5px 0 0;
+    width: 18px;
+  }
+  &.normal-text {
+    font-size: 16px;
+  }
+  &.disable {
+    background: #adadad;
+    opacity: 0.6;
+  }
+  &:active {
+    box-shadow:
+      0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+}
