@@ -1,0 +1,41 @@
+.ngxp__container {
+  border: 1px solid var(--cyrano-dark-color);
+  background: var(--cyrano-dark-color) !important;
+  box-shadow: 0px 0px 16px rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  z-index: 1001;
+  position: absolute;
+
+  > .ngxp__arrow,
+  > .ngxp__arrow:before {
+    position: absolute;
+    width: 30px !important;
+    height: 30px !important;
+    z-index: -1;
+    border-radius: 3px;
+  }
+
+  > .ngxp__arrow:before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: '';
+    background-color: var(--cyrano-dark-color);
+  }
+
+  &[data-popper-placement^='top'] > .ngxp__arrow {
+    bottom: -4px !important;
+  }
+
+  &[data-popper-placement^='bottom'] > .ngxp__arrow {
+    top: -4px !important;
+  }
+
+  &[data-popper-placement^='left'] > .ngxp__arrow {
+    right: -4px;
+  }
+
+  &[data-popper-placement^='right'] > .ngxp__arrow {
+    left: -4px;
+  }
+}

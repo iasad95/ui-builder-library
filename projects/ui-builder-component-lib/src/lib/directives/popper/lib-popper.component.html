@@ -1,0 +1,21 @@
+<div
+  #popperViewRef
+  [attr.id]="id"
+  [class.ngxp__container]="!popperOptions.disableDefaultStyling"
+  [class.ngxp__animation]="!popperOptions.disableAnimation"
+  [style.display]="displayType"
+  [style.opacity]="opacity"
+  [ngStyle]="popperOptions.styles"
+  [ngClass]="extractAppliedClassListExpr(popperOptions.applyClass)"
+  attr.aria-hidden="{{ ariaHidden }}"
+  [attr.aria-describedby]="popperOptions.ariaDescribe || null"
+  attr.role="{{ popperOptions.ariaRole }}"
+>
+  <div *ngIf="text" class="ngxp__inner" [innerHTML]="text">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="!text" class="ngxp__inner">
+    <ng-content></ng-content>
+  </div>
+  <div class="ngxp__arrow" data-popper-arrow [class.ngxp__force-arrow]="arrowColor" [ngClass]="extractAppliedClassListExpr(popperOptions.applyArrowClass)"></div>
+</div>

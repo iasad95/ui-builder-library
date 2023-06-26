@@ -1,0 +1,28 @@
+<div class="error-messages">
+  <ng-container [ngSwitch]="true" *ngIf="control && control.touched && control.errors">
+    <p class="error" *ngSwitchCase="control.errors['required']">
+      {{ requiredErrorMessage || 'VALIDATIONS.REQUIRED' | translate }}
+    </p>
+    <p class="error" *ngSwitchCase="control.errors['email']">
+      {{ 'VALIDATIONS.NOT_VALID_EMAIL' | translate }}
+    </p>
+    <p class="error" *ngSwitchCase="control.errors['minlength'] && minLength > 0">
+      {{ 'VALIDATIONS.NOT_VALID_MIN_LENGTH' | translate: { minLength } }}
+    </p>
+    <p class="error" *ngSwitchCase="control.errors['maxlength'] && maxlength > 0">
+      {{ 'VALIDATIONS.NOT_VALID_MAX_LENGTH' | translate: { maxlength } }}
+    </p>
+  </ng-container>
+  <p class="error" *ngIf="customErrorMessage" [ngClass]="{ 'free-content': freeContent }">
+    {{ customErrorMessage }}
+  </p>
+  <p class="error" *ngIf="control && control.errors && control.errors['invalidDateRange']">
+    {{ 'VALIDATIONS.INVALID_DATE_RANGE' | translate }}
+  </p>
+  <p class="error" *ngIf="control && control.errors && control.errors['invalidTimeRange']">
+    {{ 'VALIDATIONS.INVALID_TIME_RANGE' | translate }}
+  </p>
+  <p class="error" *ngIf="control && control.errors && control.errors['pattern']">
+    {{ 'VALIDATIONS.INVLID_INPUT_VALUE' | translate }}
+  </p>
+</div>
