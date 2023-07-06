@@ -1,0 +1,64 @@
+<ion-content>
+  <ng-container *ngTemplateOutlet="loadingTemplate; context: { $implicit: loading$ | async }"></ng-container>
+
+  <ng-template #loadingTemplate let-loading>
+    <div class="auth-container" [ngClass]="[customClass]" submitOnEnter (enter)="onSubmit()">
+      <form [formGroup]="loginFormGroup" autocomplete="off" libFocusInvalidInput *ngIf="loginFormGroup">
+        <img [src]="icons.logo" class="cyrano-logo" width="170" height="80" alt="" />
+        <p class="form-title primary-text">
+          {{ title }}
+        </p>
+        <div class="login-input">
+          <lib-login-input
+            [icons]="icons"
+            [usernameLabel]="usernameLabel"
+            [phoneNumberPlaceHolder]="phoneNumberPlaceHolder"
+            formControlName="username"
+            (loginFormTypeChange)="onLoginFormTypeChange($event)"
+          ></lib-login-input>
+        </div>
+        <div class="top-space custom-input">
+          <lib-input-field [readonly]="loading" formControlName="password" [type]="hidePassword ? 'password' : 'text'" [label]="'FIELDS.PASSWORD' | translate"></lib-input-field>
+          <mat-icon
+            class="password-toggle"
+            (click)="hidePassword = !hidePassword"
+            [ngClass]="{ invalid: loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].errors && loginFormGroup.controls['password'].invalid }"
+          >
+            {{ hidePassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </div>
+        <lib-error-message class="input-error" [control]="loginFormGroup.controls['password']"> </lib-error-message>
+
+        <ion-row class="remember-me-container">
+          <ion-col class="remember-me" *ngIf="enableRememberMe">
+            <ion-item class="checkbox-container" mode="ios">
+              <label class="checkbox-label">
+                <lib-dashed-checkbox [ngClass]="{ accepted: loginFormGroup.controls['remember'].value }" formControlName="remember"></lib-dashed-checkbox>
+                <span class="checkbox-label__span">{{ 'AUTH.REMEMBER_ME' | translate }}</span>
+              </label>
+            </ion-item>
+          </ion-col>
+          <ion-col class="forgot-password" *ngIf="enableForgetPassword">
+            <button type="button" (click)="navigateToForgetPassword(this.loginFormGroup.value.username)" class="forgot-password-btn primary-link">
+              {{ 'AUTH.FORGOT_PASSWORD' | translate }}?
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <lib-primary-btn (click)="onSubmit()" class="normal-text login-btn" aria-label="login-btn" [type]="'submit'" [loading$]="loading$">
+          {{ 'AUTH.LOGIN' | translate }}
+        </lib-primary-btn>
+
+        <p class="secondary-text" *ngIf="enableSocialLogin">{{ 'AUTH.OR_LOGIN' | translate }}</p>
+        <lib-auth-social *ngIf="enableSocialLogin" [icons]="icons.socialIcons"></lib-auth-social>
+
+        <div class="center-contents-column create-account-section" *ngIf="enableRegistration">
+          <lib-secondary-btn (click)="navigateToRegister()" class="normal-text login-btn" aria-label="createBtn">
+            {{ 'AUTH.CREATE' | translate }}
+          </lib-secondary-btn>
+          <span class="secondary-text create-account-text">{{ 'AUTH.OR_CREATE_ACCOUNT' | translate }}</span>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</ion-content>

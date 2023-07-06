@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  --gap: 15px;
+  gap: var(--gap);
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-left: none;
+  --padding-right: none;
+  --color: black;
+  --margin: 0px;
+  --font-size: 1.5rem;
+  --font-weight: bold;
+  --border-radius: none;
+  --box-shadow: none;
+  --width: 3rem;
+  --height: none;
+  --invalid-border-bottom-color: red;
+  --border-bottom: 2px solid #1e2023;
+  --border-bottom-disabled: 2px solid #000;
+  --invalid-box-shadow: none;
+  position: relative;
+}
+
+strong {
+  width: 100%;
+}
+
+ng-otp-input .otp-input {
+  color: #fff;
+  padding: unset !important;
+  font-family: 'Gilroy-Regular', serif;
+  border-radius: 16px !important;
+  width: var(--width) !important;
+  height: var(--height) !important;
+  border: none !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--box-shadow) !important;
+  font-weight: var(--font-weight) !important;
+  color: var(--color);
+  font-size: var(--font-size) !important;
+  border-bottom: var(--border-bottom) !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -webkit-box-shadow: var(--input-box-shadow) !important;
+
+  &.ng-invalid.ng-touched {
+    box-shadow: var(--invalid-box-shadow) !important;
+    border-bottom-color: var(--invalid-border-bottom-color) !important;
+  }
+}
+
+ng-otp-input .ng-otp-input-wrapper {
+  display: flex;
+}

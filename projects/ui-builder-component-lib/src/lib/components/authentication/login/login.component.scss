@@ -1,0 +1,213 @@
+@import '../auth.shared.scss';
+
+.remember-me-container {
+  margin: 18px 0;
+}
+.remember-me ion-label {
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Gilroy-Regular', serif;
+}
+
+ion-row {
+  max-width: 500px;
+  width: 100%;
+
+  ion-col {
+    padding-inline-start: unset;
+    padding-inline-end: unset;
+  }
+}
+
+.top-space {
+  margin-top: 20px;
+}
+
+.forgot-password-btn {
+  padding: 0 5px;
+  font-family: 'Gilroy-Regular', serif;
+  font-style: normal;
+  line-height: 20px;
+  background-color: transparent;
+}
+
+ion-item {
+  --background: unset;
+  --inner-border-width: 0px 0px 0px 0px;
+  --padding-start: 5px;
+  --background-activated: unset;
+  --background-hover: unset;
+  --min-height: unset;
+  --inner-padding-end: unset;
+  lib-dashed-checkbox {
+    --size: 20px;
+    --color: var(--cyrano-pink-shade-1);
+    --background: transparent;
+    margin-right: 5px;
+    font-family: 'Gilroy-Regular', serif;
+
+    &.accepted {
+      --color: var(--cyrano-pink-shade-1);
+    }
+  }
+
+  lib-dashed-checkbox::part(container) {
+    border-radius: 4px;
+    border: 2px solid var(--ion-color-danger);
+  }
+
+  ion-label {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Calistoga', serif;
+    margin-inline: unset;
+  }
+}
+
+ion-item::part(native) {
+  background: unset;
+}
+
+mat-icon {
+  z-index: 99;
+  &.invalid {
+    color: var(--cyrano-pink-shade-1);
+  }
+}
+lib-error-message {
+  margin-top: 4px;
+}
+.custom-input-username {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 15px;
+  padding: 5px 0px 0px;
+}
+.login-input {
+  max-width: 495px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.username-input-error {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 2px;
+}
+.custom-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 15px;
+  padding: 5px 2px 0px;
+  &.invalid {
+    color: var(--cyrano-pink-shade-1);
+  }
+  .password-toggle {
+    position: absolute;
+    top: 21px;
+    right: 15px;
+    cursor: pointer;
+    &.invalid {
+      color: var(--cyrano-pink-shade-1);
+    }
+  }
+}
+
+@media screen and (max-width: 365px) {
+  ion-item {
+    ion-label {
+      font-size: 12px;
+    }
+  }
+
+  .forgot-password {
+    .forgot-password-btn {
+      font-size: 12px !important;
+    }
+  }
+
+  .checkbox-label {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  ion-item {
+    ion-label {
+      font-size: 10px;
+    }
+  }
+
+  .forgot-password {
+    .forgot-password-btn {
+      font-size: 10px !important;
+    }
+  }
+
+  .create-account-text,
+  .secondary-text {
+    font-size: 14px;
+  }
+}
+
+.checkbox-container {
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkbox-label {
+  display: flex;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Gilroy-Regular', serif;
+
+  &__span {
+    margin: 5px auto auto auto;
+  }
+}
+
+/*  Generic class for red handle ion-toggle controls */
+.common-radio-checkbox {
+  background: var(--ion-background-color-no-gradient);
+  box-shadow: var(--cyrano-box-inset-shadow);
+  height: 30px;
+  width: 30px;
+  --checkmark-color: var(--cyrano-pink-shade-1);
+  --background-checked: var(--ion-background-color-no-gradient);
+  --border-color-checked: var(--cyrano-pink-shade-1);
+  --border-color: var(--ion-text-color-secondary2);
+  --background: transparent;
+  --color-checked: var(--cyrano-pink-shade-1);
+}
+
+ion-radio.app-ion-radio {
+  @extend .common-radio-checkbox;
+  border-radius: 50%;
+  --size: 18px;
+}
+
+lib-dashed-checkbox.app-ion-checkbox {
+  @extend .common-radio-checkbox;
+  border-radius: 4px;
+  --size: 5px;
+}
+
+lib-dashed-checkbox.app-ion-checkbox::part(container) {
+  padding: 5px;
+}
+ion-item.no-shadow {
+  --background: unset;
+  --inner-border-width: 0px 0px 0px 0px;
+  --background-activated: unset;
+  --background-hover: unset;
+  --min-height: unset;
+}
+ion-item.no-shadow::part(native) {
+  background: unset;
+}
+
+.m-auto {
+  margin: auto;
+}

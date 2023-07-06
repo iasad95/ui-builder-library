@@ -1,0 +1,10 @@
+<div class="auth-header">
+  <lib-icon-btn *ngIf="showBackBtn$ | async" class="back-container" (click)="gotToPreviousRoute()">
+    <ion-icon name="chevron-back"></ion-icon>
+  </lib-icon-btn>
+  <span class="spacer"></span>
+  <!--  commented for now but we will need it later when implementing the light theme-->
+  <!--  <lib-menu-btn [menuItems]="themesMenuItems" [menuBtnIcon]="true" [selectable]="true" [menuBtnIconName]="'palette'" [menuBtnTooltip]="'THEMES.TITLE' | translate"> </lib-menu-btn>-->
+  <lib-menu-btn [menuItems]="languagesMenuItems" [menuBtnIcon]="true" [selectable]="true" [menuBtnIconName]="'language'" [menuBtnTooltip]="'LANGUAGES.TITLE' | translate">
+  </lib-menu-btn>
+</div>

@@ -1,0 +1,17 @@
+<ion-content>
+  <div class="auth-container" [ngClass]="[customClass ? customClass : '']">
+    <div class="center-contents-column">
+      <img [src]="icons.logo" class="cyrano-logo" width="170" height="80" alt="" />
+      <lib-verification
+        [otpCode]="form"
+        [sourceOfCode]="username"
+        [noOfBox]="noOfBox"
+        [loading$]="loading$"
+        [secondsLeft$]="secondsLeft$"
+        (dataSubmit)="onSubmit()"
+        (resend)="reSendVerificationCode()"
+        (edit)="onEdit()"
+      ></lib-verification>
+    </div>
+  </div>
+</ion-content>
