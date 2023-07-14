@@ -1,0 +1,51 @@
+<mat-menu #childMenu="matMenu" class="lib-btn-menu-panel">
+  <ng-container *ngFor="let item of menuItems; let i = index">
+    <!--Normal Menu Item-->
+    <button
+      *ngIf="!item.subMenu || item.subMenu.length === 0"
+      mat-menu-item
+      [attr.dir]="menuDirection"
+      [class]="item.cssClass"
+      [ngClass]="{ active: item.active && selectable }"
+      (click)="onMenuItemClick(item, i)"
+    >
+      <ng-container *ngTemplateOutlet="item.templateRef || menuItemContent; context: { $implicit: { item } }"></ng-container>
+    </button>
+    <div class="lib-btn-menu-panel-separator" *ngIf="item.separator"></div>
+
+    <!--Nested Menu Item-->
+    <div *ngIf="item.subMenu?.length > 0">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="nestedMenu?.childMenu"
+        [attr.dir]="menuDirection"
+        [ngClass]="{ active: item.active && selectable }"
+        (click)="onMenuItemClick(item, i)"
+      >
+        <ng-container *ngTemplateOutlet="menuItemContent; context: { $implicit: { item } }"></ng-container>
+      </button>
+      <lib-menu-item
+        #nestedMenu
+        [disableTranslation]="disableTranslation"
+        [menuDirection]="menuDirection"
+        [menuItems]="item.subMenu"
+        [listItem]="listItem"
+        [listItemIndex]="listItemIndex"
+        [selectable]="selectable"
+      >
+      </lib-menu-item>
+    </div>
+  </ng-container>
+</mat-menu>
+
+<ng-template #menuItemContent let-menuItemData>
+  <img *ngIf="menuItemData.item.iconUrl" [src]="menuItemData.item.iconUrl" alt="Placeholder" />
+  <mat-icon *ngIf="menuItemData.item.iconName">{{ menuItemData.item.iconName }}</mat-icon>
+  <span *ngIf="menuItemData.item.titlePrefix" class="lib-btn-menu-item-title-prefix">
+    {{ disableTranslation ? menuItemData.item.titlePrefix : (menuItemData.item.titlePrefix | translate) }}
+  </span>
+  {{ disableTranslation ? menuItemData.item.title : (menuItemData.item.title | translate) }}
+  <span *ngIf="menuItemData.item.titleSuffix" class="lib-btn-menu-item-title-suffix">
+    {{ disableTranslation ? menuItemData.item.titleSuffix : (menuItemData.item.titleSuffix | translate) }}
+  </span>
+</ng-template>

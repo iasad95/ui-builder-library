@@ -1,0 +1,21 @@
+svg.lib-list-button-icon path {
+  stroke: var(--lib-list-button-icon-color, #f7416e) !important;
+}
+.action-label {
+  color: var(--lib-list-button-icon-color, #f7416e);
+  &.action-label-without-arrow {
+    margin-right: -10px;
+  }
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 350px) {
+  .action-label {
+    color: var(--lib-list-button-icon-color, #f7416e);
+    &.action-label-without-arrow {
+      margin-right: 0;
+    }
+  }
+}

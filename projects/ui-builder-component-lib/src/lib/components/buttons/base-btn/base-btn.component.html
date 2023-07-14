@@ -1,0 +1,47 @@
+<div class="lib-button-component" [ngClass]="{ 'lib-button-component-disabled': disabled }" (click)="onBtnContainerClick($event)">
+  <div class="lib-button-container" [ngClass]="{ 'lib-button-container-hover-outline': hoverOutline, 'lib-button-container-disabled': disabled }"></div>
+  <button
+    [ngClass]="{
+      'lib-button-hover-outline': hoverOutline,
+      'lib-button-disabled': disabled,
+      'lib-button-with-icon': showArrowIcon,
+      'lib-button-with-label': label,
+      'disable-text-shadow': disableTextShadow,
+      'enable-overflow': notificationCount > 0,
+      'illuminated-icon': illuminateIcon,
+      'lib-btn-checked': checked,
+    }"
+    [disabled]="disabled"
+    [type]="type"
+    [attr.form]="form"
+    mat-ripple
+    [matRippleDisabled]="disabled"
+    (touchstart)="onTouchStart()"
+    (touchend)="onTouchEnd()"
+  >
+    <ng-container *ngIf="loading$ | async as loading; else buttonData">
+      <ion-spinner color="danger" name="dots"></ion-spinner>
+    </ng-container>
+    <ng-template #buttonData>
+      <span class="text" [ngClass]="{ 'lib-button-text-with-label-text': label, 'disable-text-shadow': disableTextShadow }">
+        <span class="btn-text"><ng-content></ng-content></span>
+        <div class="lib-chip-container" *ngIf="label">{{ label }}</div>
+        <div *ngIf="notificationCount > 0" class="badge-container">
+          <div class="noti noti-container"></div>
+          <div class="noti noti-circle"></div>
+          <span class="f-calistoga f-w-400 f-sm h-160 f-white">{{ notificationCount }}</span>
+        </div>
+        <ng-container *ngIf="showArrowIcon; then arrowIconTemplate; else customIconTemplate"></ng-container>
+        <ng-template #arrowIconTemplate>
+          <span class="spacer"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none" class="lib-button-icon">
+            <path d="M0.950928 9.66406L5.24176 5.37323L0.950928 1.08241" stroke="#F7416E" stroke-width="1.60906" stroke-linecap="round" />
+          </svg>
+        </ng-template>
+        <ng-template #customIconTemplate>
+          <ng-content select="[buttonIconContainer]"></ng-content>
+        </ng-template>
+      </span>
+    </ng-template>
+  </button>
+</div>

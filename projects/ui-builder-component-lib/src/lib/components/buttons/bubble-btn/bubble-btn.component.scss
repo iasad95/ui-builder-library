@@ -1,0 +1,43 @@
+lib-base-btn {
+  display: block;
+  width: 35px;
+}
+
+.title,
+.subtitle {
+  line-height: 100%;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ellipse {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: radial-gradient(89.22% 89.22% at 57.33% 6.03%, rgba(247, 247, 247, 0) 85.09%, rgba(255, 255, 255, 0.25) 100%),
+    radial-gradient(85.48% 85.48% at 52.12% 88.5%, rgba(247, 247, 247, 0) 85.09%, rgba(255, 255, 255, 0.25) 100%);
+  opacity: 0.9;
+}
+
+/* Ellipse 4 */
+
+.ellipse4 {
+  position: absolute;
+  left: -5%;
+  right: -12%;
+  top: -20%;
+  bottom: 0%;
+
+  background: radial-gradient(52.89% 52.89% at 38.63% 62.91%, rgba(247, 247, 247, 0) 78.64%, rgba(255, 255, 255, 0.52) 88.75%, rgba(247, 247, 247, 0) 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  opacity: 0.8;
+}

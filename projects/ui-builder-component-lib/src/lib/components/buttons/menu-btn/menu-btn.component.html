@@ -1,0 +1,28 @@
+<lib-base-btn
+  [disabled]="disabled"
+  [form]="form"
+  [showArrowIcon]="showArrowIcon"
+  [hoverOutline]="hoverOutline"
+  [type]="type"
+  [matMenuTriggerFor]="rootMenuRef?.childMenu"
+  [matTooltip]="menuBtnTooltip ? (menuBtnTooltip | translate) : null"
+  [matTooltipPosition]="menuBtnTooltipPosition"
+  [label]="label"
+  [ngClass]="{ 'normal-menu-btn': !menuBtnImgUrl && !menuBtnIcon && !menuBtnIconName }"
+  [loading$]="loading$"
+>
+  <ng-content></ng-content>
+  <img [src]="menuBtnImgUrl" *ngIf="menuBtnImgUrl" class="menu-btn-image" [class.menu-btn-icon]="menuBtnIcon" alt="menu btn img" />
+  <mat-icon *ngIf="menuBtnIcon && menuBtnIconName" class="menu-btn-mat-icon">{{ menuBtnIconName }}</mat-icon>
+  <img *ngIf="hasNotification" [src]="menuBtnNotificationIconUrl" class="menu-btn-notification-icon" alt="menu btn notification icon" />
+</lib-base-btn>
+<lib-menu-item
+  #rootMenuRef
+  [disableTranslation]="disableTranslation"
+  [menuDirection]="menuDirection"
+  [menuItems]="menuItems"
+  [listItem]="listItem"
+  [listItemIndex]="listItemIndex"
+  [selectable]="selectable"
+>
+</lib-menu-item>

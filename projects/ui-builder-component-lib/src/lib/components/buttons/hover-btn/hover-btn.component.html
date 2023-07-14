@@ -1,0 +1,4 @@
+<lib-base-btn [disabled]="disabled" [form]="form" [type]="type" [loading$]="loading$">
+  <ng-content></ng-content>
+  <img *ngIf="iconUrl" [src]="iconUrl" alt="" class="hover-icon" />
+</lib-base-btn>

@@ -1,0 +1,10 @@
+<lib-base-btn [disabled]="disabled" [form]="form" [showArrowIcon]="showArrowIcon" [hoverOutline]="hoverOutline" [type]="type" [label]="label" [loading$]="loading$">
+  <ng-content></ng-content>
+  <ng-container buttonIconContainer>
+    <span class="spacer" *ngIf="actionLabel || !hideActionIcon"></span>
+    <span *ngIf="actionLabel" class="action-label" [class.action-label-without-arrow]="hideActionIcon">{{ actionLabel }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none" class="menu-button-icon" *ngIf="!hideActionIcon">
+      <path d="M0.950928 9.66406L5.24176 5.37323L0.950928 1.08241" stroke="#F7416E" stroke-width="1.60906" stroke-linecap="round" />
+    </svg>
+  </ng-container>
+</lib-base-btn>
