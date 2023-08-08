@@ -1,0 +1,26 @@
+<div class="confirmation-dialog">
+  <div class="confirmation-dialog__header">
+    <div class="confirmation-dialog__header-left-group">
+      <div class="confirmation-dialog__header-icons" *ngIf="!warningModal">
+        <div class="confirmation-dialog__header-icon">
+          <div class="multiselect-dialog__header-icon" *ngFor="let icon of headerIconTray" (click)="headerIconClicked(icon)" [innerHTML]="icon.displayHtml"></div>
+        </div>
+      </div>
+      <div class="confirmation-dialog__header-text">
+        {{ title }}
+      </div>
+    </div>
+    <i class="confirmation-dialog__header-close-button icon-close" (click)="handleClickCancel()"></i>
+  </div>
+
+  <div class="confirmation-dialog__checkbox-section" [innerHTML]="dialogMessage"></div>
+
+  <div class="confirmation-dialog__footer">
+    <lib-secondary-btn *ngIf="!hideCancelAction" (click)="handleClickCancel()" class="normal-text confirmation-dialog__cancel-button" aria-label="cancel-details" [type]="'button'">
+      {{ 'COMMON.CANCEL' | translate }}
+    </lib-secondary-btn>
+    <lib-primary-btn (click)="handleClickSave()" class="normal-text confirmation-dialog__save-button" aria-label="save-details" [type]="'submit'" [disabled]="warningModal">
+      {{ confirmText }}
+    </lib-primary-btn>
+  </div>
+</div>
