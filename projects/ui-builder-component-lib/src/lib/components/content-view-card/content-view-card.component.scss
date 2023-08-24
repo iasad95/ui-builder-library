@@ -1,0 +1,121 @@
+:host {
+  --content-card-background: #27242c;
+  --content-card-box-shadow: 11px 10px 27px 2.5px rgba(17, 16, 20, 0.65), -5px -5px 16px -3px rgba(203, 199, 209, 0.25), inset 5px 5px 10px #494948, inset -10px -12px 18px #181717;
+  --content-card-detail-item-label: white;
+  --content-card-detail-item-value: rgba(142, 142, 142);
+  width: 100%;
+  --width: max-content;
+  --height: max-content;
+  display: flex;
+}
+
+.content-card {
+  position: relative;
+  display: block;
+  background: var(--content-card-background);
+  box-shadow: var(--content-card-box-shadow);
+  border-radius: 20px;
+  max-width: var(--width);
+  min-width: var(--width);
+  height: var(--height);
+  cursor: pointer;
+  padding: 2em;
+  font-family: var(--content-card-font-family);
+  overflow: hidden;
+  font-size: 1em;
+  gap: 15px;
+
+  &__first-column {
+    overflow: hidden;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    gap: 15px;
+    margin: 20px;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    width: inherit;
+  }
+
+  &__heading {
+    font-family: var(--content-card-font-family);
+    font-size: 1.8em;
+    font-weight: 500;
+  }
+
+  &__sub-headings,
+  &__xlarge-sub-headings {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+
+    > * {
+      font-family: var(--content-card-font-family);
+      font-size: 1.6em;
+      color: var(--content-card-detail-item-value);
+    }
+  }
+
+  &__xlarge-sub-headings {
+    > * {
+      font-size: 2.1em;
+      color: var(--content-card-detail-item-value);
+    }
+  }
+
+  &__expansion-button {
+    display: flex;
+    justify-content: center;
+    font-family: var(--content-card-expansion-button-font-family, 'Gilroy-Medium');
+    color: var(--content-card-detail-item-value);
+    font-size: 1.4em;
+  }
+
+  &__last-column {
+    display: flex;
+
+    .content-card__heading {
+      font-size: 2.1em;
+      text-align: end;
+      color: var(--cyrano-pink-shade-1);
+    }
+
+    .content-card__sub-headings {
+      text-align: end;
+    }
+  }
+
+  &__profile-img {
+    &__wrapper {
+      display: flex;
+      height: var(--content-view-card-image-size, 10em);
+      width: var(--content-view-card-image-size, 10em);
+      border-radius: 50%;
+      overflow: hidden;
+      justify-content: center;
+
+      &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        img {
+          height: var(--content-view-card-image-size, 10em);
+        }
+      }
+    }
+  }
+}

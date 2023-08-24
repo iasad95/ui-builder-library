@@ -1,0 +1,13 @@
+<div class="content-card">
+  <div class="content-card__wrapper">
+    <ng-content></ng-content>
+  </div>
+  <div (click)="toggleCardExpansion()" class="content-card__expansion-button">
+    @if (cardExpanded) {
+      {{ 'DASHBOARD.SEE_LESS' | translate }}
+    } @else {
+      {{ 'DASHBOARD.SEE_MORE' | translate }}
+    }
+    ...
+  </div>
+</div>
