@@ -1,0 +1,7 @@
+<label class="dashed-checkbox">
+  <input type="checkbox" class="checkbox" [checked]="checked" [disabled]="disabled" (change)="onCheckToggled()" #input />
+  <svg id="svg2" version="1.1" viewBox="0 0 24.588 16.663" xmlns="http://www.w3.org/2000/svg">
+    <path d="m1.0974 6.0974 7.8757 8.452 14.599-13.446" fill="none" stroke="#000" stroke-width="3" />
+  </svg>
+  <img class="dashed-checkbox__img" [src]="checked ? 'assets/icons/checkbox/checkbox-on.svg' : 'assets/icons/checkbox/checkbox-off.svg'" />
+</label>
