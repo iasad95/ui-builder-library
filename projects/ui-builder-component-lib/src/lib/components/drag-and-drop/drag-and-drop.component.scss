@@ -1,0 +1,27 @@
+:host {
+  position: relative;
+  --drag-outline-border: 1px dashed #e15561;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+
+div {
+  z-index: 0;
+  position: relative;
+}
+
+.drag-outline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: var(--drag-outline-border);
+  pointer-events: none;
+  z-index: 1;
+  visibility: hidden;
+
+  &.show-outline {
+    visibility: visible;
+  }
+}

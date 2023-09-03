@@ -1,0 +1,4 @@
+<div (dragover)="showOutline($event)" (dragenter)="showOutline($event)" (dragleave)="hideOutline($event)" (dragend)="hideOutline($event)" (drop)="recieveDroppedFiles($event)">
+  <ng-content></ng-content>
+</div>
+<span #dragOutline class="drag-outline"></span>
