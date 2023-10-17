@@ -1,0 +1,47 @@
+.lib-expansion-panel-background {
+  background: var(--lib-expansion-panel-background, #29252d);
+  color: var(--lib-expansion-panel-color, #fff);
+}
+
+.mat-accordion.lib-expansion-panel {
+  .mat-expansion-panel {
+    @extend .lib-expansion-panel-background;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    &:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+      @extend .lib-expansion-panel-background;
+    }
+  }
+  .mat-expansion-panel-header {
+    padding: 0 !important; //!important is necessary to override this style property
+    border: none;
+  }
+  .mat-expansion-panel-header-title {
+    color: var(--lib-expansion-panel-title-color, #a8a8a8);
+    font-family: var(--lib-expansion-panel-font-family, 'Gilroy-Regular', serif);
+    font-size: var(--lib-expansion-panel-title-font-size, 14px);
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+    line-height: var(--lib-expansion-panel-title-line-height, 150%);
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+  .lib-expansion-panel-tooltip {
+    padding: 5px 0 0 5px;
+  }
+
+  .header-icon {
+    margin-right: 5px;
+  }
+}
+
+mat-action-row {
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+}

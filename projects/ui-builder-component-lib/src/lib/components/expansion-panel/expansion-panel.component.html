@@ -1,0 +1,47 @@
+<!-- TODO: Create translations -->
+<mat-accordion class="lib-expansion-panel" [hideToggle]="true">
+  <mat-expansion-panel [(expanded)]="expanded" (afterCollapse)="expandedChange.emit(expanded)" (afterExpand)="expandedChange.emit(expanded)" (click)="handleHeaderClick($event)">
+    <mat-expansion-panel-header>
+      <mat-panel-title (click)="handleHeaderClick($event)">
+        <ng-container *ngTemplateOutlet="panelHeaderTemplate"></ng-container>
+        <ng-template #panelHeaderTemplate>
+          <ng-content select="[panelHeaderTemplate]"></ng-content>
+        </ng-template>
+        <ng-container *ngIf="!showToggleText && !hideDefaultHeader">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 10 3" fill="none" *ngIf="expanded && !expandedHeaderIcon">
+            <path d="M8.11353 1.20117L1.47352 1.20117" stroke="#FE3C72" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 9" fill="none" *ngIf="!expanded && !collapsedHeaderIcon">
+            <path
+              d="M4.79231 7.40039L4.79231 1.00039M8.11353 4.20117L1.47352 4.20117"
+              stroke="#FE3C72"
+              stroke-opacity="0.5"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <img [src]="expandedHeaderIcon" alt="expanded Header Icon" *ngIf="expandedHeaderIcon && expanded && !showToggleText" class="header-icon" />
+          <img [src]="collapsedHeaderIcon" alt="collapsed Header Icon" *ngIf="collapsedHeaderIcon && !expanded && !showToggleText" class="header-icon" />
+        </ng-container>
+        {{ title }}
+        <div *ngIf="descriptionText?.length" class="lib-expansion-panel-tooltip">
+          <i class="icon icon-gen3-info" [libTooltip]="descriptionText" [directionPreference]="DirectionPreference.Right" [delayTime]="200"></i>
+        </div>
+        <span class="spacer"></span>
+        <ng-container *ngTemplateOutlet="!expanded ? collapsedPanelRightTemplate : null"></ng-container>
+        <ng-template #collapsedPanelRightTemplate>
+          <ng-content select="[collapsedPanelRightContent]"></ng-content>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="panelHeaderRightTemplate"></ng-container>
+        <ng-template #panelHeaderRightTemplate>
+          <ng-content select="[panelHeaderRightContent]"></ng-content>
+        </ng-template>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-content></ng-content>
+  </mat-expansion-panel>
+  <mat-action-row (click)="togglePanel()" *ngIf="showToggleText">
+    <div>{{ expanded ? 'Show Less' : 'Show More' }}</div>
+  </mat-action-row>
+</mat-accordion>
