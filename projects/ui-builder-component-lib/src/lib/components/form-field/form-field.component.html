@@ -1,0 +1,378 @@
+<div class="form-field__control">
+  <div
+    *ngIf="(label || (useTooltips && descriptionText)) && (type !== 'checkbox' || (type === 'checkbox' && selectOptions?.length)) && type !== 'toggle'"
+    class="form-field__control-container"
+  >
+    <div *ngIf="label && !errorInlineMode" class="form-field__label">
+      <div class="form-field__label-text" [ngClass]="{ 'form-field__label-text-disabled': formFieldControl.disabled }">
+        <span *ngIf="iconHtml" class="form-field__label-icon" [innerHTML]="iconHtml"> </span>
+        {{ label }}
+      </div>
+      <div
+        *ngIf="showRequiredIndicator && !readOnly && (type === 'checkbox' || type === 'radio') && required"
+        class="form-field__label-required"
+        [ngClass]="{ 'form-field__required--submitted': submitted && formFieldControl.errors }"
+      >
+        *
+      </div>
+    </div>
+    <div *ngIf="useTooltips && type !== FormFieldType.message && descriptionText" class="form-field__label-icon-tooltip">
+      <i class="icon icon-gen3-info" [libTooltip]="descriptionText" [directionPreference]="DirectionPreference.Right" [delayTime]="200"></i>
+    </div>
+  </div>
+  <div class="form-field__input-section">
+    <div
+      *ngIf="
+        readOnly &&
+        (type === FormFieldType.text ||
+          type === FormFieldType.number ||
+          type === FormFieldType.currency ||
+          type === FormFieldType.percentage ||
+          type === FormFieldType.date ||
+          type === FormFieldType.datetime)
+      "
+      class="form-field__readonly-section"
+    >
+      {{ message }}
+    </div>
+    <div *ngIf="type === FormFieldType.editor" class="form-field__readonly-section">
+      <quill-editor [styles]="{ height: '200px' }"></quill-editor>
+    </div>
+    <div class="form-field__input-section">
+      <div
+        *ngIf="
+          !readOnly &&
+          (type === FormFieldType.text || type === FormFieldType.number || type === FormFieldType.currency || type === FormFieldType.percentage || type === FormFieldType.hyperlink)
+        "
+        [ngClass]="{
+          'form-field__input-container-required': required,
+          'form-field__input-container--focus': focused,
+          'form-field__input-container--error': formFieldControl.touched && submitted && formFieldControl.errors,
+          'form-field__input-container--disabled': formFieldControl.disabled,
+        }"
+        class="form-field__input-container"
+      >
+        <div
+          *ngIf="showRequiredIndicator && required"
+          class="form-field__required"
+          [ngClass]="{ 'form-field__required--submitted': submitted && formFieldControl.errors }"
+          [libTooltip]="'Required'"
+        >
+          <div class="form-field__required-indicator">*</div>
+        </div>
+        <input
+          *ngIf="type === FormFieldType.text || (type === FormFieldType.hyperlink && (focused || !formFieldControl.value))"
+          type="text"
+          class="form-field__input"
+          [formControl]="formFieldControl"
+          [maxlength]="maxLength"
+          (focus)="handleFocus()"
+          (focusout)="handleFocusOut($event)"
+          placeholder="{{ placeholder }}"
+          #textInput
+        />
+        <a *ngIf="type === FormFieldType.hyperlink && !focused" class="form-field__input-hyperlink" (click)="handleClick($event)" [href]="formFieldControl.value" target="_blank">{{
+          formFieldControl.value
+        }}</a>
+        <input
+          *ngIf="type === FormFieldType.number"
+          type="number"
+          (focus)="handleFocus()"
+          (focusout)="handleFocusOut($event)"
+          class="form-field__input form-field__input-number"
+          [formControl]="formFieldControl"
+          placeholder="{{ placeholder }}"
+        />
+        <ng-container *ngIf="type === FormFieldType.currency">
+          <span class="form-field__input-currency-symbol" [ngClass]="{ 'form-field__input-currency-symbol--disabled': formFieldControl.disabled }">
+            {{ currencySymbol }}
+          </span>
+          <input
+            type="number"
+            class="form-field__input form-field__input-currency"
+            [formControl]="formFieldControl"
+            (focus)="handleFocus()"
+            (focusout)="handleFocusOut($event)"
+            placeholder="{{ placeholder }}"
+          />
+        </ng-container>
+        <ng-container *ngIf="type === FormFieldType.percentage">
+          <input
+            type="number"
+            class="form-field__input form-field__input-percentage"
+            [formControl]="formFieldControl"
+            (focus)="handleFocus()"
+            (focusout)="handleFocusOut($event)"
+            placeholder="{{ placeholder }}"
+          />
+          <div class="form-field__input-percentage-symbol">%</div>
+        </ng-container>
+        <div
+          *ngIf="showRequiredIndicator && required && submitted && formFieldControl.errors && errorInlineMode"
+          class="form-field__required-icon"
+          [libTooltip]="(label ? label : 'Field') + ' is required and must be entered before you click away from this field.'"
+        >
+          <i class="icon-gen3-error"></i>
+        </div>
+        <div class="error-outline"></div>
+      </div>
+      <div
+        *ngIf="type === FormFieldType.textarea"
+        class="form-field__textarea-container"
+        [ngClass]="{
+          'form-field__textarea-container--focus': focused,
+          'form-field__textarea-container--error': formFieldControl.touched && submitted && formFieldControl.errors,
+          'form-field__textarea-container-required': required,
+        }"
+      >
+        <div
+          *ngIf="showRequiredIndicator && required"
+          class="form-field__required"
+          [ngClass]="{ 'form-field__required--submitted': submitted && formFieldControl.errors }"
+          [libTooltip]="'Required'"
+        >
+          <div class="form-field__required-indicator">*</div>
+        </div>
+        <textarea
+          class="form-field__textarea"
+          placeholder="{{ placeholder }}"
+          (focus)="handleFocus()"
+          (focusout)="handleFocusOut($event)"
+          [formControl]="formFieldControl"
+          [maxlength]="maxLength"
+        >
+        </textarea>
+        <div class="error-outline"></div>
+      </div>
+      <div *ngIf="type === FormFieldType.incrementer" class="form-field__incrementer-container">
+        <lib-icon-btn (click)="decrement()" class="lib-icon-btn-responsive">
+          <img class="icon" [src]="minusIconUrl || 'assets/icons/incrementer/minus.svg'" alt="remove" />
+        </lib-icon-btn>
+        <input type="number" min="0" max="99" maxlength="2" size="2" [formControl]="formFieldControl" [readonly]="true" class="f-md f-md-responsive" />
+        <lib-icon-btn class="lib-icon-btn-responsive" (click)="increment()">
+          <img class="icon" [src]="plusIconUrl || 'assets/icons/incrementer/plus.svg'" alt="add" />
+        </lib-icon-btn>
+      </div>
+      <div *ngIf="type === FormFieldType.message">
+        <div class="form-field__message">{{ message }}</div>
+      </div>
+      <div *ngIf="type === FormFieldType.radio">
+        <ng-template #radioButtonGroup let-key="key">
+          <mat-radio-group [formControl]="formFieldControl" class="form-field__radio-input">
+            <ion-button
+              *ngFor="let option of selectOptions"
+              class="form-field__radio-input__ripple-wrapper"
+              (mouseup)="formFieldRadioOptionClick(option)"
+              [ngStyle]="{ '--ripple-color': radioRippleEffect ? 'var(--ripple-color)' : 'transparent' }"
+            >
+              <mat-radio-button
+                class="form-field__radio-button"
+                [ngClass]="{ 'form-field__radio-botton--readonly': readOnly }"
+                [disableRipple]="false"
+                [value]="option.value"
+                [disabled]="readOnly || option.disabled"
+                [libTooltip]="option.label"
+                #radioButtonRef
+                style="pointer-events: none"
+              >
+                <div
+                  (click)="toggleRadioButton(radioActiveOption, radioInactiveOption)"
+                  [ngStyle]="{ display: radioDeselectable ? 'none' : '' }"
+                  class="form-field__radio-states form-field__radio-states__active"
+                  #radioActiveOption
+                >
+                  <lib-radio-button [radioButtonState]="true"></lib-radio-button>
+                </div>
+                <div
+                  (click)="toggleRadioButton(radioActiveOption, radioInactiveOption)"
+                  [ngStyle]="{ display: radioDeselectable ? 'block' : '' }"
+                  class="form-field__radio-states form-field__radio-states__inactive"
+                  #radioInactiveOption
+                >
+                  <lib-radio-button [radioButtonState]="false"></lib-radio-button>
+                </div>
+                @if (radioTranslateLabels) {
+                  {{ option.label | translate }}
+                } @else {
+                  {{ option.label }}
+                }
+              </mat-radio-button>
+            </ion-button>
+          </mat-radio-group>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="radioButtonGroup; context: { key: UNIQUE_RADIOGROUP_FORM_KEY }"></ng-container>
+      </div>
+      <div *ngIf="type === FormFieldType.toggle" class="form-field__toggle">
+        <div class="form-field__toggle-label">
+          {{ label }}
+        </div>
+        <lib-toggle [formControl]="formFieldControl"></lib-toggle>
+      </div>
+      <div *ngIf="type === FormFieldType.checkbox && !selectOptions?.length" class="form-field__checkbox">
+        <lib-dashed-checkbox [formControl]="formFieldControl" [disableControl]="readOnly"></lib-dashed-checkbox>
+        <div class="form-field__checkbox-label" [innerHTML]="label"></div>
+      </div>
+      <div *ngIf="type === FormFieldType.checkbox && selectOptions?.length" class="form-field__checkbox-group">
+        <div class="form-field__checkbox" *ngFor="let option of selectOptions">
+          <div class="form-field__checkbox-label">{{ option.label }}</div>
+          <lib-dashed-checkbox [(ngModel)]="option.selected" [disabled]="readOnly" (ngModelChange)="handleCheckboxOptionChange()"></lib-dashed-checkbox>
+        </div>
+      </div>
+      <div
+        *ngIf="type === FormFieldType.select"
+        class="form-field__select-container"
+        [ngClass]="{
+          'form-field__select-container-required': required,
+          'form-field__select-container--focus': focused,
+          'form-field__select-container--error': formFieldControl.touched && submitted && formFieldControl.errors,
+          'form-field__select-container--disabled': formFieldControl.disabled,
+        }"
+      >
+        <div
+          *ngIf="showRequiredIndicator && required"
+          class="form-field__required"
+          [ngClass]="{ 'form-field__required--submitted': submitted && formFieldControl.errors }"
+          [libTooltip]="'Required'"
+        >
+          <div class="form-field__required-indicator">*</div>
+        </div>
+        <div class="form-field__select-input" (click)="handleFieldClicked($event)">
+          <mat-form-field>
+            <mat-select
+              matNativeControl
+              [formControl]="formFieldControl"
+              [placeholder]="placeholder"
+              [disableOptionCentering]="true"
+              [panelClass]="{ 'form-field-select-panel-class': !required, 'form-field-select-panel-class--required': required }"
+              (focus)="handleFocus()"
+              (focusout)="handleFocusOut($event)"
+              #matSelect
+            >
+              <mat-option
+                *ngFor="let option of selectOptions"
+                class="form-field__select-option mat-accent"
+                [disabled]="option.disabled"
+                [libTooltip]="option.label"
+                [value]="option.value"
+              >
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="error-outline"></div>
+      </div>
+      <div *ngIf="type === FormFieldType.range" class="form-field__range-container">
+        <lib-range-selector
+          [formControl]="formFieldControl"
+          [pinValue]="pinValue"
+          [dualKnobs]="dualKnobs"
+          [reverseBarColor]="reverseBarColor"
+          [minValue]="min"
+          [maxValue]="max"
+        ></lib-range-selector>
+      </div>
+      <div
+        *ngIf="type === FormFieldType.multiselectdropdown"
+        class="form-field__select-container"
+        [ngClass]="{
+          'form-field__select-container-required': required,
+          'form-field__select-container--focus': focused,
+          'form-field__select-container--error': formFieldControl.touched && submitted && formFieldControl.errors,
+          'form-field__select-container--disabled': formFieldControl.disabled,
+        }"
+      >
+        <div *ngIf="required" class="form-field__required" [ngClass]="{ 'form-field__required--submitted': submitted && formFieldControl.errors }" [libTooltip]="'Required'">
+          <div class="form-field__required-indicator">*</div>
+        </div>
+        <div class="form-field__select-input" (click)="handleFieldClicked($event)">
+          <mat-form-field>
+            <mat-select
+              multiple
+              [disableOptionCentering]="true"
+              [formControl]="formFieldControl"
+              [placeholder]="placeholder"
+              [panelClass]="{ 'form-field-select-panel-class': !required, 'form-field-select-panel-class--required': required }"
+              (focus)="handleFocus()"
+              (focusout)="handleFocusOut($event)"
+            >
+              <mat-select-trigger>
+                {{ formFieldControl.value | getMultiSelectDisplayText: selectOptions }}
+              </mat-select-trigger>
+              <ng-container *ngIf="selectOptions.length > 9">
+                <lib-search-bar [placeholderText]="'Search'" (click)="handleClick($event)" (searchStringChange)="searchMultiSelect($event)"> </lib-search-bar>
+                <div class="separator"></div>
+              </ng-container>
+              <mat-option
+                *ngFor="let option of searchOptions$ | async"
+                class="form-field__select-option mat-accent"
+                [disabled]="option.disabled"
+                [libTooltip]="option.label"
+                [value]="option.value"
+                (click)="handleClick($event)"
+              >
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="error-outline"></div>
+      </div>
+      <div
+        *ngIf="!readOnly && (type === FormFieldType.date || type === FormFieldType.datetime)"
+        class="form-field__date-container"
+        [ngClass]="{
+          'form-field__date-container-required': required,
+          'form-field__date-container--focus': focused,
+          'form-field__date-container--error': formFieldControl.touched && submitted && formFieldControl.errors,
+          'form-field__date-container--disabled': formFieldControl.disabled,
+        }"
+      >
+        <div
+          *ngIf="showRequiredIndicator && required"
+          class="form-field__required"
+          [ngClass]="{ 'form-field__required--submitted': formFieldControl.touched && submitted && formFieldControl.errors }"
+          [libTooltip]="'Required'"
+        >
+          <div class="form-field__required-indicator">*</div>
+        </div>
+        <div class="form-field__date-input">
+          <mat-form-field class="form-field__date-input-mat">
+            <input
+              matInput
+              [min]="minDate"
+              [max]="maxDate"
+              [matDatepicker]="picker"
+              [placeholder]="dateInputPlaceholder"
+              [formControl]="formFieldControl"
+              (focus)="handleFocus()"
+              (focusout)="processDate($event)"
+              #dateInput
+            />
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <i class="icon-gen3-appointment form-field__date-input-icon" (click)="picker.open()"></i>
+        </div>
+        <div class="error-outline"></div>
+      </div>
+      <div
+        *ngIf="!readOnly && type !== FormFieldType.datetime && formFieldControl.touched && submitted && formFieldControl.errors?.['required'] && !errorInlineMode"
+        class="form-field__error-text"
+      >
+        <span>{{ showLabelInRequiredErrorMessage ? (label ? label : 'Field') + ' is required.' : 'Required' }}</span>
+      </div>
+      <div
+        *ngIf="
+          !readOnly &&
+          type !== FormFieldType.datetime &&
+          formFieldControl.touched &&
+          submitted &&
+          (formFieldControl.errors?.['pattern'] || formFieldControl.errors?.['matDatepickerParse'])
+        "
+        class="form-field__error-text"
+      >
+        {{ invalidPatternMessage }}
+      </div>
+    </div>
+  </div>
+</div>

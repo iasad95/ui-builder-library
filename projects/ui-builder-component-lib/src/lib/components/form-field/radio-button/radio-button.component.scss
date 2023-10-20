@@ -1,0 +1,26 @@
+.form-field {
+  &__radio-states {
+    --radio-button-size: 25px;
+    height: var(--radio-button-size);
+    width: var(--radio-button-size);
+    &__active {
+      display: none;
+
+      &__circle {
+        animation: radio-active-circle-anim forwards 250ms;
+      }
+    }
+    &__inactive {
+      display: block;
+    }
+  }
+}
+
+@keyframes radio-active-circle-anim {
+  from {
+    r: 0;
+  }
+  to {
+    r: 5.25;
+  }
+}
