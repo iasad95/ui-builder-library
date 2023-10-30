@@ -1,0 +1,44 @@
+<form class="form-generator" [formGroup]="formInfo.formGroup">
+  <div *ngIf="formInfo.formStyle === FormGenStyle.expander">
+    <div *ngFor="let groupInfo of formInfo.groups; trackBy: trackGroup">
+      <div *ngIf="!groupInfo.isHidden" [attr.id]="groupInfo.title">
+        <lib-expansion-panel
+          *ngIf="groupInfo.fields.length"
+          [title]="groupInfo.title"
+          [count]="-1"
+          [expanded]="groupInfo.expanded"
+          [useSlideToggle]="groupInfo.useSlideToggle"
+          [iconTray]="groupInfo.headerActions"
+          (closed)="handleGroupClosed(groupInfo)"
+          (opened)="handleGroupOpened(groupInfo)"
+        >
+          <lib-form-group
+            [groupInfo]="groupInfo"
+            [useTooltips]="useTooltips"
+            [dateFormat]="dateFormat"
+            [currencySymbol]="currencySymbol"
+            [hideCents]="hideCents"
+            [formStyle]="formInfo.formStyle"
+          >
+          </lib-form-group>
+        </lib-expansion-panel>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="formInfo.formStyle === FormGenStyle.flat">
+    <div *ngFor="let groupInfo of formInfo.groups; trackBy: trackGroup">
+      <div *ngIf="!groupInfo.isHidden">
+        <div class="form-generator__group-title" *ngIf="groupInfo.title">{{ groupInfo.title }}</div>
+        <lib-form-group
+          [groupInfo]="groupInfo"
+          [useTooltips]="useTooltips"
+          [dateFormat]="dateFormat"
+          [currencySymbol]="currencySymbol"
+          [hideCents]="hideCents"
+          [formStyle]="formInfo.formStyle"
+        >
+        </lib-form-group>
+      </div>
+    </div>
+  </div>
+</form>

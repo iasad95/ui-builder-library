@@ -1,0 +1,13 @@
+.form-generator {
+  display: flex;
+  flex-direction: column;
+
+  &__group-title {
+    padding: 10px 0 0;
+    color: var(--mat-expansion-header-text-color);
+    font-weight: bold;
+    font-size: 14px;
+    border-top: 1px solid #dfe0e3;
+    overflow-wrap: break-word;
+  }
+}

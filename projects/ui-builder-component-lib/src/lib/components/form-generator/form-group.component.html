@@ -1,0 +1,338 @@
+<div class="form-group__group-section">
+  <div class="form-group__row" *ngFor="let row of groupInfo.fields" [ngClass]="{ 'form-group__row--flat': formStyle === FormGenStyle.flat }">
+    <div
+      class="form-group__form-section"
+      *ngFor="let fieldInfo of row; trackBy: trackField"
+      [ngStyle]="{ 'flex-grow': fieldInfo.flexGrow, 'flex-shrink': 1, 'flex-basis': fieldInfo.flexBasisPct + '%' }"
+    >
+      <div
+        class="form-group__field-desc-section"
+        [ngClass]="{
+          'form-group__field-desc-section--no-desc':
+            !fieldInfo.fullLength &&
+            row.length === 1 &&
+            !fieldInfo.descriptionText &&
+            !(
+              fieldInfo.type === FormFieldType.textarea ||
+              fieldInfo.type === FormFieldType.editor ||
+              fieldInfo.type === FormFieldType.multifield ||
+              fieldInfo.type === FormFieldType.checkbox ||
+              fieldInfo.type === FormFieldType.radio ||
+              fieldInfo.type === FormFieldType.rating
+            ),
+          'form-group__field-desc-section--column':
+            fieldInfo.type === FormFieldType.textarea || fieldInfo.type === FormFieldType.editor || fieldInfo.type === FormFieldType.multifield,
+        }"
+      >
+        <lib-form-field
+          *ngIf="
+            !fieldInfo.isHidden &&
+            (fieldInfo.type === FormFieldType.select ||
+              fieldInfo.type === FormFieldType.text ||
+              fieldInfo.type === FormFieldType.date ||
+              fieldInfo.type === FormFieldType.radio ||
+              fieldInfo.type === FormFieldType.toggle ||
+              fieldInfo.type === FormFieldType.checkbox ||
+              fieldInfo.type === FormFieldType.textarea ||
+              fieldInfo.type === FormFieldType.number ||
+              fieldInfo.type === FormFieldType.message ||
+              fieldInfo.type === FormFieldType.editor ||
+              fieldInfo.type === FormFieldType.currency ||
+              fieldInfo.type === FormFieldType.percentage ||
+              fieldInfo.type === FormFieldType.range ||
+              fieldInfo.type === FormFieldType.incrementer ||
+              fieldInfo.type === FormFieldType.hyperlink)
+          "
+          [fieldName]="fieldInfo.controlName"
+          [label]="fieldInfo.label"
+          [iconHtml]="fieldInfo.labelIcon"
+          [formFieldControl]="fieldInfo.control"
+          [submitted]="fieldInfo.control.touched"
+          [maxLength]="fieldInfo.maxLength ? fieldInfo.maxLength : 524288"
+          [type]="fieldInfo.type"
+          [options]="fieldInfo.selectOptions"
+          [required]="fieldInfo.required"
+          [placeholder]="fieldInfo.placeholder"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+          [invalidPatternMessage]="fieldInfo.patternErrorMessage"
+          [message]="fieldInfo.message"
+          [dateFormat]="dateFormat"
+          [decimalPosition]="fieldInfo.numberConfig?.decimalPosition"
+          [currencySymbol]="currencySymbol"
+          [hideCents]="hideCents"
+          [useTooltips]="useTooltips"
+          [descriptionText]="fieldInfo.descriptionText"
+          [isEditable]="fieldInfo.isEditable"
+          [showLabelInRequiredErrorMessage]="fieldInfo.showLabelInRequiredErrorMessage"
+          [readOnly]="fieldInfo.readOnly"
+          [rowEditConfirmationObsv]="fieldInfo.confirmationObsv"
+          (rowEdit)="fieldInfo.handleConfirmation($event)"
+          class="form-group__field-section"
+          [ngClass]="{
+            'form-group__field-section--column':
+              fieldInfo.type === FormFieldType.textarea || fieldInfo.type === FormFieldType.editor || fieldInfo.type === FormFieldType.multifield,
+            'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText && fieldInfo.type !== FormFieldType.editor,
+          }"
+        >
+        </lib-form-field>
+        <div
+          class="form-group__typeahead-section"
+          [ngClass]="{ 'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+          *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.typeahead"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+        >
+          <div *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)">
+            <div *ngIf="fieldInfo.label" class="form-group__label">
+              {{ fieldInfo.label }}
+            </div>
+            <div
+              *ngIf="useTooltips && fieldInfo.descriptionText"
+              class="form-group__label-icon-tooltip"
+              [libTooltip]="fieldInfo.descriptionText"
+              [directionPreference]="DirectionPreference.Right"
+              [delayTime]="200"
+            >
+              <i class="icon icon-gen3-info"></i>
+            </div>
+          </div>
+          <lib-typeahead-field
+            class="form-group__typeahead"
+            [entityFunctions]="fieldInfo.typeaheadConfig.entity"
+            [selectionFunction]="fieldInfo.typeaheadConfig.selectionFunction"
+            [placeholderText]="fieldInfo.placeholder"
+            [alternateText]="fieldInfo.typeaheadConfig.alternateText"
+            [alternateFunction]="fieldInfo.typeaheadConfig.alternateFunction"
+            [defaultSearchString]="fieldInfo.typeaheadConfig.defaultSearchString"
+            [defaultText]="fieldInfo.typeaheadConfig.defaultText"
+            [error]="
+              fieldInfo.control.touched && fieldInfo.control.errors
+                ? fieldInfo.control.errors?.required
+                  ? (fieldInfo.label ? fieldInfo.label : 'Field') + ' is required.'
+                  : fieldInfo.typeaheadConfig.errorMessage
+                : ''
+            "
+            [suggestionText]="fieldInfo.typeaheadConfig.suggestionText"
+            [required]="fieldInfo.required"
+            (inputStringChange)="handleTypeaheadInputChange(fieldInfo, $event)"
+            (selected)="handleTypeaheadSelected(fieldInfo, $event)"
+            (deselected)="handleTypeaheadDeselected(fieldInfo)"
+          >
+          </lib-typeahead-field>
+        </div>
+        <!-- TODO: USE our image upload -->
+        <!-- <div
+          class="form-group__photo-section"
+          [ngClass]="{ 'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+          *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.photo"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+        >
+          <div *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)" class="form-group__photo-section-container">
+            <div *ngIf="fieldInfo.label" class="form-group__label">
+              {{ fieldInfo.label }}
+            </div>
+            <div
+              *ngIf="useTooltips && fieldInfo.descriptionText"
+              class="form-group__label-icon-tooltip"
+              [libTooltip]="fieldInfo.descriptionText"
+              [directionPreference]="DirectionPreference.Right"
+              [delayTime]="200"
+            >
+              <i class="icon icon-gen3-info"></i>
+            </div>
+          </div>
+          <div class="form-group__photo">
+            <lib-image-uploader
+              (imageDataUploaded)="handleImageUploaded(fieldInfo, $event)"
+              (deselected)="handleImageDeselected(fieldInfo)"
+              [acceptableFileTypes]="['image/gif', 'image/jpeg', 'image/png', 'image/tiff']"
+              [imageUrl]="fieldInfo.imageUrl"
+              [placeholderIconClass]="fieldInfo.placeholder"
+            >
+            </lib-image-uploader>
+          </div>
+        </div> -->
+        <div
+          class="form-group__multiselect-section"
+          [ngClass]="{ 'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+          *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.multiselect"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+        >
+          <div *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)" class="form-group__multiselect-section-container">
+            <div *ngIf="fieldInfo.label" class="form-group__label">
+              {{ fieldInfo.label }}
+            </div>
+            <div
+              *ngIf="useTooltips && fieldInfo.descriptionText"
+              class="form-group__label-icon-tooltip"
+              [libTooltip]="fieldInfo.descriptionText"
+              [directionPreference]="DirectionPreference.Right"
+              [delayTime]="200"
+            >
+              <i class="icon icon-gen3-info"></i>
+            </div>
+          </div>
+          <lib-multiselect
+            class="form-group__multiselect"
+            [fieldName]="fieldInfo.controlName"
+            [dialogTitle]="fieldInfo.label"
+            [optionGroups]="fieldInfo.multiselectConfig.options"
+            [selectedOptions]="fieldInfo.multiselectConfig.defaultOptions"
+            [submitted]="fieldInfo.control.touched"
+            [required]="fieldInfo.required"
+            [disabled]="fieldInfo.disabled"
+            [optionDeleteConfirmationObsv]="fieldInfo.confirmationObsv"
+            (optionDelete)="fieldInfo.handleConfirmation($event)"
+            (selectedOptionsChange)="handleMultiselectChange(fieldInfo, $event)"
+          ></lib-multiselect>
+        </div>
+        <div
+          *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.textlist"
+          [ngClass]="{ 'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+          class="form-group__textlist-section"
+        >
+          <div *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)">
+            <div *ngIf="fieldInfo.label" class="form-group__label">
+              {{ fieldInfo.label }}
+            </div>
+            <div
+              *ngIf="useTooltips && fieldInfo.descriptionText"
+              class="form-group__label-icon-tooltip"
+              [libTooltip]="fieldInfo.descriptionText"
+              [directionPreference]="DirectionPreference.Right"
+              [delayTime]="200"
+            >
+              <i class="icon icon-gen3-info"></i>
+            </div>
+          </div>
+          <lib-text-list
+            [textListStrings]="fieldInfo.textlist"
+            [placeholderText]="fieldInfo.placeholder"
+            [disabled]="fieldInfo.disabled"
+            [isUrlList]="fieldInfo.textlistConfig?.isUrlList"
+            (listChange)="handleListChange(fieldInfo, $event)"
+          ></lib-text-list>
+        </div>
+        <div
+          *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.time"
+          [ngClass]="{ 'form-group__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+          [attr.id]="groupInfo.title + fieldInfo.controlName"
+          class="form-group__timepicker-section"
+        >
+          <div *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)" class="form-group__timepicker-section-label">
+            <div *ngIf="fieldInfo.label" class="form-group__label">
+              {{ fieldInfo.label }}
+            </div>
+            <div
+              *ngIf="useTooltips && fieldInfo.descriptionText"
+              class="form-group__label-icon-tooltip"
+              [libTooltip]="fieldInfo.descriptionText"
+              [directionPreference]="DirectionPreference.Right"
+              [delayTime]="200"
+            >
+              <i class="icon icon-gen3-info"></i>
+            </div>
+          </div>
+          <lib-time-picker [defaultToCurrentTime]="false" [formFieldControl]="fieldInfo.control"></lib-time-picker>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.multifield" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__multifield-section">
+          <lib-multi-field
+            class="form-group__multifield"
+            [fieldName]="fieldInfo.controlName"
+            [config]="fieldInfo.multifieldConfig.config"
+            [formFieldControl]="fieldInfo.control"
+            [newRowText]="fieldInfo.multifieldConfig.newRowText"
+            [useTooltips]="useTooltips"
+            [maxLength]="fieldInfo.multifieldConfig.maxLength"
+            [errorMessage]="fieldInfo.multifieldConfig.errorMessage"
+            [currencySymbol]="currencySymbol"
+            [rowDeleteConfirmationObsv]="fieldInfo.confirmationObsv"
+            [disabled]="fieldInfo.disabled"
+            (rowEdit)="fieldInfo.multifieldConfig.handleRowEdit($event)"
+            (rowDelete)="fieldInfo.handleConfirmation($event)"
+            (valueChanges)="fieldInfo.multifieldConfig.handleValueChanged($event)"
+          >
+          </lib-multi-field>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.action" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__action-section">
+          <div class="form-group__action-text" (click)="fieldInfo.actionConfig.action()">
+            {{ fieldInfo.descriptionText }}
+          </div>
+        </div>
+        <div
+          *ngIf="
+            !fieldInfo.isHidden &&
+            !useTooltips &&
+            fieldInfo.type !== FormFieldType.action &&
+            (fieldInfo.descriptionText || (fieldInfo.type === FormFieldType.multifield && multifieldDescriptionTextList(fieldInfo.descriptionText, fieldInfo.multifieldConfig)))
+          "
+          class="form-group__description-text"
+          [ngClass]="{
+            'form-group__description-text-no-label': !fieldInfo.label && !useTooltips && fieldInfo.descriptionText,
+            'form-group__description-text-multiselect': !useTooltips && fieldInfo.type === FormFieldType.multiselect,
+          }"
+        >
+          <i
+            *ngIf="fieldInfo.type !== FormFieldType.multifield || multifieldDescriptionTextList(fieldInfo.descriptionText, fieldInfo.multifieldConfig).length > 0"
+            class="form-group__description-text-icon icon icon-gen3-info"
+            [ngClass]="{
+              'form-group__description-text-icon-top':
+                fieldInfo.type === FormFieldType.multifield && multifieldDescriptionTextList(fieldInfo.descriptionText, fieldInfo.multifieldConfig),
+            }"
+          ></i>
+          <ng-container *ngIf="fieldInfo.type === FormFieldType.multifield">
+            <ul class="form-group__description-text-list">
+              <li *ngFor="let description of multifieldDescriptionTextList(fieldInfo.descriptionText, fieldInfo.multifieldConfig)">{{ description }}</li>
+            </ul>
+          </ng-container>
+          <span class="form-group__description-text-wrapper" *ngIf="fieldInfo.type !== FormFieldType.multifield" [innerHTML]="fieldInfo.descriptionText"> </span>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.banner" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__form-banner">
+          <lib-status-banner
+            [show]="true"
+            [type]="fieldInfo.bannerConfig?.statusType || StatusTypes.Info"
+            [title]="fieldInfo.label"
+            [message]="fieldInfo.descriptionText"
+            [showClose]="false"
+          ></lib-status-banner>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.injectable" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__injectable-section">
+          <lib-injectable-form-field-wrapper
+            [formFieldControl]="fieldInfo.control"
+            [componentType]="fieldInfo.injectableConfig.componentType"
+            [componentConfig]="fieldInfo.injectableConfig.componentConfig"
+          ></lib-injectable-form-field-wrapper>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.datetime" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__datetime-section">
+          <lib-date-time-picker
+            [placeholder]="fieldInfo.placeholder"
+            [dateFormat]="dateFormat"
+            [formFieldControl]="fieldInfo.control"
+            [submitted]="fieldInfo.control.touched"
+            [required]="fieldInfo.required"
+            [label]="fieldInfo.label"
+            [showLabelInRequiredErrorMessage]="fieldInfo.showLabelInRequiredErrorMessage"
+            [readOnly]="fieldInfo.readOnly"
+            [message]="fieldInfo.message"
+          >
+          </lib-date-time-picker>
+        </div>
+        <div *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.rating" [attr.id]="groupInfo.title + fieldInfo.controlName" class="form-group__rating-field-section">
+          <lib-rating-field
+            [formFieldControl]="fieldInfo.control"
+            [submitted]="fieldInfo.control.touched"
+            [required]="fieldInfo.required"
+            [label]="fieldInfo.label"
+            [showLabelInRequiredErrorMessage]="fieldInfo.showLabelInRequiredErrorMessage"
+            [readOnly]="fieldInfo.readOnly"
+            [options]="fieldInfo.ratingConfig.options"
+          >
+          </lib-rating-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group__footer" *ngIf="groupInfo.footerAction" (click)="handleFooterClicked()">
+    <span class="form-group__footer-text" [innerHTML]="groupInfo.footerAction?.displayHtml"></span>
+  </div>
+</div>
