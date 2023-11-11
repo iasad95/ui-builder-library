@@ -1,0 +1,302 @@
+<lib-grid-toolbar
+  [enableCreate]="enableCreate"
+  [enableRefresh]="enableRefresh"
+  [enableTrash]="enableTrash"
+  [enableSelection]="enableSelection"
+  [enableGridFilters]="enableGridFilters"
+  [isEditInProgress]="isEditInProgress"
+  [rowsPerPage]="rowsPerPage"
+  [excludedRows]="excludedRows"
+  [selectAllConfirmMsg]="selectAllConfirmMsg"
+  [selectAllConfirmedMsg]="selectAllConfirmedMsg"
+  [selectAllExceptSomeRecordsConfirmedMsg]="selectAllExceptSomeRecordsConfirmedMsg"
+  [clearSelectionMsg]="clearSelectionMsg"
+  [totalRecords]="totalRecords"
+  [selectAllConfirmButtonLabel]="selectAllConfirmButtonLabel"
+  [selectedRows]="selectedRows"
+  [selectAllPagesConfirmed]="selectAllPagesConfirmed"
+  (createClicked)="emitCreateEvent()"
+  (refreshData)="emitRefreshEvent()"
+  (showTrash)="emitTrashEvent($event)"
+  (userFilter)="handleApplyFilter($event)"
+  (selectAllPages)="onSelectAllPages($event)"
+  (searchStringSubject)="handleSearchStringChange($event)"
+></lib-grid-toolbar>
+<div class="table-container" [ngClass]="{ 'table-container--disabled': isEditInProgress }">
+  <p-table
+    *ngIf="display"
+    [lazy]="true"
+    (onLazyLoad)="onLazyLoad($event)"
+    [loading]="isLoading"
+    [columns]="filteredColumns"
+    [value]="processedData"
+    [scrollable]="true"
+    [sortField]="sortField"
+    [sortOrder]="parsedSortOrder"
+    [dataKey]="groupByField ? 'displayValues.' + groupByField.name : 'id'"
+    [groupRowsBy]="groupByField ? 'displayValues.' + groupByField.name : null"
+    [resizableColumns]="true"
+    [columnResizeMode]="'expand'"
+    (onColResize)="colResize($event)"
+    [reorderableColumns]="true"
+    (onColReorder)="colReorder($event)"
+    (onEditComplete)="handleEditComplete($event)"
+    (onEditInit)="handleEditInit($event)"
+    (onEditCancel)="handleEditCancel($event)"
+    (onRowSelect)="onRowSelected($event)"
+    (onRowUnselect)="onRowUnselected($event)"
+    [(selection)]="selectedRows"
+    (selectionChange)="onSelectionChange($event)"
+    rowGroupMode="subheader"
+    scrollDirection="both"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- TODO: enable grid menu and add the edit/drag logic here -->
+        <th class="grid-cell-empty" pFrozenColumn alignFrozen="left">
+          <div class="separator">
+            <button
+              (click)="toggleAll()"
+              *ngIf="groupByField"
+              type="button"
+              pButton
+              pRipple
+              class="p-button-text p-button-rounded p-button-plain mr-2"
+              [icon]="allRowsExpanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+            ></button>
+          </div>
+        </th>
+        <th class="selection-cell" *ngIf="enableSelection && processedData?.length > 0" pFrozenColumn alignFrozen="left">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          <button mat-icon-button class="bulk-delete" (click)="onBulkDelete()" *ngIf="selectedRows?.length > 0">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </th>
+        <th
+          *ngFor="let col of filteredColumns"
+          [frozen]="col.pinned"
+          [style.flex]="(col.pinned ? '0 0 ' : '0 1 ') + (col.width ?? 200) + 'px !important'"
+          [style.width]="(col.width ?? 200) + 'px !important'"
+          [style.left]="col.pinned ? col.pinLocationInPx + 'px' : 'unset'"
+          pReorderableColumn
+          pResizableColumn
+          pFrozenColumn
+          alignFrozen="left"
+          class="grid-cell"
+        >
+          <div [pSortableColumn]="col.name" [pSortableColumnDisabled]="!col.sortable" pFrozenColumn class="grid-cell-text">
+            <div class="grid-cell-label" [libTooltip]="col.label ?? col.name | translate">
+              {{ col.label ?? col.name | translate }}
+            </div>
+            <div *ngIf="col.sortable">
+              <ng-container
+                *ngTemplateOutlet="sortDirection; context: { state: this.sortField === col.name, directionUp: this.parsedSortOrder > 0 && this.sortField === col.name }"
+              ></ng-container>
+            </div>
+          </div>
+          <ng-container>
+            <i class="icon-pin grid-cell-action" [hidden]="!col.pinned" (click)="handleUnpinColumn(col, $event)"></i>
+            <div class="p-menu-container">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-ellipsis-v"
+                class="p-button-rounded p-button-text p-button-plain grid-cell-action"
+                (click)="gridmenu.toggle($event)"
+                *ngIf="col.menuItems?.length"
+              ></button>
+              <p-menu
+                [popup]="true"
+                [model]="col.menuItems"
+                appendTo="body"
+                #gridmenu
+                styleClass="{{ (totalNumberOfPinnedColumns >= maxPinnedColumns ? 'grid-menu-action--restricted' : '') + ' row-menu-items' }}"
+              ></p-menu>
+            </div>
+          </ng-container>
+          <div class="separator"></div>
+        </th>
+        <th class="grid-cell-settings grid-cell-settings-flex" pFrozenColumn alignFrozen="right">
+          <div class="column-management-button" [ngClass]="{ 'column-management-button--focused': columnManagementModalOpen }" (click)="openManagementModal()">
+            <i class="column-management-button--icon icon-gen3-preferences"></i>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template *ngIf="groupByField" pTemplate="groupheader" let-rowData let-expanded="expanded">
+      <tr class="grid-group-header-row">
+        <div class="grid-group-header-cell" pFrozenColumn alignFrozen="left">
+          <button
+            id="expandBtn"
+            [ngClass]="{ expanded: expanded }"
+            type="button"
+            pButton
+            pRipple
+            [pRowToggler]="rowData"
+            class="p-button-text p-button-rounded p-button-plain mr-2"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+          ></button>
+          <span>
+            {{ groupByField.label + ': ' + (rowData?.displayValues[groupByField.name] || 'None') }}
+          </span>
+        </div>
+      </tr>
+    </ng-template>
+    <ng-template [pTemplate]="groupByField ? 'rowexpansion' : 'body'" let-rowData let-index>
+      <tr
+        [pSelectableRow]="rowData"
+        [ngClass]="{
+          'not-deletable': !rowData.hasDeletePermissions,
+        }"
+      >
+        <td pFrozenColumn class="grid-row-menu-button" (click)="!!rowData?.rowMenuItems?.length && projectmenu.toggle($event)" alignFrozen="left">
+          <button pButton type="button" [disabled]="!rowData?.rowMenuItems?.length" class="p-button-rounded p-button-text p-button-plain">
+            <i class="pi pi-ellipsis-v"></i>
+          </button>
+          <p-menu styleClass="row-menu-items" [popup]="true" [model]="rowData.rowMenuItems" appendTo="body" #projectmenu></p-menu>
+        </td>
+        <td pFrozenColumn class="selection-cell" *ngIf="enableSelection && processedData?.length > 0" alignFrozen="left">
+          <p-tableCheckbox [value]="rowData" [index]="index" [disabled]="!rowData.hasDeletePermissions"></p-tableCheckbox>
+        </td>
+        <td
+          *ngFor="let col of filteredColumns; let i = index"
+          class="grid-cell-body"
+          [style.flex]="(col.pinned ? '0 0 ' : '0 1 ') + (col.width ?? 200) + 'px !important'"
+          [style.width]="(col.width ?? 200) + 'px !important'"
+          [style.left]="col.pinned ? col.pinLocationInPx + 'px' : 'unset'"
+          [frozen]="col?.pinned"
+          [pFocusCellSelector]="'input, [role=combobox]'"
+          [pEditableColumn]="{ column: col, row: rowData }"
+          [pEditableColumnField]="col.name"
+          [pEditableColumnRowIndex]="i"
+          [pEditableColumnDisabled]="!col.editable || !rowData?.hasEditPermissions"
+          pFrozenColumn
+          alignFrozen="left"
+          [ngClass]="{
+            percent: col?.controlType === 'Percent',
+            'not-editable': !col?.editable || !rowData?.hasEditPermissions,
+            editable: col?.editable && rowData?.hasEditPermissions,
+            hoverable: col?.controlType !== 'ActionButtons',
+            'action-buttons': col?.controlType === 'ActionButtons',
+          }"
+          (click)="emitClickCellEvent(rowData, col.name, col.controlType)"
+        >
+          <p-cellEditor [ngClass]="{ hoverable: col.controlType !== 'ActionButtons' }">
+            <ng-template pTemplate="input" [ngSwitch]="col.controlType">
+              <lib-form-field *ngSwitchCase="'SingleSelect'" [formFieldControl]="editFormControl" [type]="'select'" [options]="editSelectOptions"></lib-form-field>
+              <lib-form-field *ngSwitchCase="'MultiSelect'" [formFieldControl]="editFormControl" [type]="'multiselectdropdown'" [options]="editSelectOptions"></lib-form-field>
+              <lib-form-field *ngSwitchCase="'Number'" [formFieldControl]="editFormControl" [type]="'number'"></lib-form-field>
+              <lib-form-field *ngSwitchCase="'Percent'" [formFieldControl]="editFormControl" [type]="'percentage'"></lib-form-field>
+              <lib-typeahead-field *ngSwitchCase="'AutoComplete'" [entityFunctions]="rowData.entity"></lib-typeahead-field>
+              <lib-typeahead-field *ngSwitchCase="'AutoCompleteMulti'" [entityFunctions]="rowData.entity" [isMultiselectMode]="true"></lib-typeahead-field>
+              <lib-typeahead-field *ngSwitchCase="'MultiField'" [entityFunctions]="rowData.entity" [isMultiselectMode]="true"></lib-typeahead-field>
+              <lib-form-field
+                *ngSwitchCase="'Text'"
+                [formFieldControl]="editFormControl"
+                [type]="'text'"
+                [submitted]="true"
+                [errorInlineMode]="true"
+                [required]="col?.requiredForEdit"
+                [label]="col.label ?? col.name"
+              ></lib-form-field>
+              <lib-form-field *ngSwitchCase="'Date'" [formFieldControl]="editFormControl" [type]="'date'"></lib-form-field>
+              <span *ngSwitchCase="'Html'" [innerHTML]="rowData?.data[col.name]"></span>
+              <lib-form-field *ngSwitchCase="'Currency'" [formFieldControl]="editFormControl" [type]="'currency'" [hideCents]="true"></lib-form-field>
+              <lib-form-field *ngSwitchCase="'Boolean'" [formFieldControl]="editFormControl" [type]="'select'" [options]="editSelectOptions"></lib-form-field>
+            </ng-template>
+            <ng-template pTemplate="output" [ngSwitch]="col.controlType">
+              <span *ngSwitchCase="'SingleSelect'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">{{
+                rowData?.displayValues[col.name] ?? ''
+              }}</span>
+              <span *ngSwitchCase="'MultiSelect'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">{{
+                rowData?.displayValues[col.name] ?? ''
+              }}</span>
+              <span *ngSwitchCase="'AutoComplete'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">{{
+                rowData?.displayValues[col.name] ?? ''
+              }}</span>
+              <span *ngSwitchCase="'AutoCompleteMulti'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">
+                <ng-container *ngIf="isArray(rowData?.data?.[col.name]); else notAnArray">
+                  <ng-container *ngFor="let item of rowData?.data?.[col.name]; last as last">
+                    <a *ngIf="item?.Url" [href]="item.Url" target="_blank">{{ item.Value }}</a>
+                    <span *ngIf="!item?.Url">{{ item.Value }}</span>
+                    <ng-container *ngIf="!last">, </ng-container>
+                  </ng-container>
+                </ng-container>
+                <ng-template #notAnArray>{{ rowData?.displayValues[col.name] ?? '' }}</ng-template>
+              </span>
+              <span *ngSwitchCase="'MultiField'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">
+                <ng-container *ngIf="isArray(rowData?.data?.[col.name]); else notAnArray">
+                  <ng-container *ngFor="let item of rowData?.data?.[col.name]; last as last">
+                    <a *ngIf="item?.Url" [href]="item.Url" target="_blank">{{ item.Value }}</a>
+                    <span *ngIf="!item?.Url">{{ item.Value }}</span>
+                    <ng-container *ngIf="!last">, </ng-container>
+                  </ng-container>
+                </ng-container>
+                <ng-template #notAnArray>{{ rowData?.displayValues[col.name] ?? '' }}</ng-template>
+              </span>
+              <span *ngSwitchCase="'Number'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">{{
+                rowData?.displayValues[col.name]
+              }}</span>
+              <span *ngSwitchCase="'Text'" [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''">{{
+                rowData?.displayValues[col.name]
+              }}</span>
+              <span
+                *ngSwitchCase="'Html'"
+                [libTooltip]="rowData?.displayValues[col.name]?.length > 25 ? rowData?.displayValues[col.name] : ''"
+                [innerHTML]="rowData?.displayValues[col.name]"
+                >{{ rowData?.displayValues[col.name] }}</span
+              >
+              <span *ngSwitchCase="'Percent'">{{ rowData?.displayValues[col.name] }}</span>
+              <span *ngSwitchCase="'Date'">{{ rowData?.displayValues[col.name] }}</span>
+              <span *ngSwitchCase="'Currency'">{{ rowData?.displayValues[col.name] }}</span>
+              <span *ngSwitchCase="'Boolean'">{{ rowData?.displayValues[col.name] }}</span>
+              <span *ngSwitchCase="'ActionButtons'">
+                <div class="grid-container__buttons">
+                  <ng-container *ngFor="let btn of actionButtons">
+                    <button (click)="emitActionButton(btn, rowData)" type="button" class="action-button">
+                      {{ btn | translate }}
+                    </button>
+                  </ng-container>
+                </div>
+              </span>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td class="grid-cell-settings"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="grid-group-no-records">No records found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<div #paginatorContainer class="paginator-container" *ngIf="totalRecords > 0" [ngClass]="{ 'paginator-container--disabled': isEditInProgress }">
+  <p-paginator
+    #paginator
+    [rows]="rowsPerPage ?? defaultRowsPerPage"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="rowsPerPageOptions ?? defaultRowPerPageOptions"
+    [showJumpToPageInput]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+    (onPageChange)="paginate($event)"
+  >
+  </p-paginator>
+</div>
+
+<!-- SVG ICONS -->
+
+<ng-template #sortDirection let-state="state" let-directionUp="directionUp">
+  <svg [ngStyle]="{ transform: directionUp ? '' : 'rotate(180deg)' }" width="9" height="100%" viewBox="0 0 5 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1.95166" y="1.38574" width="0.769286" height="4.61571" [attr.fill]="state ? '#EF4869' : '#fff'" />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M2.33611 0.616211L4.4996 2.34701L4.01904 2.94772L2.33611 1.60138L0.653176 2.94772L0.172607 2.34701L2.33611 0.616211Z"
+      [attr.fill]="state ? '#EF4869' : '#fff'"
+    />
+  </svg>
+</ng-template>
