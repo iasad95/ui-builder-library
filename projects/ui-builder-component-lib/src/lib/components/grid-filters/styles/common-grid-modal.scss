@@ -1,0 +1,292 @@
+@function calculateRatioSize($value) {
+  @return calc(var(--modal-size-ratio) * #{$value});
+}
+
+@mixin lib-footer-button-styles {
+  --lib-button-font-size: #{calculateRatioSize(14px)};
+  --lib-button-padding: 0 #{calculateRatioSize(20px)};
+  --lib-button-height: #{calculateRatioSize(48.5px)};
+  --lib-button-container-height: #{calculateRatioSize(50px)};
+  --lib-button-border-radius: #{calculateRatioSize(30.582px)};
+  --lib-button-box-shadow: #{calculateRatioSize(6.11634px)} #{calculateRatioSize(6.11634px)} 12.23267px 0px rgba(0, 0, 0, 0.25);
+}
+
+.grid-column-management-component {
+  min-width: min(90vw, 800px) !important;
+  max-width: min(90vw, 800px) !important;
+  font-size: #{calculateRatioSize(10px)};
+  .column-management-modal__body-right-side-header {
+    width: unset !important;
+  }
+  .column-management-modal__footer {
+    lib-primary-btn,
+    lib-secondary-btn {
+      @include lib-footer-button-styles;
+    }
+  }
+}
+.manage-filters-modal,
+.grid-filters-modal {
+  max-width: 90vw !important;
+  max-height: unset !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  font-size: 10px;
+
+  .filter-dialog__header {
+    padding: #{calculateRatioSize(12px)} #{calculateRatioSize(16px)};
+  }
+  &.grid-overlay {
+    min-height: unset !important;
+  }
+  .mdc-dialog__container {
+    min-height: unset !important;
+  }
+  .mdc-text-field {
+    padding: #{calculateRatioSize(16px)} !important;
+  }
+
+  .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: #{calculateRatioSize(6px)} !important;
+    padding-bottom: #{calculateRatioSize(6px)} !important;
+  }
+}
+.cdk-overlay-container {
+  .grid-overlay,
+  .grid-column-management-component {
+    .container {
+      .container__search-bar {
+        padding: #{calculateRatioSize(8px)} #{calculateRatioSize(16px)};
+        --input-height: #{calculateRatioSize(36px)};
+        .container__search-bar__input {
+          --input-font-size: #{calculateRatioSize(14px)} !important;
+          font-size: #{calculateRatioSize(14px)} !important;
+          .container__search-bar__input::placeholder {
+            color: var(--label-color, rgba(255, 255, 255, 0.5));
+            font-size: #{calculateRatioSize(14px)} !important;
+          }
+          .container__search-bar__input:not(.p-inputtext) {
+            padding: 0 #{calculateRatioSize(16px)} !important;
+          }
+        }
+      }
+    }
+    .mat-mdc-option .mdc-list-item__primary-text {
+      font-size: #{calculateRatioSize(14px)} !important;
+    }
+  }
+}
+
+.grid-overlay,
+.filter-dialog__body {
+  --mat-option-label-text-line-height: #{calculateRatioSize(24px)};
+
+  ::-webkit-scrollbar-thumb {
+    border: #{calculateRatioSize(3px)} solid #000 !important;
+    width: #{calculateRatioSize(5px)} !important;
+  }
+  ::-webkit-scrollbar {
+    width: #{calculateRatioSize(8px)} !important;
+    height: #{calculateRatioSize(8px)} !important;
+  }
+  .mat-mdc-option {
+    padding: 0 #{calculateRatioSize(16px)};
+    min-height: #{calculateRatioSize(48px)};
+  }
+
+  .mat-mdc-option .mat-pseudo-checkbox-minimal {
+    margin-left: #{calculateRatioSize(16px)} !important;
+    width: #{calculateRatioSize(18px)} !important;
+    height: #{calculateRatioSize(18px)} !important;
+    transform: scale(#{calculateRatioSize(1)});
+  }
+}
+
+lib-manage-filters-modal {
+  .filter-dialog__header-text {
+    font-size: #{calculateRatioSize(25px)};
+  }
+  .filter-dialog__body {
+    font-size: #{calculateRatioSize(13px)};
+    gap: #{calculateRatioSize(15px)};
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: min(#{calculateRatioSize(40vh)}, #{calculateRatioSize(361px)});
+  }
+
+  .filter-dialog__header-left-group img {
+    width: #{calculateRatioSize(70px)};
+  }
+
+  .filter-dialog__header-close-button img {
+    height: #{calculateRatioSize(30px)};
+    width: #{calculateRatioSize(30px)};
+  }
+
+  .filter-dialog__row-holder {
+    height: #{calculateRatioSize(36px)};
+    padding-left: #{calculateRatioSize(18px)};
+    border-radius: #{calculateRatioSize(18px)};
+  }
+
+  .filter-dialog__row__drag-handles img {
+    height: #{calculateRatioSize(12px)};
+    width: #{calculateRatioSize(24px)};
+  }
+
+  .filter-dialog__footer {
+    lib-primary-btn,
+    lib-secondary-btn {
+      @include lib-footer-button-styles;
+    }
+  }
+}
+
+lib-grid-filters-modal {
+  .filter-dialog__body {
+    padding: 0 !important;
+    > form {
+      flex-grow: 1;
+      align-items: center;
+      flex-direction: column;
+      justify-content: start;
+      height: min(#{calculateRatioSize(40vh)}, #{calculateRatioSize(278px)});
+    }
+  }
+
+  .filter-dialog__header-left-group img {
+    width: #{calculateRatioSize(70px)};
+  }
+  .filter-dialog__header-close-button {
+    --close-button-size: #{calculateRatioSize(30px)};
+  }
+  .form-field__input-container input {
+    font-size: #{calculateRatioSize(14px)} !important;
+  }
+
+  .filter-dialog__row-select-filter {
+    width: calc(#{calculateRatioSize(180px)});
+    margin: #{calculateRatioSize(10px)};
+  }
+
+  .filter-dialog__row--prefix {
+    font-size: calc(#{calculateRatioSize(14px)});
+    margin-top: calc(#{calculateRatioSize(15px)});
+    padding: 0 calc(#{calculateRatioSize(15px)});
+  }
+
+  .mat-mdc-select-value-text,
+  .mat-mdc-select-placeholder {
+    font-size: #{calculateRatioSize(14px)};
+  }
+
+  .form-field__select-container {
+    --input-height: #{calculateRatioSize(36px)};
+  }
+
+  .filter-dailog-body-form-row__cross-icon {
+    padding: #{calculateRatioSize(10px)};
+  }
+
+  .filter-dailog-body-form-row__plus-icon {
+    padding: 0 #{calculateRatioSize(15px)};
+  }
+
+  .plus-svg-icon-container {
+    height: #{calculateRatioSize(39px)};
+    width: #{calculateRatioSize(39px)};
+    img {
+      transform: scale(calc(#{calculateRatioSize(0.5)} + 1.25));
+    }
+  }
+
+  .form-field__down-chevron-container {
+    transform: translateX(calc(-100% - #{calculateRatioSize(25px)}));
+    img {
+      width: #{calculateRatioSize(18px)};
+      height: #{calculateRatioSize(36px)};
+    }
+  }
+
+  .mat-mdc-radio-button .mdc-form-field {
+    --mdc-typography-body2-line-height: 0;
+  }
+
+  .filter-dialog__footer {
+    align-items: center;
+    lib-primary-btn,
+    lib-secondary-btn {
+      @include lib-footer-button-styles;
+    }
+  }
+
+  .filter-dialog__header-text {
+    font-size: #{calculateRatioSize(25px)};
+  }
+
+  .filter-dialog__footer__form-container {
+    gap: #{calculateRatioSize(20px)};
+    .filter-dialog__footer__form-container__form {
+      height: #{calculateRatioSize(35px)};
+    }
+  }
+  .form-field__checkbox {
+    --size: #{calculateRatioSize(24px)};
+  }
+
+  .form-field__radio-states {
+    --radio-button-size: #{calculateRatioSize(25px)};
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  html {
+    --modal-size-ratio: 0.5;
+  }
+  .manage-filters-modal,
+  .grid-filters-modal {
+    min-height: 300px !important;
+  }
+  .filter-dialog__row-holder__delete-btn img {
+    transform: scale(calc(var(--modal-size-ratio) * 3)) translate(6.75px, 2.75px);
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 700px) {
+  html {
+    --modal-size-ratio: 0.65;
+  }
+  .manage-filters-modal,
+  .grid-filters-modal {
+    min-height: 350px !important;
+  }
+  .filter-dialog__row-holder__delete-btn img {
+    transform: scale(calc(var(--modal-size-ratio) * 3)) translate(4.5px, 2.75px);
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+  html {
+    --modal-size-ratio: 0.8;
+  }
+  .manage-filters-modal,
+  .grid-filters-modal {
+    min-height: 400px !important;
+  }
+  .filter-dialog__row-holder__delete-btn img {
+    transform: scale(calc(var(--modal-size-ratio) * 3)) translate(3px, 2.75px);
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  html {
+    --modal-size-ratio: 1;
+  }
+  .manage-filters-modal,
+  .grid-filters-modal {
+    min-height: 500px !important;
+  }
+  .filter-dialog__row-holder__delete-btn img {
+    transform: scale(calc(var(--modal-size-ratio) * 3)) translate(2px, 2.75px);
+  }
+}

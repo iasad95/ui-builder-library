@@ -1,0 +1,43 @@
+<div class="filter-dialog">
+  <div class="filter-dialog__header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <div class="filter-dialog__header-left-group">
+      <img src="assets/icons/filter-plus.svg" />
+      <div class="filter-dialog__header-text">Filter Group Manager</div>
+    </div>
+    <div class="filter-dialog__header-close-button" (click)="handleClose()">
+      <img src="assets/icons/grid/transparent-cross.svg" />
+    </div>
+  </div>
+
+  <div class="filter-dialog__body" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="filter-dialog__row" *ngFor="let filter of tempUserFiltersList; let _index = index" cdkDrag>
+      <ng-container *ngIf="!!filter">
+        <div class="filter-dialog__placeholder" *cdkDragPlaceholder></div>
+        <div class="filter-dialog__row-holder">
+          <div (click)="handleEditFilter(filter)" class="filter-dialog__row-holder__value">{{ filter?.name }}</div>
+          <div class="filter-dialog__row-holder__delete-btn" libTooltip="Delete" (click)="handleDeleteFilter(_index)">
+            <ng-container *ngTemplateOutlet="xIcon"></ng-container>
+          </div>
+        </div>
+        <div class="filter-dialog__row__drag-handles">
+          <ng-container *ngTemplateOutlet="dragHandles"></ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="filter-dialog__footer">
+    <lib-secondary-btn [disabled]="!tempUserFiltersList?.length" (click)="handleClearAll()">Clear All</lib-secondary-btn>
+    <lib-primary-btn [disabled]="!canApplyChanges()" class="apply-button" (click)="handleApplyAll()">Apply</lib-primary-btn>
+  </div>
+</div>
+
+<!-- SVG ICONS HERE BELOW -->
+
+<ng-template #xIcon>
+  <img src="assets/icons/x-icon.svg" />
+</ng-template>
+
+<ng-template #dragHandles>
+  <img [src]="manageFiltersModalMiscellaneousData?.dragHandles?.icon || 'assets/icons/grid/drag-handles.svg'" />
+</ng-template>

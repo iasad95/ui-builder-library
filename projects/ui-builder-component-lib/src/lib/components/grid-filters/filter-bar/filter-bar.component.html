@@ -1,0 +1,124 @@
+<div class="filter-toolbar-top-container">
+  <div class="filter-toolbar-top-container__div">
+    <div [ngClass]="{ 'filter-toolbar': responsiveWindowWidth > 950 }">
+      <ng-container *ngIf="responsiveWindowWidth > 950; else mobileViewBlock">
+        <ng-container *ngTemplateOutlet="searchBar"></ng-container>
+        <ng-container *ngTemplateOutlet="clearAllButton"></ng-container>
+        <ng-container *ngTemplateOutlet="filterDropdownMenuButton"></ng-container>
+      </ng-container>
+      <ng-template #mobileViewBlock>
+        <div class="filter-toolbar__mobile-block">
+          <div><ng-container *ngTemplateOutlet="searchBar"></ng-container></div>
+          <div class="filter-toolbar__mobile-block__bottom-block">
+            <ng-container *ngTemplateOutlet="clearAllButton"></ng-container>
+            <ng-container *ngTemplateOutlet="filterDropdownMenuButton"></ng-container>
+            <div></div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div>
+  <mat-chip-listbox #chipList *ngIf="filters?.length && activeFilter?.name" class="chip_list">
+    <ng-container *ngFor="let filter of filters; let pillIndex = index">
+      <lib-premium-chip *ngIf="pillIndex < maxFilterCount || showAllFilters">
+        <mat-chip-option [libTooltip]="filter.label" (removed)="removeFilter(filter)" class="chip_list-item lib-chip-container-extended">
+          <span class="chip_list-item-text">{{ filter.label }}</span>
+          <button matChipRemove class="chip_list-item-button">
+            <i class="chip_list-item-button-icon icon-close"></i>
+          </button>
+        </mat-chip-option>
+      </lib-premium-chip>
+    </ng-container>
+    <lib-premium-chip *ngIf="filters.length > maxFilterCount" (click)="toggleShowAllFilters()">
+      <mat-chip-option class="chip_list-item lib-chip-container-extended">
+        <span class="chip_list-item-text" *ngIf="!showAllFilters; else temp" [libTooltip]="'LIB.GRID.SHOW_ALL_FILTERS' | translate"> + {{ filters.length - maxFilterCount }} </span>
+        <ng-template #temp>
+          <span class="chip_list-item-text" [libTooltip]="'LIB.GRID.SHOW_LESS_FILTERS' | translate">{{ 'LIB.GRID.SHOW_LESS' | translate }}</span>
+          <button matChipRemove class="chip_list-item-button">
+            <i class="chip_list-item-button-icon icon-close"></i>
+          </button>
+        </ng-template>
+      </mat-chip-option>
+    </lib-premium-chip>
+  </mat-chip-listbox>
+</div>
+
+<!-- ng-templates -> svg / images below -->
+<ng-template #searchBar>
+  <div>
+    <lib-search-bar class="search-bar" placeholderText="Search" [libTooltip]="'Search'" (searchStringChange)="onSearchStringChange($event)">
+      <div right class="search-bar__right-icon">
+        <img src="assets/icons/side-search-icon.svg" />
+      </div>
+    </lib-search-bar>
+  </div>
+</ng-template>
+<ng-template #clearAllButton>
+  <div (click)="removeAllFilters()" class="trash-icon" [libTooltip]="'Delete'">
+    <img src="assets/icons/trash.svg" />
+  </div>
+</ng-template>
+<ng-template #filterDropdownMenuButton>
+  <div class="dropdown-container">
+    <div class="dropdown-container__main-icon" libTooltip="Filter Creator" (click)="handleOpenFilterModal()"><img src="assets/icons/filter-button/filter-icon.svg" /></div>
+    <img class="dropdown-container__separator-icon" src="assets/icons/filter-button/filter-separator.svg" />
+
+    <div libTooltip="Filter Dropdown">
+      <!-- Current Selected Filter Group -->
+      <div class="dropdown-container__right-side" [matMenuTriggerFor]="menu">
+        <img class="dropdown-container__right-side__chevron-icon" src="assets/icons/filter-button/filter-chevron.svg" />
+      </div>
+
+      <mat-menu #menu="matMenu" class="menu">
+        <div class="filter-menu">
+          <ng-container *ngIf="standardFilters?.length">
+            <div
+              *ngFor="let standardFilter of standardFilters"
+              mat-menu-item
+              (click)="handleApplyStandardFilter(standardFilter.value)"
+              [ngClass]="{ 'chip_list-menu-item--saved': standardFilter.value === activeFilter?.projectGridFilterId }"
+              class="chip_list-menu-item"
+            >
+              <div [libTooltip]="standardFilter.label" class="menu-item-container">
+                <div class="text">{{ standardFilter.label }}</div>
+                <ng-container *ngTemplateOutlet="checkBox; context: { state: standardFilter.value === activeFilter?.projectGridFilterId }"></ng-container>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="userFiltersList?.length">
+            <div
+              *ngFor="let savedFilter of userFiltersList; let filterIndex = index"
+              mat-menu-item
+              (click)="handleApplyFilter(savedFilter)"
+              [ngClass]="{ 'chip_list-menu-item--saved': savedFilter.projectGridFilterId === activeFilter?.projectGridFilterId }"
+              class="chip_list-menu-item"
+            >
+              <div [libTooltip]="savedFilter?.name" class="menu-item-container">
+                <div class="text">{{ savedFilter?.name }}</div>
+                <ng-container *ngTemplateOutlet="checkBox; context: { state: savedFilter.projectGridFilterId === activeFilter?.projectGridFilterId }"></ng-container>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="filter-menu__filter-group-dropdown-separator" *ngIf="standardFilters?.length || userFiltersList?.length">
+            <img class="filter-menu__filter-group-dropdown-separator__img" src="assets/icons/grid/filter-dropdown.svg" />
+          </div>
+          <div mat-menu-item (click)="handleManageFilterModal()" class="chip_list-menu-item">
+            <div class="menu-item-container">
+              <span><img src="assets/icons/grid/manage-filter.svg" />&nbsp;</span>
+              <span class="text">&nbsp;&nbsp;Manage Filters</span>
+            </div>
+          </div>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #checkBox let-state="state">
+  <img *ngIf="!!state" src="assets/icons/grid/checkbox-true.svg" />
+  <img *ngIf="!state" src="assets/icons/grid/checkbox-false.svg" />
+</ng-template>
