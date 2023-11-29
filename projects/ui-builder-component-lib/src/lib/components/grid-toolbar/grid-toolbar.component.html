@@ -1,0 +1,41 @@
+<div class="menu-container" *ngIf="enableCreate || enableRefresh || enableTrash">
+  <div class="menu-container__button">
+    <button *ngIf="enableRefresh" class="grid-primary-button" type="button" (click)="emitRefreshEvent()" aria-label="refreshBtn">
+      {{ 'NG_GRID.refresh' | translate }}
+    </button>
+  </div>
+  <div class="menu-container__button">
+    <button *ngIf="enableTrash" class="grid-primary-button" type="button" (click)="emitTrashEvent()" aria-label="trashViewBtn">
+      {{ !trashSelected ? ('NG_GRID.showTrash' | translate) : ('NG_GRID.hideTrash' | translate) }}
+    </button>
+  </div>
+  <div class="menu-container__button">
+    <button *ngIf="enableCreate && !trashSelected" class="grid-primary-button" type="button" (click)="emitCreateEvent()" aria-label="createBtn">
+      {{ 'NG_GRID.create' | translate }}
+    </button>
+  </div>
+</div>
+
+<div class="search-filters-container" [ngClass]="{ 'search-filters-container--disabled': isEditInProgress }" *ngIf="enableGridFilters">
+  <div class="search-filters-container__filters">
+    <div class="sub-container">
+      <lib-filter-bar (searchStringChange)="handleSearchStringChange($event)" (applyFilter)="handleApplyFilter($event)"></lib-filter-bar>
+    </div>
+  </div>
+</div>
+
+<div class="select-all-confirm" *ngIf="(selectedRows?.length === rowsPerPage && totalRecords > rowsPerPage) || selectAllPagesConfirmed">
+  <span *ngIf="!selectAllPagesConfirmed">
+    {{ selectAllConfirmMsg || 'All ' + rowsPerPage + ' records in this page are selected.' }}
+  </span>
+  <span *ngIf="selectAllPagesConfirmed">
+    {{
+      excludedRows?.length === 0
+        ? selectAllConfirmedMsg || 'All ' + totalRecords + ' records selected.'
+        : selectAllExceptSomeRecordsConfirmedMsg || totalRecords - excludedRows?.length + ' records selected.'
+    }}
+  </span>
+  <button mat-button color="primary" (click)="onSelectAllPages()">
+    {{ selectAllPagesConfirmed ? clearSelectionMsg : selectAllConfirmButtonLabel || 'Select all ' + totalRecords + ' records' }}
+  </button>
+</div>
