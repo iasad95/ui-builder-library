@@ -1,0 +1,345 @@
+:host {
+  --cropper-loader-color: #fe3c72;
+  --background-color: #232027;
+  --error-warning-color: #fe3c72;
+  display: block;
+  width: 100%;
+}
+.cropper-loader {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999999;
+
+  h3 {
+    font-family: 'Calistoga';
+  }
+}
+.mat-mdc-progress-spinner circle,
+.mat-mdc-progress-spinner circle {
+  stroke: #fe3c72 !important;
+}
+
+.btn-close-modal {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: calc(100% + 8px);
+  --lib-icon-button-height: 32px;
+  --lib-icon-button-width: 32px;
+  --lib-icon-button-container-height: 32px;
+  --lib-icon-button-container-width: 32px;
+  --lib-button-container-background: linear-gradient(320deg, #1c1f22 14.75%, #2f353a 84.81%), linear-gradient(320deg, #131314 14.05%, #1d2328 85.29%);
+
+  --lib-button-background: linear-gradient(318deg, #1c1f22 14.75%, #2f353a 84.81%), linear-gradient(318deg, #131314 14.05%, #1d2328 85.29%);
+
+  --lib-button-box-shadow: 0px 0px 2.4285778999328613px 0px #3f3f3f73 inset, -5.66668176651001px -5.66668176651001px 24.28577995300293px 0px #262e32,
+    11.33336353302002px 11.33336353302002px 32.381038665771484px 0px #101012bf;
+  mat-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    color: #666;
+  }
+}
+.image-cropper-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  height: 72vh;
+  > div {
+    display: flex;
+  }
+  .image-cropper-body {
+    height: calc(100% - 80px);
+    display: flex;
+    justify-content: space-between;
+    .original-images,
+    .cropped-images {
+      width: 120px;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 2em;
+      position: relative;
+      // Colors => background
+      background: var(--image-list-background, #27242c);
+
+      // border
+      border-image-source: linear-gradient(147.8deg, #ffffff 22.87%, rgba(0, 0, 0, 0.65) 95.17%);
+
+      // shadows
+      box-shadow: var(
+        --image-list-shadow,
+        11px 10px 27px 2.5px rgba(17, 16, 20, 0.65),
+        -5px -5px 16px -3px rgba(203, 199, 209, 0.25),
+        inset 5px 5px 10px #494948,
+        inset -10px -12px 18px #181717
+      );
+      border-radius: 20px;
+
+      z-index: 1;
+
+      div.title {
+        position: relative;
+        display: block;
+        font-family: 'Calistoga', cursive;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        z-index: 1;
+        color: #7f8489;
+      }
+
+      .image-list {
+        flex: 1;
+        overflow-y: auto;
+        width: 100%;
+        padding: 0 4px;
+        position: relative;
+        z-index: 1;
+
+        lib-image-tmplt {
+          &.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .original-images,
+    .cropped-images {
+      .image-list {
+        lib-image-tmplt {
+          &.selected {
+            border: 4px solid var(--cyrano-pink-shade-1);
+          }
+        }
+      }
+    }
+    .image-sample-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: calc(100% - 296px);
+      max-width: calc(100% - 296px);
+
+      .cropper {
+        width: 100%;
+        margin: 0 auto;
+        height: 60%;
+        border-radius: var(--cropper-border-radius, 12px);
+        overflow: hidden;
+        box-shadow: -18.514984130859375px -18.514984130859375px 64.80244445800781px 0px rgba(72, 80, 87, 1);
+      }
+
+      .image-info-validation {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 16px;
+        flex: 1;
+
+        .max-image-warning {
+          color: var(--max-image-warning-color, rgba(148, 146, 150, 1));
+          font-size: 9.4px;
+          text-align: center;
+        }
+
+        .warnings-errors {
+          width: 100%;
+          background: #27242c;
+          box-shadow:
+            11px 10px 27px 2.5px rgba(17, 16, 20, 0.65),
+            -5px -5px 16px -3px rgba(203, 199, 209, 0.25),
+            inset 5px 5px 10px #494948,
+            inset -10px -12px 18px #181717;
+          border-radius: 20px;
+          border-image-source: linear-gradient(147.8deg, #ffffff 22.87%, rgba(0, 0, 0, 0.65) 95.17%);
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          padding: 2em;
+
+          .warnings {
+            color: var(--image-warning-color, rgba(255, 255, 255, 0.5));
+            font-size: 9.49px;
+            text-align: center;
+          }
+          .errors {
+            width: 100%;
+
+            p {
+              color: var(--error-warning-color, #fe3c72);
+              font-size: 9.49px;
+              text-align: center;
+            }
+
+            ion-spinner {
+              display: block;
+              margin: auto;
+            }
+          }
+        }
+      }
+      image-cropper {
+        min-width: 100%;
+      }
+    }
+
+    .step-title {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      h2 {
+        max-width: 400px;
+      }
+    }
+  }
+
+  .image-cropper-footer {
+    display: flex;
+    padding: 0 28px;
+    justify-content: space-between;
+    align-items: center;
+
+    lib-icon-btn {
+      --lib-icon-button-height: 64px;
+      --lib-icon-button-width: 64px;
+      --lib-icon-button-container-height: 64px;
+      --lib-icon-button-container-width: 64px;
+      --lib-button-container-background: linear-gradient(320deg, #1c1f22 14.75%, #2f353a 84.81%), linear-gradient(320deg, #131314 14.05%, #1d2328 85.29%);
+
+      --lib-button-background: linear-gradient(318deg, #1c1f22 14.75%, #2f353a 84.81%), linear-gradient(318deg, #131314 14.05%, #1d2328 85.29%);
+
+      --lib-button-box-shadow: 0px 0px 2.4285778999328613px 0px #3f3f3f73 inset, -5.66668176651001px -5.66668176651001px 24.28577995300293px 0px #262e32,
+        11.33336353302002px 11.33336353302002px 32.381038665771484px 0px #101012bf;
+
+      --mat-icon-color: #fff;
+
+      mat-icon {
+        overflow: visible;
+      }
+    }
+
+    &.img-valid {
+      lib-icon-btn.btn-close {
+        --mat-icon-color: #7d7f82;
+      }
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 700px) {
+  .image-cropper-container {
+    min-width: 100% !important;
+
+    .image-cropper-body {
+      .image-sample-container {
+        width: calc(100% - 240px);
+        max-width: calc(100% - 240px);
+      }
+      .original-images,
+      .cropped-images {
+        width: 90px;
+        padding: 16px;
+
+        .background {
+          border-radius: 24px;
+        }
+        div.title {
+          font-size: 2.4vw;
+        }
+      }
+    }
+
+    .image-cropper-footer {
+      padding: 0 13px;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .image-cropper-container {
+    .image-cropper-body {
+      display: flex;
+      flex-wrap: wrap;
+      .image-sample-container {
+        width: calc(100% - 120px);
+        max-width: calc(100% - 120px);
+        height: calc(100% - 124px);
+      }
+      .original-images,
+      .cropped-images {
+        width: 90px;
+        padding: 16px;
+
+        .background {
+          border-radius: 24px;
+        }
+        div.title {
+          font-size: 2.4vw;
+        }
+      }
+
+      .original-images {
+        width: 100%;
+        height: 100px;
+
+        .image-list {
+          display: flex;
+          flex-direction: row;
+
+          lib-image-tmplt {
+            width: auto;
+            height: 100%;
+
+            --image-width: auto;
+            --image-height: 100%;
+          }
+        }
+      }
+
+      .cropped-images {
+        height: calc(100% - 124px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .image-cropper-container {
+    .image-cropper-body {
+      display: flex;
+      .original-images,
+      .cropped-images {
+        div.title {
+          font-size: 2.4vw;
+        }
+      }
+    }
+  }
+}

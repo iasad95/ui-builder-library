@@ -1,0 +1,10 @@
+<img *ngIf="src; else noImage" [src]="src" alt="" />
+<ng-template #noImage>
+  <lib-icon-btn class="no-image">
+    <mat-icon>image</mat-icon>
+  </lib-icon-btn>
+</ng-template>
+<svg *ngIf="disabled" class="enable-or-disable-icon" version="1.1" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="0" x2="100%" y2="100%" stroke-width="5" stroke="var(--icon-color)" />
+  <line x1="0" y1="100%" x2="100%" y2="0" stroke-width="5" stroke="var(--icon-color" />
+</svg>

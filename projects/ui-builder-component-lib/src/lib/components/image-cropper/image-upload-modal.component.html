@@ -1,0 +1,90 @@
+<div class="image-cropper-container" *ngIf="fullImageData.length">
+  <lib-icon-btn class="btn-close-modal" (click)="onClose()"><mat-icon>close</mat-icon></lib-icon-btn>
+  <div class="image-cropper-body">
+    <div class="original-images">
+      <div class="title">{{ 'IMAGE_CROPPER.ORIGINAL' | translate }}</div>
+      <div class="image-list">
+        <lib-image-tmplt
+          [src]="img.image"
+          *ngFor="let img of fullImageData; let i = index"
+          [ngClass]="{ selected: i === selectedImageIndex, disabled: fullImageData[i].isDark }"
+          [disabled]="fullImageData[i].deactivated"
+        ></lib-image-tmplt>
+      </div>
+    </div>
+
+    <div class="image-sample-container">
+      <div class="cropper">
+        <div class="cropper-loader" *ngIf="!cropperLoaded"><mat-spinner diameter="30"></mat-spinner></div>
+        <image-cropper
+          *ngIf="selectedImageBase64"
+          [style.display]="showCropper ? null : 'none'"
+          [imageBase64]="selectedImageBase64"
+          [imageQuality]="80"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="aspectRatio"
+          [format]="'jpeg'"
+          [output]="'base64'"
+          [cropper]="selectedCropCoords || imageCropperRef.cropper"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()"
+          #imageCropperRef
+        >
+        </image-cropper>
+      </div>
+      <div class="image-info-validation">
+        <p *ngIf="fullImageData.length > maxNumOfImages" class="max-image-warning">
+          {{ 'IMAGE_CROPPER.YOU_CAN_ONLY_UPLOAD' | translate }} {{ maxNumOfImages }} {{ 'IMAGE_CROPPER.THE_REST_WILL_BE_DISCARDED' | translate }}
+        </p>
+
+        <div class="warnings-errors">
+          <div class="warnings">
+            <p *ngIf="fullImageData[selectedImageIndex].moreThan2mb">{{ 'IMAGE_CROPPER.IMAGES_WILL_TAKE_A_WHILE' | translate }}</p>
+            <p *ngIf="fullImageData[selectedImageIndex].dupName">
+              {{ ('IMAGE_CROPPER.DUPLICATE_IMAGE_NAME' | translate) + fullImageData[selectedImageIndex].dupName + ('IMAGE_CROPPER.PROCEED' | translate) }}
+            </p>
+          </div>
+
+          <div class="errors">
+            <ion-spinner color="danger" *ngIf="validating; else validationErrors" name="dots"></ion-spinner>
+            <ng-template #validationErrors>
+              <p *ngIf="!fullImageData[selectedImageIndex].constainsFace && enableFaceCheck && faceChecker">{{ 'IMAGE_CROPPER.FACE_NOT_DETECTED' | translate }}</p>
+              <p *ngIf="!fullImageData[selectedImageIndex].isSafeForWork && enableNsfwCheck && nsfwChecker">{{ 'IMAGE_CROPPER.CONTENT_POLICY_NOT_MET' | translate }}</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cropped-images">
+      <div class="title">{{ 'IMAGE_CROPPER.CROPPED' | translate }}</div>
+      <div class="image-list">
+        <lib-image-tmplt
+          *ngFor="let img of croppedImages; let i = index"
+          [src]="img.image"
+          [ngClass]="{ selected: i === selectedImageIndex, disabled: fullImageData[i].isDark }"
+          [disabled]="fullImageData[i].deactivated"
+        ></lib-image-tmplt>
+      </div>
+    </div>
+  </div>
+
+  <ng-container>
+    <div
+      class="image-cropper-footer"
+      [ngClass]="{
+        'img-valid': fullImageData[this.selectedImageIndex].isSafeForWork && fullImageData[this.selectedImageIndex].constainsFace && !validating,
+      }"
+    >
+      <lib-icon-btn [disabled]="selectedImageIndex <= 0" class="btn-back" (click)="stepPreviousImage()">
+        <mat-icon>navigate_before</mat-icon>
+      </lib-icon-btn>
+      <lib-icon-btn *ngIf="cropperLoaded" class="btn-close" [illuminateIcon]="fullImageData[selectedImageIndex]?.invalid" [disabled]="validating" (click)="deactivateImage()">
+        <mat-icon>close</mat-icon>
+      </lib-icon-btn>
+      <lib-icon-btn [illuminateIcon]="true" [disabled]="fullImageData[selectedImageIndex].invalid && !fullImageData[selectedImageIndex].deactivated" (click)="stepNextImage()">
+        <mat-icon>{{ selectedImageIndex === fullImageData.length - 1 ? 'checkmark' : 'navigate_next' }}</mat-icon>
+      </lib-icon-btn>
+    </div>
+  </ng-container>
+</div>
