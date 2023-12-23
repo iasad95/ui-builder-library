@@ -1,0 +1,90 @@
+<div class="info-card" [ngClass]="{ 'info-card--disabled': item?.disabled, 'info-card--selectable': selectable }" (click)="selectItem()">
+  <div *ngIf="checkable" class="info-card__item-checkbox">
+    <lib-dashed-checkbox [checked]="checked" (toggle)="handleCheckedValueChange($event)"></lib-dashed-checkbox>
+  </div>
+  <div class="info-card__item-visual-container" *ngIf="item?.abbreviation || item?.icon || item?.image">
+    <div
+      class="info-card__item-visual"
+      [ngClass]="{ 'info-card__item-visual--disabled': item?.disabled }"
+      [ngStyle]="{ 'background-color': item?.iconBackgroundColor || '#E3E8EA' }"
+      [id]="item?.item?.ContactId ? '#contactImage' : '#personnelImage'"
+    >
+      <div *ngIf="item?.abbreviation && !item?.icon && !item?.image" [innerHTML]="item?.abbreviation" class="info-card__item-abbrev"></div>
+      <div
+        *ngIf="item?.icon && !item?.image"
+        [innerHTML]="item?.icon"
+        [ngStyle]="{ 'background-color': item?.iconBackgroundColor || '#E3E8EA' }"
+        class="info-card__item-icon"
+      ></div>
+      <img *ngIf="item?.image" [src]="item?.image" class="info-card__item-image" />
+    </div>
+    <div *ngIf="item?.visualIcon" class="info-card__item-visual-icon" [innerHTML]="item?.visualIcon"></div>
+  </div>
+  <div class="info-card__item-info">
+    <div class="info-card__item-info-line">
+      <div class="info-card__item-info-line-inner" [libTooltip]="item?.header.tooltipText">
+        <div
+          [ngClass]="{ 'info-card__item-link': item?.item && item?.header.action && !item?.disabled && !selectable, 'info-card__item-header--disabled': item?.disabled }"
+          [innerHTML]="item?.header.label"
+          id="#infoCardHeader"
+          (click)="selectHeader()"
+          class="info-card__item-header"
+        ></div>
+      </div>
+      <div
+        *ngFor="let icon of item?.header.iconTray"
+        class="info-card__item-icon-tray"
+        [ngClass]="{ 'info-card__item-icon-tray--clickable': icon.action && !item?.disabled && !selectable }"
+        [innerHTML]="icon.displayHtml"
+        [libTooltip]="icon.toolTip"
+        (click)="handleAction(icon.action)"
+      ></div>
+    </div>
+    <div *ngFor="let subheader of item?.subheaders" class="info-card__item-info-line">
+      <div class="info-card__item-info-line-inner" [libTooltip]="subheader.tooltipText">
+        <div
+          [innerHTML]="subheader.label"
+          [ngClass]="{ 'info-card__item-subheader--disabled': item?.disabled, 'info-card__item-link': subheader.action && !item?.disabled && !selectable }"
+          (click)="selectSubheader(subheader)"
+          class="info-card__item-subheader"
+        ></div>
+      </div>
+      <div
+        *ngFor="let icon of subheader.iconTray"
+        class="info-card__item-icon-tray"
+        [ngClass]="{ 'info-card__item-icon-tray--clickable': icon.action && !item?.disabled && !selectable }"
+        [innerHTML]="icon.displayHtml"
+        [libTooltip]="icon.toolTip"
+        (click)="handleAction(icon.action)"
+      ></div>
+    </div>
+    <div *ngFor="let detail of item?.details" class="info-card__item-info-line">
+      <div class="info-card__item-info-line-inner" [libTooltip]="detail.tooltipText">
+        <div
+          [innerHTML]="detail.label"
+          [ngClass]="{ 'info-card__item-link': detail.action && !item?.disabled && !selectable }"
+          (click)="selectDetail(detail)"
+          class="info-card__item-detail"
+        ></div>
+      </div>
+      <div
+        *ngFor="let icon of detail.iconTray"
+        class="info-card__item-icon-tray"
+        [ngClass]="{ 'info-card__item-icon-tray--clickable': icon.action && !item?.disabled && !selectable }"
+        [innerHTML]="icon.displayHtml"
+        [libTooltip]="icon.toolTip"
+        (click)="handleAction(icon.action)"
+      ></div>
+    </div>
+  </div>
+  <div *ngIf="item?.actionHandler" class="info-card__action-handler">
+    <div
+      [innerHTML]="item.actionHandler.displayHtml"
+      class="info-card__action-handler-icon"
+      [ngClass]="{ 'info-card__action-handler-icon--clickable': item?.actionHandler.action && !item?.disabled && !selectable }"
+      id="#associateIcon"
+      (click)="handleAction(item.actionHandler.action)"
+      [libTooltip]="item.actionHandler.toolTip"
+    ></div>
+  </div>
+</div>
