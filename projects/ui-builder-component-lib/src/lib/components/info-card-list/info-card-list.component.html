@@ -1,0 +1,20 @@
+<div class="info-list">
+  <lib-search-bar *ngIf="filterable && itemList.length > maxCount" [placeholderText]="'Search' + (itemType ? ' ' + itemType : '')" (searchStringChange)="filterChange($event)">
+  </lib-search-bar>
+  <div class="info-list__list" [ngClass]="{ 'info-list__list--scrollable': scrollable, 'info-list__list--empty': displayList.length === 0 }">
+    <div *ngFor="let item of displayList" class="info-list__info-card">
+      <lib-info-card
+        [checkable]="checkable"
+        [checked]="defaultCheckedValue"
+        [item]="item"
+        [selectable]="selectable"
+        (checkedChange)="handleCheckedValueChange($event)"
+        (selected)="handleItemSelected($event)"
+      ></lib-info-card>
+    </div>
+  </div>
+  <div *ngIf="filterable && itemList.length > maxCount && displayList.length > 0" class="info-list__alert">
+    {{ 'More than ' + maxCount + ' records were returned.\nUse the search bar to filter your results.' }}
+  </div>
+  <div *ngIf="filterable && itemList.length > maxCount && displayList.length === 0" class="info-list__alert">No matching records found.</div>
+</div>

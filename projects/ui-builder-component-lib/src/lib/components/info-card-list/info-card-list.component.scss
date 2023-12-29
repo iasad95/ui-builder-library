@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--input-font-family, 'Gilroy-Regular', serif);
+}
+
+.info-list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 20px;
+
+    &--scrollable {
+      overflow-y: auto;
+    }
+
+    &--empty {
+      padding: 0;
+    }
+  }
+
+  &__info-card:not(:last-of-type) {
+    padding-bottom: 20px;
+  }
+
+  &__alert {
+    display: flex;
+    white-space: pre-line;
+    background-color: #eff2f3;
+    color: #464a4c;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid #dfe0e3;
+  }
+}
