@@ -1,0 +1,62 @@
+.placeholders {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 20px;
+
+  &__placeholder {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+
+    &:not(:last-of-type) {
+      padding-bottom: 20px;
+    }
+  }
+
+  &__avatar {
+    flex: 0 0 43px;
+    min-height: 43px;
+    border-radius: 22px;
+  }
+
+  &__lines {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header-line {
+    width: 200px;
+    height: 10px;
+    margin: 5px 10px;
+    border-radius: 3px;
+  }
+
+  &__detail-line {
+    width: 150px;
+    height: 8px;
+    margin: 5px 10px;
+    border-radius: 2px;
+  }
+}
+
+.background-masker {
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: placeholderShimmer;
+  background: #eff2f3;
+  background: linear-gradient(to right, #cccccc 8%, #aaaaaa 18%, #cccccc 33%);
+  background-size: 800px 104px;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}

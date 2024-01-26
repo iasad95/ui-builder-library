@@ -1,0 +1,9 @@
+<div class="placeholders">
+  <div *ngFor="let placeholder of [].constructor(count)" class="placeholders__placeholder">
+    <div *ngIf="avatar" class="background-masker placeholders__avatar"></div>
+    <div class="placeholder__lines">
+      <div class="background-masker placeholders__header-line"></div>
+      <div class="background-masker placeholders__detail-line"></div>
+    </div>
+  </div>
+</div>
