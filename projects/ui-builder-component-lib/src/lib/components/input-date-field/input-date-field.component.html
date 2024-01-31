@@ -1,0 +1,46 @@
+<div class="content-wrapper lib-date-filter-field" [ngClass]="{ isFocused: focused, isDisabled: disabled }">
+  <span class="p-float-label">
+    <p-calendar
+      [(ngModel)]="value"
+      (ngModelChange)="onModelChange($event)"
+      #calendar
+      [styleClass]="styleClass"
+      [panelStyleClass]="'lib-date-picker-panel'"
+      [name]="label"
+      [readonlyInput]="readonly"
+      (onFocus)="onFocusDate()"
+      (onBlur)="onBlurDate()"
+      (onSelect)="change($event)"
+      (onClear)="change($event)"
+      [timeOnly]="timeOnly"
+      [disabled]="disabled"
+      [appendTo]="appendTo"
+      [placeholder]="placeholder || (timeOnly ? timeFormat : view === 'year' ? 'yyyy' : view === 'month' ? 'mm' : mask)"
+      [dateFormat]="view === 'year' ? 'yy' : view === 'month' ? 'mm' : dateFormat"
+      [icon]="timeOnly ? 'pi pi-calendar' : 'pi pi-calendar'"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [showTime]="showTime"
+      [showOnFocus]="!showIcon"
+      [view]="view"
+      [stepMinute]="stepMinute"
+      [mask]="mask"
+      [defaultDate]="defaultDate"
+      libDateMask
+      inputId="libDatePicker"
+    >
+      <ng-template pTemplate="footer">
+        <div class="calender-picker-footer" *ngIf="!hieActions">
+          <button mat-icon-button (click)="selectPicker()" type="button"><mat-icon>done_all</mat-icon></button>
+          <span class="spacer"></span>
+          <button mat-icon-button (click)="clearPicker()" type="button"><mat-icon>delete</mat-icon></button>
+        </div>
+      </ng-template>
+    </p-calendar>
+    <mat-icon class="calendar-input-icon" matRipple *ngIf="showIcon" (click)="openCalenderPicker()">
+      {{ timeOnly ? 'alarm' : 'event' }}
+    </mat-icon>
+    <label *ngIf="label" class="input-field-label" for="libDatePicker">{{ label }}</label>
+  </span>
+  <div class="error-outline"></div>
+</div>

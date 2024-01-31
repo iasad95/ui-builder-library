@@ -1,0 +1,31 @@
+@import '../../shared-styles/common/base-input-field.scss';
+
+.mat-icon.calendar-input-icon {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  cursor: pointer;
+}
+
+.calender-picker-footer {
+  border-top: 1px solid #1a1a1a;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+:host {
+  --label-font-size-floated: 11.0084px;
+}
+.p-float-label input:focus ~ label,
+.p-float-label input.p-filled ~ label,
+.p-float-label textarea:focus ~ label,
+.p-float-label textarea.p-filled ~ label,
+.p-float-label .p-inputwrapper-focus ~ label,
+.p-float-label .p-inputwrapper-filled ~ label {
+  font-size: var(--label-font-size-floated);
+}

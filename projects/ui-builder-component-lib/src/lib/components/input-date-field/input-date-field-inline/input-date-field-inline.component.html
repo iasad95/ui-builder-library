@@ -1,0 +1,31 @@
+<div class="lib-inline-date-picker">
+  <p-calendar
+    [(ngModel)]="value"
+    (ngModelChange)="onModelChange($event)"
+    [styleClass]="styleClass"
+    [panelStyleClass]="'lib-inline-date-picker-panel'"
+    [name]="label"
+    [readonlyInput]="readonly"
+    (onClear)="change($event)"
+    [timeOnly]="timeOnly"
+    [disabled]="disabled"
+    [appendTo]="appendTo"
+    [dateFormat]="view === 'year' ? 'yy' : view === 'month' ? 'mm' : dateFormat"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    [showTime]="showTime"
+    [showOnFocus]="!showIcon"
+    [view]="view"
+    [inline]="true"
+    [stepMinute]="stepMinute"
+    [defaultDate]="defaultDate"
+    inputId="libDatePicker"
+  >
+    <ng-template pTemplate="footer">
+      <div class="calender-picker-footer" *ngIf="showActions">
+        <lib-icon-btn (click)="selectPicker()"><mat-icon>done_all</mat-icon></lib-icon-btn>
+        <lib-icon-btn (click)="clearPicker()"><mat-icon>delete</mat-icon></lib-icon-btn>
+      </div>
+    </ng-template>
+  </p-calendar>
+</div>
