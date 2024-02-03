@@ -1,0 +1,70 @@
+<div class="content-wrapper" [ngClass]="{ 'content-wrapper-textarea': textarea }">
+  <ng-container *ngIf="mask" [ngTemplateOutlet]="maskedInputTmpl"></ng-container>
+  <ng-container *ngIf="!mask" [ngTemplateOutlet]="nonMaskedInputTmpl"></ng-container>
+  <textarea
+    type="text"
+    [ngClass]="{ 'resize-disabled': !resize }"
+    *ngIf="textarea"
+    #inputFieldRef
+    [readonly]="readonly"
+    [class]="readonly ? 'input-field-readonly' : 'input-field input-field-textarea'"
+    [name]="name || label"
+    [attr.autocomplete]="autocomplete"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="touched(true); onBlur.emit()"
+    (focus)="focused()"
+    [disabled]="disabled"
+  >
+  </textarea>
+  <label *ngIf="label" class="input-label" [ngClass]="{ 'with-value': value }">{{ label }}</label>
+  <div class="error-outline" [ngClass]="{ 'error-outline-textarea': textarea }"></div>
+</div>
+
+<!--Non-Masked input-->
+<ng-template #nonMaskedInputTmpl>
+  <input
+    *ngIf="!textarea"
+    #inputFieldRef
+    [readonly]="readonly"
+    [class]="readonly ? 'input-field-readonly' : 'input-field'"
+    [type]="type"
+    [name]="name || label"
+    [attr.autocomplete]="autocomplete"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="touched(true); onBlur.emit()"
+    (focus)="focused()"
+    [disabled]="disabled"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    (keydown)="onKeyDown($event)"
+  />
+</ng-template>
+
+<!--Masked input-->
+<ng-template #maskedInputTmpl>
+  <input
+    *ngIf="!textarea"
+    #inputFieldRef
+    [readonly]="readonly"
+    [class]="readonly ? 'input-field-readonly' : 'input-field'"
+    [type]="type"
+    [name]="name || label"
+    [attr.autocomplete]="autocomplete"
+    [patterns]="patterns"
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+    (blur)="touched(true); onBlur.emit()"
+    (focus)="focused()"
+    [disabled]="disabled"
+    [mask]="mask"
+    [prefix]="prefix"
+    [suffix]="suffix"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    (keydown)="onKeyDown($event)"
+  />
+</ng-template>
