@@ -1,0 +1,20 @@
+<div class="content-wrapper">
+  <input
+    class="input-field-card"
+    [name]="name || label"
+    [attr.autocomplete]="autocomplete"
+    [readonly]="readonly"
+    [class]="readonly ? 'input-field-readonly' : 'input-field'"
+    (keydown)="onKeyDown($event)"
+    (input)="onInput($event)"
+    (change)="isValidCardNumber(value)"
+    (paste)="onPaste($event)"
+    #inputElem
+    [disabled]="disabled"
+    (blur)="touched(true)"
+    inputmode="numeric"
+  />
+  <img [src]="cardBrandLogo" alt="" class="card-type" *ngIf="cardBrandLogo && value?.length > 0" />
+  <label *ngIf="label" class="input-label card-input-label" [ngClass]="{ 'with-value': value?.length > 0 }">{{ label }}</label>
+  <div class="error-outline"></div>
+</div>

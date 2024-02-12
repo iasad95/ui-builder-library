@@ -1,0 +1,24 @@
+<div class="content-wrapper">
+  <input
+    #inputElem
+    class="input-field-card"
+    [name]="name || label"
+    [attr.autocomplete]="autocomplete"
+    [readonly]="readonly"
+    [disabled]="disabled"
+    [class]="readonly ? 'input-field-readonly' : 'input-field'"
+    [placeholder]="focus && !(value?.month?.length > 0 || value?.year?.length > 0) ? placeholder : ''"
+    [mask]="'00/00'"
+    [placeHolderCharacter]="placeholder"
+    [showMaskTyped]="focus"
+    [shownMaskExpression]="focus && !(value?.month?.length > 0 || value?.year?.length > 0) ? placeholder : ''"
+    (input)="onInput()"
+    (focus)="focus = true"
+    (blur)="touched(true); focus = false"
+    inputmode="numeric"
+  />
+  <label *ngIf="label" class="input-label card-input-label" [ngClass]="{ 'with-value': value?.month?.length > 0 || value?.year?.length > 0 }">
+    {{ label }}
+  </label>
+  <div class="error-outline"></div>
+</div>
