@@ -1,0 +1,19 @@
+<div class="content-wrapper lib-input-select-field" [ngClass]="{ isFocused: focused, isDisabled: disabled }">
+  <span class="p-float-label">
+    <p-dropdown
+      inputId="float-label"
+      [filter]="enableFilter"
+      [filterBy]="filterBy || optionLabel"
+      [showClear]="showClear && !disabled && !readonly"
+      [options]="options"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [optionLabel]="optionLabel"
+      (onBlur)="onBlurField()"
+      (onFocus)="onFocusField()"
+    >
+    </p-dropdown>
+    <label *ngIf="label" class="input-field-label" for="float-label">{{ label }}</label>
+  </span>
+  <div class="error-outline"></div>
+</div>

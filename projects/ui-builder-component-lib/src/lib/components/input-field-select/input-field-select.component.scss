@@ -1,0 +1,82 @@
+@import '../../shared-styles/common/base-input-field.scss';
+
+:host {
+  --dropdown-background: linear-gradient(191.18deg, #27242c 61.33%, #0c0b0e 101.43%);
+  --input-width: 100%;
+  --input-height: 48px;
+  --border-radius: 100px;
+  --input-icon-color: #fe3c72;
+  --input-font-color: rgba(255, 255, 255, 0.5);
+  --input-font-family: 'Gilroy-Regular', serif;
+  --label-color: rgba(255, 255, 255, 0.5);
+  --input-field-box-shadow: inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7), inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+}
+
+.p-dropdown {
+  @extend .input-field;
+  background: transparent;
+  padding: 10px 8px;
+}
+.p-dropdown .p-dropdown-label {
+  color: var(--input-font-color);
+  font-family: var(--input-font-family);
+  font-size: var(--input-font-size);
+}
+.p-dropdown:not(.p-disabled).p-focus,
+.p-dropdown:not(.p-disabled).p-active {
+  border-color: var(--input-icon-color);
+  box-shadow: none;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  // color: var(--ion-text-color-secondary);
+  &.p-highlight {
+    background-color: var(--input-icon-color);
+    color: #fff;
+  }
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+  background-color: var(--input-icon-color);
+  color: #fff;
+}
+.p-dropdown-panel {
+  background: var(--dropdown-background);
+}
+.p-float-label > label {
+  left: 1rem;
+  color: var(--label-color);
+  font-size: var(--label-font-size);
+  line-height: var(--label-line-height);
+  font-family: var(--input-font-family);
+}
+.p-dropdown .p-dropdown-panel {
+  top: 45px !important;
+  padding-top: 10px !important;
+  min-width: 94% !important;
+  left: 3% !important;
+}
+.p-dropdown .p-dropdown-trigger,
+.p-dropdown .p-dropdown-clear-icon {
+  color: var(--input-icon-color);
+  .pi {
+    font-size: 16px;
+  }
+}
+.p-dropdown .p-dropdown-clear-icon {
+  margin-right: 10px;
+}
+.p-dropdown-panel .p-dropdown-header {
+  background: var(--dropdown-background);
+  color: var(--input-font-color);
+}
+.p-float-label .p-inputwrapper-filled ~ label {
+  top: 0.15rem;
+}
+
+// PrimeNg's p-dropdown used for this component in the library, applies box shadows to some containing elements through this class list
+// .p-float-label, .input-field, .p-dropdown, .input-field-readonly
+// The styles include drop-shadows which is causing drop shadows to stack on top of each other making the input-select field look different from others
+.p-float-label {
+  & * {
+    box-shadow: none;
+  }
+}
