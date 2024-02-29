@@ -1,0 +1,23 @@
+<div class="content-wrapper">
+  <input
+    class="time-input"
+    #inputAutoComplete
+    libTimeMask
+    [formControl]="control"
+    [readonly]="readonly"
+    [class]="readonly ? 'input-field-readonly' : 'input-field'"
+    [name]="label"
+    [disabled]="disabled"
+    [matAutocomplete]="auto"
+    (blur)="onBlurPicker()"
+    (focus)="onFocusPicker()"
+  />
+  <mat-icon class="time-input-icon" matRipple *ngIf="showIcon" (click)="inputAutoComplete.focus()">alarm</mat-icon>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect()">
+    <mat-option *ngFor="let slot of filteredTimeSlots" [value]="slot" class="mat-accent">
+      {{ displaySlotTime ? slot.slotLabelWitHours || slot.slotLabel : slot.slotLabel }}
+    </mat-option>
+  </mat-autocomplete>
+  <label *ngIf="label" class="input-label" [ngClass]="{ 'with-value': control.value }">{{ label }}</label>
+  <div class="error-outline"></div>
+</div>

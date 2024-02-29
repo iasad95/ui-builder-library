@@ -1,0 +1,32 @@
+@import '../input-field/input-field.component';
+
+.mat-icon.time-input-icon {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  cursor: pointer;
+  color: var(--cyrano-pink-shade-1);
+  z-index: 9;
+}
+
+.time-input {
+  font-family: var(--input-number-filed-font);
+  color: var(--input-field-color);
+}
+label {
+  font-family: var(--input-font-family);
+  --label-float-position-top: 3px;
+}
+.input-label {
+  font-family: var(--input-font-family);
+  --label-float-position-top: 3px;
+}
+
+.input-field {
+  &:focus {
+    outline: none;
+    ~ .input-label {
+      top: -6px !important;
+    }
+  }
+}
