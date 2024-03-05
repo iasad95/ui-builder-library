@@ -1,0 +1,85 @@
+.jsoneditor {
+  border: none !important;
+}
+
+table.jsoneditor-tree tr:first-child td tr td {
+  display: none;
+}
+
+.jsoneditor-navigation-bar {
+  background: var(--ion-background-color-no-gradient) !important;
+}
+
+.jsoneditor-outer > .jsoneditor-tree {
+  background: var(--ion-background-color-no-gradient) !important;
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  input {
+    margin-top: 5px;
+  }
+}
+
+.jsoneditor-field {
+  color: var(--ion-text-color) !important;
+}
+
+.jsoneditor-value.jsoneditor-string {
+  color: var(--ion-text-color) !important;
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.jsoneditor-value,
+.jsoneditor-field {
+  border: none !important;
+  padding: 3px 15px 0px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.jsoneditor-value[contenteditable='true']:hover,
+.jsoneditor-field[contenteditable='true']:hover {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.jsoneditor-value:focus,
+.jsoneditor-field:focus {
+  border: none !important;
+  background-color: transparent !important;
+  border-radius: 10px !important;
+  box-shadow:
+    inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7),
+    inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+  -webkit-box-shadow:
+    inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7),
+    inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+  background: transparent !important;
+  outline: #1e2023;
+  min-height: 22px !important;
+}
+
+.jsoneditor-contextmenu-button {
+  margin-top: 10px !important;
+}
+
+.jsoneditor-button:focus {
+  background-color: transparent !important;
+  outline: none !important;
+}
+
+.jsoneditor-highlight,
+.jsoneditor-selected {
+  background-color: #d3d3d326 !important;
+}
+
+.jsoneditor-dragarea {
+  margin-top: 10px !important;
+}
+
+table,
+th,
+td {
+  border: none !important;
+}
