@@ -1,0 +1,18 @@
+<div class="lib-list-container" *ngIf="listItems?.length > 0">
+  <div class="lib-list-title" *ngIf="listTitle">{{ disableTranslation ? listTitle : (listTitle | translate) }}</div>
+  <div class="lib-list-item-container" [ngClass]="item.cssClass" *ngFor="let item of listItems; let i = index" mat-ripple (click)="onListItemClick(item)">
+    <div class="lib-list-item-title" *ngIf="item.title">{{ disableTranslation ? item.title : (item.title | translate) }}</div>
+    <div class="lib-list-item-content">
+      <div class="lib-list-item-icon" *ngIf="item.labelIconUrl || item.labelIconName">
+        <img [src]="item.labelIconUrl" *ngIf="item.labelIconUrl" alt="list item icon" />
+        <mat-icon *ngIf="item.labelIconName">{{ item.labelIconName }}</mat-icon>
+      </div>
+      <span class="lib-list-item-value">{{ disableTranslation ? item.label : (item.label | translate) }}</span>
+      <span class="spacer"></span>
+      <span class="lib-list-item-action" *ngIf="item.actionName">{{ disableTranslation ? item.actionName : (item.actionName | translate) }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none" class="lib-list-item-arrow-icon" *ngIf="!hideMenuIcon">
+        <path d="M0.950928 9.66406L5.24176 5.37323L0.950928 1.08241" stroke="#F7416E" stroke-width="1.60906" stroke-linecap="round" />
+      </svg>
+    </div>
+  </div>
+</div>

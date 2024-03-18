@@ -1,0 +1,13 @@
+<div class="lib-list-container" *ngIf="listItems?.length > 0">
+  <div class="lib-list-title" *ngIf="listTitle">{{ disableTranslation ? listTitle : (listTitle | translate) }}</div>
+  <div class="lib-toggle-list-item-container" *ngFor="let item of listItems; let i = index">
+    <div class="lib-list-item-content">
+      <div class="lib-list-item-content-inner" mat-ripple (click)="item.checked = !item.checked; onListItemClick(item)">
+        <img [src]="item.labelIconUrl" *ngIf="item.labelIconUrl" alt="list item icon" />
+        <mat-icon *ngIf="item.labelIconName">{{ item.labelIconName }}</mat-icon>
+        <span class="lib-list-item-value">{{ disableTranslation ? item.label : (item.label | translate) }}</span>
+      </div>
+    </div>
+    <lib-toggle #libListItemToggleRef [(toggleState)]="item.checked" [disabled]="loading" (toggleStateChange)="onListItemClick(item)"> </lib-toggle>
+  </div>
+</div>

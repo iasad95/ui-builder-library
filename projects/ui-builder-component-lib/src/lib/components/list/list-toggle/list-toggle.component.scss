@@ -1,0 +1,39 @@
+@import '../list-common';
+
+.lib-toggle-list-item-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .lib-list-item-content {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    color: var(--lib-list-item-label-color, #a8a8a8);
+    font-family: var(--lib-list-item-value-font-family, 'Gilroy-Regular', serif);
+    font-size: var(--lib-list-item-value-font-size, 12px);
+    @extend .common-font-style;
+    text-transform: capitalize;
+
+    .lib-list-item-content-inner {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      max-width: fit-content;
+      cursor: pointer;
+      svg.lib-list-item-icon path {
+        stroke: var(--lib-list-item-icon-color, #f7416e) !important;
+      }
+
+      mat-icon {
+        color: var(--lib-list-item-value-icon-color, #515151);
+      }
+    }
+  }
+
+  lib-toggle {
+    transform: scale(0.6);
+    margin-right: -6.9%;
+  }
+}

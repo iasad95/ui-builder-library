@@ -1,0 +1,70 @@
+@import '../../shared-styles/common/lib-styles-utils';
+
+.lib-list-container {
+  .lib-list-title {
+    color: var(--lib-list-title-color, #a8a8a8);
+    text-align: center;
+    font-family: var(--lib-list-title-font-family, 'Gilroy-Regular', serif);
+    font-size: var(--lib-list-title-font-size, 14px);
+    @extend .common-font-style;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+
+  .lib-list-item-container {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    .lib-list-item-title {
+      text-transform: capitalize;
+      color: var(--lib-list-item-label-color, #a8a8a8);
+      text-align: center;
+      font-family: var(--lib-list-item-label-font-family, 'Gilroy-Regular', serif);
+      font-size: var(--lib-list-item-label-font-size, 14px);
+      @extend .common-font-style;
+      margin-bottom: 10px;
+    }
+
+    .lib-list-item-content {
+      display: flex;
+      align-items: center;
+
+      .lib-list-item-value {
+        color: var(--lib-list-item-value-color, #a6a6a6);
+        font-family: var(--lib-list-item-value-font-family, 'Gilroy-Regular', serif);
+        font-size: var(--lib-list-item-value-font-size, 12px);
+        @extend .common-font-style;
+        padding-right: 10px;
+      }
+
+      .lib-list-item-icon {
+        width: 28px;
+
+        img {
+          position: relative;
+          max-width: 100%;
+          height: auto;
+        }
+
+        mat-icon {
+          color: var(--lib-list-item-value-icon-color, #515151);
+          margin-right: 10px;
+        }
+      }
+
+      svg.lib-list-item-arrow-icon {
+        margin: 2px 0 0 10px;
+        path {
+          stroke: var(--lib-list-item-arrow-icon-color, #f7416e) !important;
+        }
+      }
+
+      .lib-list-item-action {
+        color: var(--lib-list-item-action-color, #666);
+        font-size: 12px;
+      }
+    }
+  }
+}
