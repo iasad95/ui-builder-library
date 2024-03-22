@@ -1,0 +1,63 @@
+<div class="container-wrapper">
+  <div class="input-toggle-container" (focusout)="checkFormValidation()">
+    @switch (selectedLoginFormMode) {
+      @case (LoginFormType.Email) {
+        <lib-input-field
+          #loginInputField
+          (click)="onFieldClick()"
+          [label]="usernameLabel"
+          (input)="emitAutofillEmailValue()"
+          [formControl]="emailControl"
+          [maxLength]="500"
+          [type]="'text'"
+        ></lib-input-field>
+      }
+
+      @case (LoginFormType.Phone) {
+        <lib-tel-input
+          [cssClass]="'custom'"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="false"
+          [selectFirstCountry]="false"
+          [showDropDownArrow]="true"
+          [maxLength]="15"
+          [phoneValidation]="true"
+          [icons]="icons"
+          name="phone"
+          [formControl]="phoneControl"
+          [customPlaceholder]="phoneNumberPlaceHolder"
+          (click)="onFieldClick()"
+        >
+        </lib-tel-input>
+      }
+    }
+
+    <lib-toggle
+      [left]="icons.toggleIcons.left"
+      [right]="icons.toggleIcons.right"
+      [variant]="TOGGLE_VARAINTS.Image"
+      [thumbImg]="icons.toggleIcons.thumb"
+      (click)="toggleInput()"
+    ></lib-toggle>
+  </div>
+  @switch (selectedLoginFormMode) {
+    @case (LoginFormType.Email) {
+      <div class="error-outline" [ngClass]="{ 'error-outline--valid': isFormValid.email, 'error-outline--invalid': !isFormValid.email }"></div>
+    }
+
+    @case (LoginFormType.Phone) {
+      <div class="error-outline" [ngClass]="{ 'error-outline--valid': isFormValid.phone, 'error-outline--invalid': !isFormValid.phone }"></div>
+    }
+  }
+</div>
+<div class="error-message-container">
+  @switch (selectedLoginFormMode) {
+    @case (LoginFormType.Email) {
+      <lib-error-message class="input-error" [control]="emailControl"> </lib-error-message>
+    }
+
+    @case (LoginFormType.Phone) {
+      <lib-error-message class="input-error" [control]="phoneControl"> </lib-error-message>
+    }
+  }
+</div>

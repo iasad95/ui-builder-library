@@ -1,0 +1,79 @@
+:host {
+  --icon-height: 24px;
+  --transform-left: translateX(220%);
+  --transform-right: translateX(-220%);
+  --border: 3px solid #fe3c72;
+  --border-radius: 100px;
+  --input-border: none;
+  --box-shadow: inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7), inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+  --border-radius: 100px;
+  --lib-toggle-background-on: var(--ion-background-color);
+  --lib-toggle-box-shadow-on: var(--input-box-shadow);
+}
+
+.container-wrapper {
+  position: relative;
+}
+
+.input-toggle-container {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border-radius: 100px;
+  width: 100%;
+  max-width: 31rem;
+  border: var(--input-border);
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  position: relative;
+  margin: unset;
+  appearance: none;
+  -webkit-appearance: none;
+  z-index: 1;
+  form,
+  .content-wrapper {
+    flex-grow: 1;
+  }
+  lib-tel-input {
+    background: transparent;
+    --border: none;
+    --input-box-shadow: none;
+    flex-grow: 1; /* Take up remaining space */
+    min-width: 0; /* Allow shrinking */
+  }
+  lib-input-field {
+    display: block;
+    --box-shadow: none;
+    --border: none;
+    flex-grow: 1; /* Take up remaining space */
+    min-width: 0; /* Allow shrinking */
+  }
+  lib-toggle {
+    --anime-delay: 200ms;
+    margin-right: 10px;
+    --toggle-box-shadow-on: var(--input-box-shadow);
+    --toggle-background-on: var(--input-box-shadow);
+  }
+}
+.error-message-container {
+  margin-top: 3.5px;
+}
+.error-outline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  transform: matrix(1, 0, 0, -1, 0, 0);
+
+  &--valid {
+    display: none;
+  }
+
+  &--invalid {
+    display: unset;
+  }
+}
