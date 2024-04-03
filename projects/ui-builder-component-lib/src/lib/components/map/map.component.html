@@ -1,0 +1,34 @@
+<google-map
+  #maps
+  *ngIf="apiLoaded"
+  [mapTypeId]="mapType"
+  [options]="mapOptions"
+  [center]="initialLocation || mapOptions.center"
+  [zoom]="zoom"
+  [width]="'100%'"
+  (centerChanged)="centerChanged(maps)"
+  (zoomChanged)="zoomChanged(maps)"
+  (mapClick)="onMapClick($event)"
+>
+  <!--DIRECTION RENDERER-->
+  <map-directions-renderer *ngIf="directions$ | async as directionsRes" [directions]="directionsRes" [options]="directionRenderOptions"></map-directions-renderer>
+  <!--   Map marker   -->
+  <map-marker
+    *ngFor="let marker of markers; let i = index"
+    [position]="marker.position"
+    [icon]="marker.icon"
+    (mapClick)="markerClick.emit(marker)"
+    [options]="markerOptions"
+    (mapDragend)="markerDragEnd(i, $event)"
+  >
+    <map-circle
+      #circle="mapCircle"
+      *ngIf="markers[i] && markers[i].position && !markers[i].omitMarkerCircle"
+      [center]="markers[i].position"
+      [options]="circleOptions"
+      [radius]="markers[i].radius"
+      (radiusChanged)="radiusChanged(circle, i)"
+      (centerChanged)="debounceCenterchanged(i, circle)"
+    ></map-circle>
+  </map-marker>
+</google-map>
