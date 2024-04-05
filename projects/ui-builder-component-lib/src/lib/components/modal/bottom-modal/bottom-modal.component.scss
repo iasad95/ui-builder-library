@@ -1,0 +1,110 @@
+@import '../../../shared-styles/common/lib-styles-utils';
+
+ion-modal.lib-bottom-modal {
+  --lib-popup-modal-radius: 16px 16px 0 0;
+  --border-radius: var(--lib-popup-modal-radius);
+  --background: var(--lib-popup-modal-background, #28252d);
+  --overflow: hidden !important;
+  --color: var(--lib-popup-modal-color, #a8a8a8);
+  --max-width: var(--lib-bottom-modal-max-width, 500px);
+  --box-shadow: var(--lib-popup-modal-shadow, 5px 5px 95px 0px rgba(255, 255, 255, 0.32), -3px -3px 16px 0px rgba(255, 255, 255, 0.1));
+
+  &.adapt-to-content-height {
+    --height: auto;
+  }
+
+  &::part(handle) {
+    border-radius: 13px;
+    opacity: 0.3;
+    background: #fff;
+    width: 21px;
+    height: 4.128px;
+  }
+
+  .lib-bottom-modal-header {
+    position: relative;
+    display: flex;
+    min-width: 250px;
+    padding: 20px 20px 10px 20px;
+    align-items: center;
+    margin: 0 auto;
+    max-width: fit-content;
+    svg {
+      position: absolute;
+      path {
+        stroke: var(--lib-popup-modal-title-arrow-icon-color, #f7416e) !important;
+      }
+      &.lib-bottom-modal-header-back {
+        transform: rotateY(180deg);
+        cursor: pointer;
+      }
+    }
+    .lib-bottom-modal-title {
+      padding: 0 20px;
+      width: 100%;
+      text-align: center;
+      font-family: var(--lib-popup-modal-title-font, Gilroy-Regular, serif);
+      color: var(--lib-popup-modal-title-color, #a8a8a8);
+      font-size: var(--lib-popup-modal-title-font-size, 14px) !important;
+      @extend .common-font-style;
+    }
+  }
+
+  .lib-bottom-modal-footer {
+    @extend .center-content;
+    gap: 15%;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+    lib-secondary-btn,
+    lib-primary-btn {
+      min-width: 100px;
+    }
+  }
+
+  .lib-bottom-modal-loader {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: 60px;
+    ion-progress-bar {
+      --progress-background: var(--lib-popup-modal-progress-bar-color, #f7416e);
+      --buffer-background: var(--lib-popup-modal-progress-bar-background-color, #4b494f);
+    }
+  }
+
+  lib-section-separator {
+    position: relative;
+    top: -20px;
+  }
+
+  .wrapper {
+    color: var(--lib-popup-modal-color, #a8a8a8);
+    font-family: var(--lib-popup-modal-font, Gilroy-Regular, serif);
+    padding: 0 10px 10px 10px;
+    overflow: auto;
+    margin-top: -40px;
+
+    lib-secondary-btn.lib-bottom-modal-cancel-btn,
+    lib-primary-btn.lib-bottom-modal-submit-btn {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      margin-top: var(--lib-popup-modal-submit-btn-margin-top, 30px);
+      margin-bottom: var(--lib-popup-modal-submit-btn-margin-bottom, 30px);
+    }
+
+    p.lib-bottom-modal-description {
+      margin: 0 0 10px 0;
+      font-family: var(--lib-popup-modal-font, Gilroy-Regular, serif);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.07px;
+      text-align: var(--lib-popup-modal-description-align, center);
+    }
+  }
+}
+ion-modal.lib-bottom-modal > .ion-page {
+  display: block !important;
+}

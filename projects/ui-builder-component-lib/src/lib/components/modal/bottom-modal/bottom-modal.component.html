@@ -1,0 +1,44 @@
+<ion-modal
+  #bottomModalRef
+  class="lib-bottom-modal"
+  (didDismiss)="onDidDismiss()"
+  (ionBreakpointDidChange)="onBreakpointDidChange($event)"
+  [ngClass]="[customClass ? customClass : '']"
+  [canDismiss]="canDismiss"
+  [initialBreakpoint]="adaptToContentHeight ? 1 : initialBreakpoint"
+  [breakpoints]="adaptToContentHeight ? [0, 1] : breakpoints"
+  [class.adapt-to-content-height]="adaptToContentHeight"
+>
+  <ng-template>
+    <div class="lib-bottom-modal-header">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="7"
+        height="11"
+        viewBox="0 0 7 11"
+        fill="none"
+        (click)="onClickBack()"
+        mat-ripple
+        [matRippleDisabled]="!showBackBtn || this.loading"
+        [class.lib-bottom-modal-header-back]="showBackBtn"
+      >
+        <path d="M0.950928 9.66406L5.24176 5.37323L0.950928 1.08241" stroke="#F7416E" stroke-width="1.60906" stroke-linecap="round" />
+      </svg>
+      <div class="lib-bottom-modal-title ellipsis-text">{{ title }}</div>
+    </div>
+    <lib-section-separator *ngIf="showHeaderSeparator"></lib-section-separator>
+    <div class="lib-bottom-modal-loader"><ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar></div>
+    <div class="wrapper" id="bottomModalContentRef">
+      <p class="lib-bottom-modal-description" *ngIf="description">{{ description }}</p>
+      <ng-content></ng-content>
+      <div [class.lib-bottom-modal-footer]="cancelButtonTitle && submitButtonTitle">
+        <lib-secondary-btn [class.lib-bottom-modal-cancel-btn]="!submitButtonTitle" [disabled]="loading" (click)="closeLibBottomModal()" *ngIf="cancelButtonTitle">
+          {{ cancelButtonTitle }}
+        </lib-secondary-btn>
+        <lib-primary-btn [class.lib-bottom-modal-submit-btn]="!cancelButtonTitle" [disabled]="!validModal" (click)="submitModal.emit()" *ngIf="submitButtonTitle">
+          {{ submitButtonTitle }}
+        </lib-primary-btn>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

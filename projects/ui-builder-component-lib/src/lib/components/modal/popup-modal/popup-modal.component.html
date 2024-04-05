@@ -1,0 +1,35 @@
+<ion-modal [backdropDismiss]="backdropDismiss" [animated]="true" mode="ios" [isOpen]="isOpen" class="lib-popup-modal" [ngClass]="[customClass ? customClass : '']">
+  <ng-template>
+    <div class="popover-container" *ngIf="!modalComponent; else modalComponentRef">
+      <lib-progress-bar *ngIf="progBarCurrentStep && progBarTotalSteps" [progBarCurrentStep]="progBarCurrentStep" [progBarTotalSteps]="progBarTotalSteps"></lib-progress-bar>
+      <div *ngIf="icon" class="info-icon">
+        <img [src]="icon" />
+      </div>
+      <div *ngIf="title" class="m-title f-w-700 f-lg h-160 f-white">{{ title | translate }}</div>
+      <span *ngIf="message" class="message f-w-400 f-md h-150 f-gray">{{ message | translate }}</span>
+      <span *ngIf="extendedMessage" class="message f-w-400 f-md h-150 f-gray">{{ extendedMessage | translate }}</span>
+      <ng-container *ngIf="checkboxText">
+        <form>
+          <label class="checkbox-container">
+            <lib-dashed-checkbox [formControl]="confirmationControl"></lib-dashed-checkbox>
+            <span class="checkbox-label f-w-500 f-lg h-150">{{ checkboxText | translate }}</span>
+          </label>
+        </form>
+      </ng-container>
+      <ng-content></ng-content>
+      <div class="buttons">
+        <lib-secondary-btn *ngIf="cancelButton" (click)="handleModalDismiss()">
+          {{ cancelButton | translate }}
+        </lib-secondary-btn>
+        <lib-primary-btn *ngIf="confirmButton" (click)="handleModalConfirm()" [disabled]="checkboxText ? !confirmationControl?.value : false">
+          {{ confirmButton | translate }}
+        </lib-primary-btn>
+      </div>
+    </div>
+    <ng-template #modalComponentRef>
+      <div class="popover-container">
+        <ng-template libDynamicModalContainer [modalComponent]="modalComponent" [modalComponentData]="modalComponentData"></ng-template>
+      </div>
+    </ng-template>
+  </ng-template>
+</ion-modal>
