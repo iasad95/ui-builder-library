@@ -1,0 +1,190 @@
+<div class="multifield">
+  <div class="multifield__headers">
+    <ng-container *ngFor="let fieldInfo of config.fields[0]">
+      <div
+        *ngIf="fieldInfo.label || (useTooltips && fieldInfo.descriptionText)"
+        [ngStyle]="{ 'flex-grow': fieldInfo.flexGrow, 'flex-shrink': 1, 'flex-basis': fieldInfo.flexBasisPct + '%', display: fieldInfo.isHidden ? 'none' : 'flex' }"
+        class="multifield__headers-container"
+      >
+        <div *ngIf="fieldInfo.label" class="multifield__header">
+          {{ fieldInfo.label }}
+        </div>
+        <div
+          *ngIf="useTooltips && fieldInfo.descriptionText"
+          class="multifield__header-icon-tooltip"
+          [libTooltip]="fieldInfo.descriptionText"
+          [directionPreference]="DirectionPreference.Right"
+          [delayTime]="200"
+        >
+          <i class="icon icon-gen3-info"></i>
+        </div>
+      </div>
+    </ng-container>
+    <div class="multifield__header-delete-placeholder"></div>
+  </div>
+  <div *ngFor="let values of formFieldControl.value; let rowIndex = index">
+    <div
+      class="multifield__display-row"
+      [ngClass]="{ 'multifield__display-row--disabled': disabled || editDisabled }"
+      *ngIf="rowIndex !== editIndex"
+      (click)="handleRowClicked(rowIndex)"
+    >
+      <div
+        *ngFor="let fieldInfo of config.fields[0]; let valueIndex = index"
+        class="multifield__display-value"
+        [ngStyle]="{ 'flex-grow': fieldInfo.flexGrow, 'flex-shrink': 1, 'flex-basis': fieldInfo.flexBasisPct + '%', display: fieldInfo.isHidden ? 'none' : 'flex' }"
+      >
+        {{ getDisplayValue(fieldInfo, values[valueIndex]) }}
+      </div>
+      <div class="multifield__delete-row" [hidden]="disabled" (click)="handleRowDeleted(rowIndex, $event)">
+        <i class="multifield__icon-delete icon-trash" libTooltip="Delete"></i>
+      </div>
+    </div>
+    <div class="multifield__edit" *ngIf="rowIndex === editIndex">
+      <div class="multifield__edit-fields">
+        <div *ngFor="let row of config.fields; let i = index" class="multifield__row">
+          <div
+            *ngFor="let fieldInfo of row; let j = index"
+            class="multifield__field-container"
+            [ngStyle]="{ 'flex-grow': fieldInfo.flexGrow, 'flex-shrink': 1, 'flex-basis': fieldInfo.flexBasisPct + '%', display: fieldInfo.isHidden ? 'none' : 'flex' }"
+            (click)="handleFieldClicked(fieldInfo)"
+          >
+            <lib-form-field
+              *ngIf="
+                !fieldInfo.isHidden &&
+                (fieldInfo.type === FormFieldType.currency ||
+                  fieldInfo.type === FormFieldType.select ||
+                  fieldInfo.type === FormFieldType.text ||
+                  fieldInfo.type === FormFieldType.date ||
+                  fieldInfo.type === FormFieldType.radio ||
+                  fieldInfo.type === FormFieldType.checkbox ||
+                  fieldInfo.type === FormFieldType.textarea ||
+                  fieldInfo.type === FormFieldType.number ||
+                  fieldInfo.type === FormFieldType.message ||
+                  fieldInfo.type === FormFieldType.editor)
+              "
+              [fieldName]="fieldInfo.controlName"
+              [iconHtml]="fieldInfo.labelIcon"
+              [formFieldControl]="tempFieldControls[i][j]"
+              [maxLength]="fieldInfo.maxLength ? fieldInfo.maxLength : 524288"
+              [type]="fieldInfo.type"
+              [options]="fieldInfo.selectOptions"
+              [required]="fieldInfo.required"
+              [placeholder]="fieldInfo.placeholder"
+              [invalidPatternMessage]="fieldInfo.patternErrorMessage"
+              [message]="fieldInfo.message || tempFieldControls[i][j].value"
+              [currencySymbol]="currencySymbol"
+              [rowEditConfirmationObsv]="rowDeleteConfirmationObsv"
+              class="multifield__field-section"
+            >
+            </lib-form-field>
+            <div
+              class="multifield__typeahead-section"
+              [ngClass]="{ 'multifield__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+              *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.typeahead"
+            >
+              <lib-typeahead-field
+                class="multifield__typeahead"
+                [fieldName]="fieldInfo.controlName"
+                [entityFunctions]="fieldInfo.typeaheadConfig.entity"
+                [selectionFunction]="fieldInfo.typeaheadConfig.selectionFunction"
+                [placeholderText]="fieldInfo.placeholder"
+                [alternateText]="fieldInfo.typeaheadConfig.alternateText"
+                [alternateFunction]="fieldInfo.typeaheadConfig.alternateFunction"
+                [defaultSearchString]="fieldInfo.typeaheadConfig.defaultSearchString"
+                [defaultText]="fieldInfo.typeaheadConfig.defaultText"
+                [suggestionText]="fieldInfo.typeaheadConfig.suggestionText"
+                [required]="fieldInfo.required"
+                [rowEditConfirmationObsv]="rowDeleteConfirmationObsv"
+                (selected)="handleTypeaheadSelected(i, j, $event)"
+                (deselected)="handleTypeaheadDeselected(i, j)"
+              >
+              </lib-typeahead-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="multifield__edit-buttons">
+        <div class="multifield__edit-add" [ngClass]="{ 'multifield__edit-add--disabled': addDisabled }" (click)="handleSaveClicked()">Update</div>
+        <div class="multifield__edit-cancel" (click)="handleCancelClicked()">Cancel</div>
+      </div>
+    </div>
+  </div>
+  <div class="multifield__edit" *ngIf="addingNewRow">
+    <div class="multifield__edit-fields">
+      <div *ngFor="let row of config.fields; let i = index" class="multifield__row">
+        <div
+          *ngFor="let fieldInfo of row; let j = index"
+          class="multifield__field-container"
+          [ngStyle]="{ 'flex-grow': fieldInfo.flexGrow, 'flex-shrink': 1, 'flex-basis': fieldInfo.flexBasisPct + '%', display: fieldInfo.isHidden ? 'none' : 'flex' }"
+        >
+          <lib-form-field
+            *ngIf="
+              !fieldInfo.isHidden &&
+              (fieldInfo.type === FormFieldType.currency ||
+                fieldInfo.type === FormFieldType.select ||
+                fieldInfo.type === FormFieldType.text ||
+                fieldInfo.type === FormFieldType.date ||
+                fieldInfo.type === FormFieldType.radio ||
+                fieldInfo.type === FormFieldType.checkbox ||
+                fieldInfo.type === FormFieldType.textarea ||
+                fieldInfo.type === FormFieldType.number ||
+                fieldInfo.type === FormFieldType.message ||
+                fieldInfo.type === FormFieldType.editor)
+            "
+            [iconHtml]="fieldInfo.labelIcon"
+            [formFieldControl]="tempFieldControls[i][j]"
+            [maxLength]="fieldInfo.maxLength ? fieldInfo.maxLength : 524288"
+            [type]="fieldInfo.type"
+            [options]="fieldInfo.selectOptions"
+            [required]="fieldInfo.required"
+            [placeholder]="fieldInfo.placeholder"
+            [invalidPatternMessage]="fieldInfo.patternErrorMessage"
+            [message]="fieldInfo.message || tempFieldControls[i][j].value"
+            [currencySymbol]="currencySymbol"
+            class="multifield__field-section"
+          >
+          </lib-form-field>
+          <div
+            class="multifield__typeahead-section"
+            [ngClass]="{ 'multifield__single-item-desc': row.length === 1 && fieldInfo.descriptionText }"
+            *ngIf="!fieldInfo.isHidden && fieldInfo.type === FormFieldType.typeahead"
+          >
+            <lib-typeahead-field
+              class="multifield__typeahead"
+              [entityFunctions]="fieldInfo.typeaheadConfig.entity"
+              [selectionFunction]="fieldInfo.typeaheadConfig.selectionFunction"
+              [placeholderText]="fieldInfo.placeholder"
+              [alternateText]="fieldInfo.typeaheadConfig.alternateText"
+              [alternateFunction]="fieldInfo.typeaheadConfig.alternateFunction"
+              [defaultSearchString]="fieldInfo.typeaheadConfig.defaultSearchString"
+              [defaultText]="fieldInfo.typeaheadConfig.defaultText"
+              [error]="tempFieldControls[i][j].touched && tempFieldControls[i][j].errors ? fieldInfo.typeaheadConfig.errorMessage : ''"
+              [suggestionText]="fieldInfo.typeaheadConfig.suggestionText"
+              [required]="fieldInfo.required"
+              (selected)="handleTypeaheadSelected(i, j, $event)"
+              (deselected)="handleTypeaheadDeselected(i, j)"
+            >
+            </lib-typeahead-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="multifield__edit-buttons">
+      <lib-primary-btn (click)="handleSaveClicked()" [disabled]="addDisabled" type="submit"> Add </lib-primary-btn>
+      <lib-secondary-btn (click)="handleCancelClicked()"> Cancel </lib-secondary-btn>
+    </div>
+  </div>
+  <lib-primary-btn
+    *ngIf="!addingNewRow && editIndex === -1 && (maxLength === 0 || !formFieldControl.value || (formFieldControl.value && formFieldControl.value.length < maxLength))"
+    (click)="handleAddClicked()"
+    [disabled]="disabled"
+    class="multifield__row-add"
+  >
+    {{ newRowText }}
+  </lib-primary-btn>
+
+  <div *ngIf="errorMessage" class="multifield__error">
+    {{ errorMessage }}
+  </div>
+</div>
