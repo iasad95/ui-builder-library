@@ -1,0 +1,28 @@
+<div
+  class="multiselect"
+  [ngClass]="{ 'multiselect--required': showRequiredIndicator && required, 'multiselect--required-submitted': submitted && required && selectedOptions.length === 0 }"
+>
+  <div
+    *ngIf="showRequiredIndicator && required"
+    class="multiselect__required"
+    [ngClass]="{ 'multiselect__required--submitted': submitted && selectedOptions.length === 0 }"
+    [libTooltip]="'Required'"
+  >
+    <div class="multiselect__required-indicator">*</div>
+  </div>
+  <div class="multiselect__tile-container">
+    <div *ngFor="let selectedOption of selectedOptions; let optionIndex = index" class="multiselect__tile">
+      <div class="multiselect__tile-label" [libTooltip]="selectedOption.label">
+        {{ selectedOption.label }}
+      </div>
+      <i *ngIf="!disabled" class="multiselect__tile-icon multiselect__tile-icon-remove icon-close" (click)="handleOptionRemove(selectedOption, $event)"></i>
+    </div>
+    <div *ngIf="selectedOptions.length < getTotalCount() && !disabled" class="multiselect__tile multiselect__tile-add" (click)="handleOptionAdd()">
+      <i class="multiselect__tile-icon multiselect__tile-icon-add icon-gen3-create"></i>
+      <div class="multiselect__tile-label">Add</div>
+    </div>
+  </div>
+</div>
+<div *ngIf="submitted && required && selectedOptions.length === 0" class="multiselect__error-text">
+  {{ (dialogTitle ? dialogTitle : 'Field') + ' is required.' }}
+</div>

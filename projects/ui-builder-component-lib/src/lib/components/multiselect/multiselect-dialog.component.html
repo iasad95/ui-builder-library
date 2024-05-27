@@ -1,0 +1,69 @@
+<div class="multiselect-dialog">
+  <div class="multiselect-dialog__header">
+    <div class="multiselect-dialog__header-left-group">
+      <div class="multiselect-dialog__header-text">
+        {{ title }}
+      </div>
+      <div class="multiselect-dialog__header-icons">
+        <div
+          class="multiselect-dialog__header-icon"
+          *ngFor="let icon of headerIconTray"
+          (click)="headerIconClicked(icon)"
+          [innerHTML]="icon.displayHtml"
+          [libTooltip]="icon.toolTip"
+        ></div>
+      </div>
+    </div>
+    <i class="multiselect-dialog__header-close-button icon-close" (click)="handleClickCancel()"></i>
+  </div>
+
+  <div class="multiselect-dialog__checkbox-section">
+    <div *ngIf="showDialogMessage" class="multiselect-dialog__checkbox-section-text">Select one or more {{ title }} from the list below.</div>
+    <lib-search-bar
+      *ngIf="this.totalCount > this.searchModeThreshold"
+      [placeholderText]="'Search'"
+      (searchStringChange)="search($event)"
+      (cleared)="clearSearch()"
+      class="multiselect-dialog__search-bar"
+    ></lib-search-bar>
+    <div class="multiselect-dialog__checkbox-group-container">
+      <div class="multiselect-dialog__checkbox-group" *ngFor="let group of optionGroups">
+        <div class="multiselect-dialog__checkbox-group-title" *ngIf="group.groupName">
+          {{ group.groupName }}
+        </div>
+        <div class="multiselect-dialog__checkbox-container">
+          <div class="multiselect-dialog__checkbox-container-list">
+            <div *ngFor="let option of getLeftOptions(group.options)" class="multiselect-dialog__checkbox-section-item">
+              <lib-dashed-checkbox
+                class="multiselect-dialog__checkbox"
+                [checked]="selectedOptions.indexOf(option) !== -1"
+                (toggle)="handleCheckedValueChange([option, $event])"
+              ></lib-dashed-checkbox>
+              <div class="multiselect-dialog__checkbox-section-item-text" [libTooltip]="option.label">
+                {{ option.label }}
+              </div>
+            </div>
+          </div>
+          <div class="multiselect-dialog__checkbox-container-list">
+            <div *ngFor="let option of getRightOptions(group.options)" class="multiselect-dialog__checkbox-section-item">
+              <lib-dashed-checkbox
+                class="multiselect-dialog__checkbox"
+                [checked]="selectedOptions.indexOf(option) !== -1"
+                (toggle)="handleCheckedValueChange([option, $event])"
+              ></lib-dashed-checkbox>
+              <div class="multiselect-dialog__checkbox-section-item-text" [libTooltip]="option.label">
+                {{ option.label }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <lib-section-separator></lib-section-separator>
+      </div>
+    </div>
+  </div>
+
+  <div class="multiselect-dialog__footer">
+    <lib-secondary-btn class="multiselect-dialog__footer-button" (click)="handleClickCancel()"> Cancel </lib-secondary-btn>
+    <lib-primary-btn class="multiselect-dialog__footer-button" (click)="handleClickSave()"> Save </lib-primary-btn>
+  </div>
+</div>
