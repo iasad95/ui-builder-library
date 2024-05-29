@@ -1,0 +1,23 @@
+<div *ngIf="display">
+  <div *ngIf="bannerType === 'success'" class="notification-banner notification-banner__success">
+    <i class="notification-banner__icon icon-check-circle"></i>
+    <div class="notification-banner__message">
+      {{ message }}
+    </div>
+    <i class="notification-banner__icon notification-banner__icon--clickable icon-close" (click)="hide()"></i>
+  </div>
+  <div *ngIf="bannerType === 'warn'" class="notification-banner notification-banner__warn">
+    <i class="notification-banner__icon icon-gen3-enrich"></i>
+    <div class="notification-banner__message">
+      {{ message }}
+    </div>
+    <i class="notification-banner__icon notification-banner__icon--clickable icon-close" (click)="hide()"></i>
+  </div>
+  <div *ngIf="bannerType === 'error'" class="notification-banner notification-banner__error">
+    <i class="notification-banner__icon icon-exclamation-circle"></i>
+    <div class="notification-banner__message">
+      {{ message }}
+    </div>
+    <i class="notification-banner__icon notification-banner__icon--clickable icon-close" (click)="hide()"></i>
+  </div>
+</div>

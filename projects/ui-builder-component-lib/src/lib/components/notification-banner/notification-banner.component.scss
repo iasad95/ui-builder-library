@@ -1,0 +1,42 @@
+.notification-banner {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 14px 15px;
+  border-radius: 2px;
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 1;
+
+  &__icon {
+    flex-grow: 0;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+
+    &--clickable {
+      cursor: pointer;
+    }
+  }
+
+  &__message {
+    flex-grow: 1;
+    padding-left: 5px;
+  }
+
+  &__success {
+    background-color: #599b4e;
+  }
+
+  &__warn {
+    background-color: #f8a91d;
+  }
+
+  &__error {
+    background-color: #c7472e;
+  }
+}
