@@ -1,0 +1,30 @@
+<div [@reveal] *ngIf="show" class="banner {{ type }}">
+  <section class="banner-content">
+    <section *ngIf="showIcon" class="icon-container">
+      <lib-status-icon [type]="type"></lib-status-icon>
+    </section>
+    <div class="text-content">
+      <section>
+        <h3>
+          {{ title || type }}
+        </h3>
+      </section>
+      <section class="message">
+        {{ message }}
+      </section>
+      <section *ngIf="actionLink?.length > 0 && actionLinkText?.length > 0" class="action-link">
+        <a [href]="actionLink">{{ actionLinkText }}</a>
+      </section>
+    </div>
+  </section>
+  <section *ngIf="showClose" class="close-banner">
+    <a (click)="onCloseBanner()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12.7749 1.23417C12.4174 0.876671 11.8399 0.876671 11.4824 1.23417L6.99991 5.7075L2.51741 1.225C2.15991 0.867504 1.58241 0.867504 1.22491 1.225C0.867412 1.5825 0.867412 2.16 1.22491 2.5175L5.70741 7L1.22491 11.4825C0.867412 11.84 0.867412 12.4175 1.22491 12.775C1.58241 13.1325 2.15991 13.1325 2.51741 12.775L6.99991 8.2925L11.4824 12.775C11.8399 13.1325 12.4174 13.1325 12.7749 12.775C13.1324 12.4175 13.1324 11.84 12.7749 11.4825L8.29241 7L12.7749 2.5175C13.1232 2.16917 13.1232 1.5825 12.7749 1.23417Z"
+          fill="#24282A"
+        />
+      </svg>
+    </a>
+  </section>
+</div>
