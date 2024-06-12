@@ -1,0 +1,49 @@
+$defaultAppPercentageWidth: 100%;
+$defaultAppPercentageHeight: 1em;
+$defaultAppPercentageBufferBackgroundColor: rgb(255, 0, 0, 0.4);
+$defaultAppPercentageInnerBackgroundColor: red;
+$defaultAppPercentageInnerBoxShadow: 0px 0px 30px 10px rgb(255, 0, 0, 0.7);
+.lib-percentage {
+  width: var(--lib-percentage-width, $defaultAppPercentageWidth);
+  height: var(--lib-percentage-height, $defaultAppPercentageHeight);
+  background: var(--lib-percentage-buffer-background-color, $defaultAppPercentageBufferBackgroundColor);
+  border-radius: calc(var(--lib-percentage-height, $defaultAppPercentageHeight) / 2);
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  &__inner {
+    content: '';
+    z-index: -1;
+    display: block;
+    position: absolute;
+    height: 100%;
+    background: var(--lib-percentage-inner-background-color, $defaultAppPercentageInnerBackgroundColor);
+    border-radius: inherit;
+
+    &--value {
+      box-shadow: var(--lib-percentage-inner-box-shadow, $defaultAppPercentageInnerBoxShadow);
+    }
+
+    &--no-value {
+      box-shadow: none;
+      width: 0;
+    }
+  }
+
+  &__label-container {
+    display: flex;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+
+    &__label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      width: inherit;
+      padding: 0 calc(var(--lib-percentage-height, $defaultAppPercentageHeight) / 2);
+    }
+  }
+}

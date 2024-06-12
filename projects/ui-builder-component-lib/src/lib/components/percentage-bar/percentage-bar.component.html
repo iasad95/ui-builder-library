@@ -1,0 +1,8 @@
+<div class="lib-percentage">
+  <div class="lib-percentage__inner" [ngStyle]="{ 'width.%': value }" [ngClass]="{ 'lib-percentage__inner--value': !!value, 'lib-percentage__inner--no-value': !value }"></div>
+  <div class="lib-percentage__label-container">
+    <div class="lib-percentage__label-container__label">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
