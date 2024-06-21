@@ -1,0 +1,19 @@
+<lib-drag-and-drop (fileRecieved)="handleImages($event)">
+  <div class="row">
+    <div
+      class="col"
+      *ngFor="let skeletonLoader of skeletonLoaders; let i = index"
+      [ngStyle]="{ width: 'calc(' + 100 / slotsPerRow + '% - ' + (gridGap - gridGap / slotsPerRow) + 'px)' }"
+    >
+      <canvas class="aspect-ratio-renderer" [width]="10" [height]="10 / photoAspectRatio"></canvas>
+      <lib-image-card
+        [imageUrl]="photos[i]?.image"
+        [enableCropper]="false"
+        [enableCompression]="false"
+        [disableUploadOnClick]="true"
+        (removeImage)="removeImage(i)"
+        (click)="selectImage()"
+      ></lib-image-card>
+    </div>
+  </div>
+</lib-drag-and-drop>

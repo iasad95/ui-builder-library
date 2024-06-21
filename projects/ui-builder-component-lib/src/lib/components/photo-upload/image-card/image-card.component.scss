@@ -1,0 +1,99 @@
+@import '../../../shared-styles/common/lib-styles-utils';
+
+.lib-image-card-container {
+  width: var(--lib-image-card-container-width, 84px);
+  height: var(--lib-image-card-container-height, 84px);
+  border-radius: 13.689px;
+  background: var(--lib-image-card-container-background, #28252d);
+  box-shadow: var(
+    --lib-image-card-container-shadow,
+    5.70371px 5.70371px 11.40741px 0px rgba(0, 0, 0, 0.32) inset,
+    -3.42222px -3.42222px 4.56296px 0px rgba(255, 255, 255, 0.1) inset
+  );
+  @extend .center-content;
+  cursor: pointer;
+
+  .lib-image-card-loader {
+    position: relative;
+    display: block;
+    height: 100% !important;
+    width: 100% !important;
+    border-radius: 13.689px;
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--lib-image-card-loader-background, linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent));
+      box-shadow: var(
+        --lib-image-card-container-shadow,
+        5.70371px 5.70371px 11.40741px 0px rgba(0, 0, 0, 0.32) inset,
+        -3.42222px -3.42222px 4.56296px 0px rgba(255, 255, 255, 0.1) inset
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 13.689px;
+    }
+  }
+
+  &.lib-image-card-container-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lib-image-card-label {
+    color: #fff;
+    @extend .common-font-style;
+    font-family: Gilroy-Regular, serif;
+    font-size: 9.126px;
+    border-radius: 6.844px;
+    background: rgba(37, 34, 41, 0.39);
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    padding: 2px 5px;
+  }
+
+  lib-icon-btn {
+    &.add-btn {
+      --lib-icon-button-container-height: 38px;
+      --lib-icon-button-container-width: 38px;
+      --lib-icon-button-height: 35px;
+      --lib-icon-button-width: 35px;
+      mat-icon {
+        color: var(--lib-image-card-add-btn-color, rgba(254, 60, 114, 1));
+      }
+    }
+
+    &.delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      --lib-icon-button-container-height: var(--lib-image-card-delete-btn-container-height, 27px);
+      --lib-icon-button-container-width: var(--lib-image-card-delete-btn-container-width, 27px);
+      --lib-icon-button-height: var(--lib-image-card-delete-btn-height, 24px);
+      --lib-icon-button-width: var(--lib-image-card-delete-btn-width, 24px);
+      mat-icon {
+        font-size: 14px;
+        margin-top: 10px;
+        color: var(--lib-image-card-delete-btn-color, rgba(254, 60, 114, 1));
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

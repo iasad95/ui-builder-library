@@ -1,0 +1,19 @@
+<lib-image-base
+  [maxNumOfPhotos]="maxNumOfPhotos"
+  [loading]="loading"
+  [disabled]="disabled"
+  [enableCropper]="enableCropper"
+  [cropperModalViewRef]="cropperModalViewRef"
+  [enableCompression]="enableCompression"
+  [maxImageSizeInBytes]="maxImageSizeInBytes"
+  [maxImageCompressSizeInBytes]="maxImageCompressSizeInBytes"
+  [photoAspectRatio]="photoAspectRatio"
+  [photos]="photos"
+  [faceDetector]="faceDetector"
+  [nsfwChecker]="nsfwChecker"
+>
+  <div (dragover)="showOutline($event)" (dragenter)="showOutline($event)" (dragleave)="hideOutline($event)" (dragend)="hideOutline($event)" (drop)="receiveDroppedFiles($event)">
+    <ng-content></ng-content>
+  </div>
+  <span #dragOutline class="drag-outline"></span>
+</lib-image-base>

@@ -1,0 +1,15 @@
+<ng-container>
+  <div
+    class="lib-image-card-container"
+    (click)="selectImages()"
+    [class.lib-image-card-container-image]="imageUrl"
+    [ngStyle]="imageUrl ? { 'background-image': 'url(' + imageUrl + ')' } : {}"
+  >
+    <lib-icon-btn class="add-btn" *ngIf="!imageUrl && !loading" [disabled]="disabled"><mat-icon>add</mat-icon></lib-icon-btn>
+    <span class="lib-image-card-label" *ngIf="imageLabel && imageUrl && !loading">{{ imageLabel }}</span>
+    <div class="lib-image-card-loader" *ngIf="loading"></div>
+    <lib-icon-btn class="delete-btn" [disabled]="disabled || loading" *ngIf="!loading && imageUrl && enableDelete" (click)="onRemoveImage($event)">
+      <mat-icon>delete</mat-icon>
+    </lib-icon-btn>
+  </div>
+</ng-container>
