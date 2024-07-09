@@ -1,0 +1,26 @@
+<div class="app-premium-chip-container">
+  <div class="app-premium-chip-container__mat-chip-container" #matChipContainer>
+    <ng-content></ng-content>
+  </div>
+  <div
+    *ngIf="updateSvg"
+    class="app-premium-chip-container__bg-svg-container app-premium-chip"
+    [ngStyle]="{
+      'border-radius.px': appPremiumChipContainerOffsetHeight,
+      'height.px': appPremiumChipContainerOffsetHeight,
+      'width.px':
+        appPremiumChipContainerOffsetWidth > appPremiumChipContainerOffsetHeight * difference
+          ? appPremiumChipContainerOffsetWidth
+          : appPremiumChipContainerOffsetHeight * difference,
+    }"
+  >
+    @switch (variant) {
+      @case (PREMIUM_CHIP_VARIANT_TYPES.PRIMARY) {
+        <lib-primary-chip [height]="matChipContainer.offsetHeight"></lib-primary-chip>
+      }
+      @case (PREMIUM_CHIP_VARIANT_TYPES.GLASS) {
+        <lib-glass-chip [height]="matChipContainer.offsetHeight" [width]="matChipContainer.offsetWidth"></lib-glass-chip>
+      }
+    }
+  </div>
+</div>

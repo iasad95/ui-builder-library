@@ -1,0 +1,83 @@
+:host {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.primary-chip {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, rgb(150, 70, 100) 0%, rgb(66, 29, 44) 50%, rgb(66, 29, 44) 100%);
+
+  &__outer-wrapper {
+    padding: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__outer-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(75, 35, 50);
+  }
+
+  &__inner-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__inner-background {
+    width: 100%;
+    height: 100%;
+  }
+  &__inner-image {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+
+  &__border-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__border-container {
+    height: 100%;
+    width: 100%;
+    top: 100%;
+    position: absolute;
+  }
+
+  &__border-top-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  &__border-bottom-image {
+    position: absolute;
+    height: 4%;
+    width: 100%;
+    transform: translateY(-100%);
+  }
+}

@@ -1,0 +1,48 @@
+<svg class="glass-chip" [ngStyle]="{ 'border-radius.px': height }">
+  <defs>
+    <linearGradient class="glass-chip__border-gradient" [attr.id]="bgSvgUniqueIds.glassBorderGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" class="glass-chip__border-gradient__from" />
+      <stop offset="100%" class="glass-chip__border-gradient__to" />
+    </linearGradient>
+    <linearGradient class="glass-chip__border-inner-gradient" [attr.id]="bgSvgUniqueIds.glassInnerGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" class="glass-chip__border-inner-gradient__dark" />
+      <stop offset="30%" class="glass-chip__border-inner-gradient__light" />
+      <stop offset="70%" class="glass-chip__border-inner-gradient__light" />
+      <stop offset="100%" class="glass-chip__border-inner-gradient__dark" />
+    </linearGradient>
+    <clipPath [attr.id]="bgSvgUniqueIds.glassClipRoundedCorners">
+      <rect y="0" width="100%" height="100%" [attr.rx]="height * 0.5" [attr.ry]="height * 0.5" fill="white"></rect>
+    </clipPath>
+    <mask [attr.id]="bgSvgUniqueIds.glassBorderMask">
+      <rect height="100%" width="100%" fill="rgb(255,255,255)" [attr.rx]="height * 0.5" [attr.ry]="height * 0.5"></rect>
+      <rect
+        [attr.x]="height * 0.05"
+        [attr.y]="height * 0.05"
+        [attr.height]="height * 0.9"
+        [attr.width]="width - height * 0.1"
+        fill="rgb(0,0,0)"
+        [attr.rx]="height * 0.45"
+        [attr.ry]="height * 0.45"
+      ></rect>
+    </mask>
+    <filter id="blurFilter" x="0" y="0">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+    </filter>
+  </defs>
+  <g class="glass-chip__group-1">
+    <g [attr.mask]="'url(#' + bgSvgUniqueIds.glassBorderMask + ')'">
+      <rect width="100%" height="50%" [attr.fill]="'url(#' + bgSvgUniqueIds.glassBorderGradient + ')'" />
+      <rect y="50%" width="100%" height="50%" fill="rgb(116,116,116)" />
+    </g>
+    <rect
+      class="glass-chip__blurred-background"
+      [attr.x]="height * 0.045"
+      [attr.y]="height * 0.045"
+      height="91%"
+      [attr.width]="width - height * 0.045 * 2"
+      [attr.rx]="height * 0.45"
+      [attr.ry]="height * 0.45"
+    ></rect>
+  </g>
+</svg>
+<div class="glass-chip__inner-glow"></div>

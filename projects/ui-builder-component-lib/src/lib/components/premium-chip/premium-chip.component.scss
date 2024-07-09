@@ -1,0 +1,22 @@
+.app-premium-chip-container {
+  position: relative;
+  display: block;
+
+  &__mat-chip-container {
+    position: relative;
+    height: 100%;
+    padding: 3px 5px;
+    display: flex;
+    align-items: center;
+    z-index: 6;
+    filter: drop-shadow(0px 0px 2px rgb(50, 50, 50, 1));
+    text-shadow: 0 0 white;
+  }
+
+  &__bg-svg-container {
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    overflow: hidden;
+  }
+}
