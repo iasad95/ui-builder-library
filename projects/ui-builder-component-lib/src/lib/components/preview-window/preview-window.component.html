@@ -1,0 +1,54 @@
+<div [ngStyle]="{ width: includeStepsCount ? '80%' : '100%' }" class="wrapper-bar">
+  <div class="progress-bar">
+    <div class="disabled-progress-inside" [style.width.%]="farthestProgress"></div>
+    <div class="progress-inside" [style.width.%]="availableFarthestProgress"></div>
+    <span class="glow" [style.width.%]="progress"></span>
+  </div>
+  <div class="preview-tab" (mouseleave)="mouseLeave()" (pressup)="mouseLeave()">
+    <ng-container *ngFor="let regRoute of routes; let i = index">
+      <div
+        [ngClass]="{
+          preview: true,
+          completed: farthestProgress > i * stepWeight,
+          visited: availableFarthestProgress >= i * stepWeight,
+          disabled: farthestProgress >= i * stepWeight,
+        }"
+        (click)="navigateOnClick(regRoute.key, i * stepWeight)"
+        (mouseenter)="adoptElement($event, regRoute)"
+        (press)="onPress($event, regRoute)"
+        (mousemove)="showThumbnail($event)"
+        [style.width.%]="stepWeight"
+      >
+        <div class="hover-extension"></div>
+        <div *ngIf="includeSteps && regRoute.stepStart" class="step" [ngClass]="{ 'empty-circle': progress <= i * stepWeight }"></div>
+      </div>
+    </ng-container>
+    <ng-template #borderRectTemplate>
+      <div class="border-rect rect-1"></div>
+      <div class="border-rect rect-2"></div>
+      <div class="border-rect rect-3"></div>
+      <div class="border-rect rect-4"></div>
+    </ng-template>
+    <div class="preview-wrapper" [ngClass]="{ 'display-thumbnail': displayThumbnail }" #thumbnail>
+      <div class="tooltip-sign">
+        <ng-container *ngTemplateOutlet="borderRectTemplate"></ng-container>
+      </div>
+      <div class="preview-image-wrapper" *ngIf="selectedRoute && selectedRoute.subRoutes?.length <= 0">
+        <img [src]="thumbnailUrl" class="component" alt="preview-img" />
+        <ng-container *ngTemplateOutlet="borderRectTemplate"></ng-container>
+      </div>
+      <div class="preview-image-wrapper" *ngIf="selectedRoute && selectedRoute.subRoutes?.length > 0">
+        <ul class="sub-routes">
+          <li *ngFor="let subRoute of selectedRoute.subRoutes" (mousemove)="subRouteMouseMove($event)" (click)="navigateOnClickSubRoute($event, subRoute.value)">
+            <div class="step empty-circle sub-route-step"></div>
+            {{ subRoute.pageTitle | translate }}
+          </li>
+        </ul>
+        <ng-container *ngTemplateOutlet="borderRectTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="step-count" *ngIf="includeStepsCount">
+  <span>{{ 'PROGRESSBAR.STEP' | translate }} {{ progress / stepWeight | round }}/{{ 100 / stepWeight | round }} </span>
+</div>
