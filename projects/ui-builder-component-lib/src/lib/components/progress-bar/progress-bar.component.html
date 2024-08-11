@@ -1,0 +1,14 @@
+<aside *ngIf="progBarCurrentStep && progBarTotalSteps" class="progress-static-bar">
+  <div class="progress-bar">
+    <div class="progress-inside" [ngStyle]="{ width: progBarCurrentStep * stepWeight + '%' }"></div>
+    <span class="glow" [ngStyle]="{ width: progBarCurrentStep * stepWeight + '%' }"></span>
+  </div>
+  <div class="preview-section-tab">
+    <ng-container *ngFor="let step of totalStepsArr; let i = index">
+      <div class="preview-section" [ngStyle]="{ left: i * stepWeight + '%' }" [ngClass]="{ completed: progBarCurrentStep >= i, visited: progBarCurrentStep >= i }"></div>
+    </ng-container>
+    <div class="preview-section end" [ngClass]="{ completed: progBarCurrentStep === progBarTotalSteps, visited: progBarCurrentStep === progBarTotalSteps }"></div>
+  </div>
+</aside>
+
+<span class="step-txt">Step {{ progBarCurrentStep }}/{{ progBarTotalSteps }}</span>
