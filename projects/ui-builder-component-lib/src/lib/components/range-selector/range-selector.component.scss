@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  width: 100%;
+  max-width: 96%;
+  margin: auto;
+  padding: 0px 16px;
+}
+
+ion-range {
+  width: 100%;
+  --bar-background: var(--cyrano-dark-color);
+  --bar-background-active: var(--footer-tab-label);
+  --bar-border-radius: 34px;
+  --bar-height: 7px;
+  --knob-background: var(--footer-tab-label);
+  --knob-border-radius: 100px;
+  --knob-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), inset 2px 2px 3px rgba(0, 0, 0, 0.42), inset -2px -2px 5px rgba(255, 255, 255, 0.42);
+  --pin-background: var(--footer-tab-label);
+  --cyrano-box-inset-shadow: inset -3px -3px 4px rgba(255, 255, 255, 0.1), inset 5px 5px 10px rgba(0, 0, 0, 0.32);
+  --cyrano-small-box-shadow: -2px -2px 10px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(0, 0, 0, 0.25);
+  padding-inline: 0px;
+  padding: 0px;
+
+  &::part(bar) {
+    box-shadow: var(--cyrano-box-inset-shadow);
+  }
+  &::part(bar-active) {
+    box-shadow: var(--cyrano-small-box-shadow);
+    --border-radius: 34px;
+  }
+  &::part(knob) {
+    width: 23px;
+    height: 23px;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%);
+
+    &::before {
+      left: 2.5px;
+      top: 2px;
+    }
+  }
+  &::part(pin) {
+    top: -8px;
+    padding: 4px 0px;
+  }
+
+  &.reverse-bar-color {
+    --bar-background: var(--footer-tab-label);
+    --bar-background-active: var(--cyrano-dark-color);
+
+    &::part(bar) {
+      box-shadow: unset;
+    }
+    &::part(bar-container) {
+      box-shadow: unset;
+    }
+    &::part(bar-active) {
+      box-shadow: var(--cyrano-box-inset-shadow);
+      bottom: unset;
+    }
+  }
+}

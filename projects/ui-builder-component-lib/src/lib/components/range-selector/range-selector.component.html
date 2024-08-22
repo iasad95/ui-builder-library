@@ -1,0 +1,11 @@
+<ion-range
+  [min]="minValue"
+  [max]="maxValue"
+  [step]="stepValue"
+  [dualKnobs]="dualKnobs"
+  [pin]="pinValue"
+  [value]="selectedRange"
+  [pinFormatter]="pinFormatterFn.bind(this)"
+  (ionChange)="rangeChanged($event)"
+  [ngClass]="{ 'reverse-bar-color': reverseBarColor }"
+></ion-range>
