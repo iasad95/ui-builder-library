@@ -1,0 +1,115 @@
+.rating-field {
+  &__container {
+    display: flex;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 0 5px 0;
+    min-height: 15px;
+    position: relative;
+    color: #fff;
+    margin-right: 5px;
+    max-width: 500px;
+    &-text-disabled {
+      color: #656a6b;
+    }
+  }
+
+  &__error-text {
+    font-size: 12px;
+    font-weight: 400;
+    font-family: var(--font-family);
+    color: #d32f2f;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  &__required {
+    display: flex;
+    flex: 0 0 auto;
+    color: white;
+    background-color: var(--cyrano-pink-shade-1, #fe3c72);
+    padding: 0px 6px 0;
+    font-size: 22px;
+    max-height: 21px;
+    border-radius: 2px;
+    margin: -4px 0 0 5px;
+
+    &--submitted {
+      background-color: #d32f3f;
+      border: 1px solid #d32f2f;
+    }
+  }
+
+  &__input {
+    margin-top: 5px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
+    i {
+      font-size: 20px;
+      padding-right: 8px;
+      color: #a3a8aa;
+      cursor: pointer;
+    }
+
+    &:not(.rating-field__input--readonly) {
+      &:hover {
+        & > i:hover {
+          color: transparent !important;
+        }
+        & > i:hover ~ span {
+          color: transparent !important;
+        }
+        & > i:hover:before {
+          content: '\e031';
+          color: #d32f2f !important;
+        }
+        & > i:hover ~ i:before {
+          content: '\e031';
+          color: #d32f2f !important;
+        }
+      }
+      &:not(:hover) {
+        & > i.rating-field__input--rating-star--selected {
+          color: transparent;
+        }
+        & > i.rating-field__input--rating-star--selected ~ span {
+          color: transparent;
+        }
+        & > i.rating-field__input--rating-star--selected:before {
+          content: '\e031';
+          color: #d32f2f;
+        }
+        & > i.rating-field__input--rating-star--selected ~ i:before {
+          content: '\e031';
+          color: #d32f2f;
+        }
+      }
+    }
+    &--readonly {
+      i {
+        cursor: default;
+      }
+      & > i.rating-field__input--rating-star--selected {
+        color: transparent;
+      }
+      & > i.rating-field__input--rating-star--selected ~ span {
+        color: transparent;
+      }
+      & > i.rating-field__input--rating-star--selected:before {
+        content: '\e031';
+        color: #d32f2f;
+      }
+      & > i.rating-field__input--rating-star--selected ~ i:before {
+        content: '\e031';
+        color: #d32f2f;
+      }
+    }
+  }
+}

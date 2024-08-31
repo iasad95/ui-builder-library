@@ -1,0 +1,25 @@
+<div class="rating-field">
+  <div class="rating-field__container">
+    <div class="rating-field__label">{{ label }}</div>
+    <div
+      *ngIf="showRequiredIndicator && !readOnly && required"
+      class="rating-field__required"
+      [ngClass]="{ 'rating-field__required--submitted': submitted && formFieldControl.errors }"
+      [libTooltip]="'Required'"
+    >
+      <div class="rating-field__required-indicator">*</div>
+    </div>
+  </div>
+  <div class="rating-field__input" [ngClass]="{ 'rating-field__input--readonly': readOnly }">
+    <ng-container *ngFor="let option of options">
+      <i
+        [ngClass]="{ 'rating-field__input--rating-star--selected': formFieldControl.value === option.value }"
+        class="icon icon-star-o rating-field__input--rating-star"
+        (click)="handleClick(option.value)"
+      ></i>
+    </ng-container>
+  </div>
+</div>
+<div *ngIf="!readOnly && submitted && formFieldControl.errors?.['required']" class="rating-field__error-text">
+  <span>{{ showLabelInRequiredErrorMessage ? (label ? label : 'Field') + ' is required.' : 'Required' }}</span>
+</div>
