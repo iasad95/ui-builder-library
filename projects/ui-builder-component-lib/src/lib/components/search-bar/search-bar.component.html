@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="container__search-bar" [ngClass]="{ ics: order === orders.ICS, cis: order === orders.ICS }">
+    <i
+      *ngIf="searchIcon"
+      class="container__search-bar__icon container__search-bar__search-icon"
+      [ngClass]="{ 'icon-gen3-search': !searchIcon }"
+      id="#searchBarIcon"
+      (click)="focus()"
+      ><img [src]="searchIcon"
+    /></i>
+    <input
+      #searchInput
+      id="searchInput"
+      class="container__search-bar__input custom__input"
+      [ngClass]="{ 'container__search-bar__input--no-icon': !searchIcon }"
+      type="text"
+      [placeholder]="placeholderText"
+      [(ngModel)]="inputText"
+      (keyup)="emit()"
+      (keydown)="$event.stopPropagation()"
+      (focus)="handleFocus()"
+      (focusout)="handleFocusOut()"
+      autocomplete="off"
+    />
+    <i
+      *ngIf="clearIcon"
+      class="container__search-bar__icon container__search-bar__clear-icon"
+      [ngClass]="{ hidden: !input.nativeElement.value, 'icon-gen3-cancel': !clearIcon }"
+      (click)="clear()"
+      ><img [src]="clearIcon"
+    /></i>
+  </div>
+  <ng-content select="[right]"></ng-content>
+</div>
