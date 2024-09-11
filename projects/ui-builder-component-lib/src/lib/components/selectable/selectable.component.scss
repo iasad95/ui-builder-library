@@ -1,0 +1,43 @@
+:host {
+  --tag-text-shadow: rgb(254, 60, 114) 0px 0px 16px;
+}
+
+.selectable-container {
+  padding: 10px 10px 8px;
+}
+
+.btn-selectable {
+  width: unset;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  height: 38px;
+  font-family: 'Gilroy-Medium';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%;
+  color: var(--ion-text-color-secondary);
+  margin: 5px;
+  letter-spacing: 0px;
+  --background: var(--cyrano-dark-color);
+  --box-shadow: var(--cyrano-box-inset-shadow);
+  border-radius: 34px;
+
+  &.selected {
+    --box-shadow: var(--box-shadow-2);
+    color: var(--ion-text-color);
+
+    &::part(native) {
+      text-shadow: var(--tag-text-shadow);
+    }
+  }
+
+  &.disbaled {
+    opacity: 0.9;
+
+    &::part(native) {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class="selectable-container">
+  <ion-button
+    class="btn-selectable"
+    *ngFor="let option of options"
+    [ngClass]="{ selected: option.selected, disbaled: !option.selected && disableSelection }"
+    (click)="onToggle(option)"
+    >{{ option.label }}</ion-button
+  >
+</div>
