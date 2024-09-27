@@ -1,0 +1,27 @@
+<form class="form" [ngClass]="[customClass ? customClass : '']">
+  <span class="message f-calistoga f-w-400 h-160 f-white" *ngIf="!hideVerificationTitle">{{ 'UNMATCHED_USER.MY_VERIFICATION_CODE_IS' | translate }}</span>
+  <div class="phone-edit">
+    <span class="f-gilroy-medium f-w-400 f-light-gray h-150 f-md">{{ sourceOfCode }}</span>
+    <lib-secondary-btn *ngIf="!hideEdit" (click)="onEdit()" class="edit-btn">{{ 'UNMATCHED_USER.EDIT' | translate }} </lib-secondary-btn>
+  </div>
+
+  <div class="verification-code f-gilroy-regular f-w-400 f-2xl h-160 f-white">
+    <lib-otp-input [formCtrl]="otpCode" [length]="noOfBox"></lib-otp-input>
+  </div>
+  <div class="resend-container">
+    <lib-secondary-btn (click)="onResend()" [disabled]="secondsLeft > 0" [class]="'resend f-w-400 f-xl h-160'" [ngClass]="{ disabled: secondsLeft > 0 }">
+      {{ 'UNMATCHED_USER.RESEND' | translate }}</lib-secondary-btn
+    >
+    <div class="f-gilroy-medium f-w-400 f-sm h-150 f-light-gray count-container">
+      <span>{{ 'UNMATCHED_USER.RESEND_IN' | translate }}</span>
+      <span class="number-slot" [style.width.px]="14 + (secondsLeft.toString().length - 1) * 5">
+        {{ secondsLeft }}
+      </span>
+      <span>{{ 'UNMATCHED_USER.SECONDS' | translate }}</span>
+    </div>
+  </div>
+
+  <lib-primary-btn (click)="confirm()" [disabled]="otpCode?.invalid" class="f-w-400 f-xl h-160" [loading$]="loading$">
+    <span>{{ confirmBtnTitle || 'UNMATCHED_USER.CONTINUE' | translate }}</span>
+  </lib-primary-btn>
+</form>
