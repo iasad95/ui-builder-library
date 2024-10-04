@@ -1,0 +1,12 @@
+<p-tabMenu
+  #tabMenu
+  [scrollable]="true"
+  [model]="items"
+  (activeItemChange)="activeItemChanged($event)"
+  [activeItem]="activeItem"
+  class="tabmenu-overlay"
+  (mouseleave)="mouseLeave()"
+  (mouseup)="mouseLeave()"
+  (mousedown)="mouseDown($event)"
+  (mousemove)="mouseMove($event)"
+></p-tabMenu>

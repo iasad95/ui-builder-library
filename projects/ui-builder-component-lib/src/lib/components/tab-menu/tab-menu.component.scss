@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.tabmenu-overlay {
+  width: 100%;
+
+  .p-tabmenu-scrollable {
+    .p-tabmenu-nav-container {
+      .p-tabmenu-nav-prev,
+      .p-tabmenu-nav-next {
+        background: var(--ion-background-color-no-gradient);
+        color: var(--cyrano-pink-shade-1);
+      }
+
+      .p-tabmenu-nav-content {
+        margin: 0px 50px;
+        .p-highlight {
+          .p-menuitem-link {
+            color: var(--cyrano-pink-shade-1) !important;
+          }
+        }
+        .p-tabmenu-ink-bar {
+          background-color: var(--cyrano-pink-shade-1) !important;
+        }
+      }
+    }
+  }
+}
