@@ -1,0 +1,140 @@
+<ng-container *ngIf="!freeInputMode; else freeInputTmpl">
+  <div class="iti iti--allow-dropdown phone-input" [ngClass]="separateDialCodeClass">
+    <div
+      class="iti__flag-container"
+      #dropDownRef="bs-dropdown"
+      dropdown
+      [autoClose]="autoClose"
+      container="body"
+      (onShown)="onDropDownShow()"
+      [ngClass]="{ disabled }"
+      [isDisabled]="disabled"
+      [ngStyle]="{ 'background-image': 'url(' + icons.telInputIcons.countrySelectorImage + ')' }"
+    >
+      <div class="iti__selected-flag" matRipple dropdownToggle>
+        <div class="iti__flag" *ngIf="searchCountryFlag" [ngClass]="selectedCountry.flagClass || ''"></div>
+        <div *ngIf="separateDialCode || (!searchCountryFlag && !separateDialCode)" class="selected-dial-code">{{ countryCode }}</div>
+        <img src="assets/down-arrow.svg" class="iti__arrow" *ngIf="showDropDownArrow" />
+      </div>
+      <div *dropdownMenu #dropDownElementRef [attr.width]="focusableElRef?.inputRef.getBoundingClientRect().width" class="dropdown-menu country-dropdown">
+        <div class="width-container">
+          <div class="search-container" *ngIf="searchCountryField">
+            <input
+              #inputElement
+              id="country-search-box"
+              [patterns]="customPatterns"
+              mask="A{100}"
+              autocomplete="off"
+              [(ngModel)]="countrySearchText"
+              (keyup)="searchCountry()"
+              (click)="$event.stopPropagation()"
+              (keydown.arrowDown)="onListFocus()"
+              [placeholder]="searchCountryPlaceholder"
+              autofocus
+            />
+          </div>
+          <ul appListbox (keydown.enter)="dropDownRef.hide(); inputElement.nativeElement.focus()" role="listbox" class="iti__country-list" #countryList>
+            <li
+              [appOption]="country"
+              class="iti__country iti__standard"
+              *ngFor="let country of filteredCountries; trackBy: identify; let i = index"
+              (click)="onCountrySelect(country, inputElement.nativeElement, false, $event.isTrusted)"
+              (keydown.enter)="onCountrySelect(country, inputElement.nativeElement)"
+              [id]="country.htmlId"
+            >
+              <div class="iti__flag-box">
+                <div class="iti__flag" [ngClass]="country.flagClass"></div>
+              </div>
+              <span class="iti__country-name">{{ country.name }}</span>
+              <span class="iti__dial-code">+{{ country.dialCode }}</span>
+            </li>
+            <li *ngIf="!filteredCountries.length" class="iti__country iti__standard disabled">
+              <span class="iti__country-name">No Country found</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="input-toggle-container">
+      <div
+        lib-input-field
+        (resized)="onResize($event.newRect.inlineSize)"
+        type="tel"
+        [id]="inputId"
+        autocomplete="off"
+        [ngClass]="cssClass"
+        (onBlur)="onTouched()"
+        (keypress)="onInputKeyPress($event)"
+        [(ngModel)]="phoneNumber"
+        (ngModelChange)="modelChangeEvent$.next(phoneNumber)"
+        [disabled]="disabled"
+        [placeholder]="resolvePlaceholder()"
+        #inputField
+        #ngModelRef="ngModel"
+      ></div>
+    </div>
+  </div>
+  <div class="error-outline"></div>
+</ng-container>
+
+<ng-template #freeInputTmpl>
+  <div class="iti iti--allow-dropdown phone-input" [ngClass]="separateDialCodeClass">
+    <div
+      lib-input-field
+      class="free-inp-mode"
+      type="tel"
+      [id]="inputId"
+      autocomplete="off"
+      [ngClass]="cssClass"
+      (onBlur)="onTouched()"
+      (keypress)="onInputKeyPress($event)"
+      [(ngModel)]="phoneNumber"
+      (ngModelChange)="onPhoneNumberChange()"
+      [disabled]="disabled"
+      [mask]="'000000000000000'"
+      [prefix]="'+'"
+      [attr.maxLength]="maxLength"
+      [attr.validation]="phoneValidation"
+      #inputField
+      #ngModelRef="ngModel"
+    ></div>
+  </div>
+  <div class="error-outline"></div>
+</ng-template>
+
+<!--Saved for future Ref-->
+<!--
+Show error and option to switch to free input field if number is incorrect
+Show option to switch back to masked field if freeMode is ON
+-->
+<!--<ng-container *ngIf="!freeInputMode && !!(ngControl?.control?.dirty || ngControl?.control?.touched)">
+  <ng-container *ngIf="phoneNumber && !isValidNumber">
+    <span class="tel-field-info error">
+      {{ 'PHONE_NUM_ERROR.DOES_NOT_SEEM_RIGHT' | translate }}
+      <a [href]="'https://countrycode.org/' + selectedCountry?.iso2?.toLowerCase() + '#collapseNationalCodes'" target="_blank">{{ 'PHONE_NUM_ERROR.HERE' | translate }}</a>
+      <br />
+      <span>
+        {{ 'PHONE_NUM_ERROR.ADD_PHONE_MANUALLY' | translate }}
+        <a class="text-underline" (click)="toggleFreeInputMode(); focusPhoneField()">{{ 'PHONE_NUM_ERROR.HERE' | translate }}</a>
+      </span>
+    </span>
+  </ng-container>
+  <ng-container *ngIf="!phoneNumber">
+    <span class="tel-field-info error required">
+      {{ 'PHONE_NUM_ERROR.REQUIRED' | translate }}
+    </span>
+  </ng-container>
+  <ng-container *ngIf="ngControl?.control?.errors?.notUniquePhone">
+    <span class="tel-field-info error required">
+      <span>{{ 'PHONE_NUM_ERROR.PHONE_NUMBER_EXISTS' | translate }}</span>
+      <span class="login" (click)="handleErrorAction.emit('DUPLICATE_PHONE')">{{ 'PHONE_NUM_ERROR.LOGIN' | translate }}</span>
+    </span>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="freeInputMode">
+  <span class="tel-field-info free-inp-mode">
+    {{ 'PHONE_NUM_ERROR.ADD_PHONE_USING_GUIDE' | translate }}
+    <a class="text-underline" (click)="toggleFreeInputMode(); focusPhoneField()">{{ 'PHONE_NUM_ERROR.HERE' | translate }}</a>
+  </span>
+</ng-container>-->
