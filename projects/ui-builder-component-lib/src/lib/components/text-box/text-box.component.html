@@ -1,0 +1,31 @@
+<div class="input-group-wrapper" [ngClass]="{ 'included-emoji-picker': includeEmojiPicker, 'included-image-attachment': includeImageAttachment }">
+  <ion-icon
+    [ngClass]="{ 'emoji-picker-trigger': true, active: emojiVisibility }"
+    [name]="emojiPickerConfig?.pickerIcon ? '' : 'body-outline'"
+    (click)="emojiVisibility = !emojiVisibility"
+    *ngIf="includeEmojiPicker"
+    [src]="emojiPickerConfig?.pickerIcon"
+  ></ion-icon>
+  <div class="text" contenteditable="true" (input)="onInput($event)" (keydown)="onKeydown($event)" (paste)="onPaste($event)" #messageBox></div>
+  <emoji-picker
+    #emojiPicker
+    *ngIf="includeEmojiPicker"
+    [ngStyle]="{ display: emojiVisibility ? '' : 'none' }"
+    emoji-version="15.0"
+    (emoji-click)="onEmojiclick($event)"
+  ></emoji-picker>
+  <label *ngIf="label" class="input-label" [ngClass]="{ 'with-value': value?.message }">{{ label }}</label>
+  <span *ngIf="includeImageAttachment" class="attach-images" (click)="attachedImagesVisibility = !attachedImagesVisibility">
+    <span class="horizontal"></span>
+    <span *ngIf="!attachedImagesVisibility" class="vertical"></span>
+  </span>
+</div>
+<div *ngIf="includeImageAttachment && attachedImagesVisibility" class="attached-images">
+  <lib-image-card
+    (photosUpload)="onUploadImages($event)"
+    [photos]="attachedImages"
+    [maxNoOfPhotos]="maxImageAttachmentLength - attachedImages.length"
+    [enableCropper]="true"
+  ></lib-image-card>
+  <lib-image-card *ngFor="let image of attachedImages; let i = index" [imageUrl]="image" (removeImage)="onAttachedPhotoDelete(i)"></lib-image-card>
+</div>

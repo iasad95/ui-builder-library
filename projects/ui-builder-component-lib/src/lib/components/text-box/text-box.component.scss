@@ -1,0 +1,208 @@
+:host {
+  --border-radius: 100px;
+  --input-field-margin: 3px 0px;
+  --label-font-size-floated: 11.0084px;
+  --label-color: rgba(255, 255, 255, 0.5);
+  --placeholder-color: rgba(255, 255, 255, 0.3);
+  --label-position-left: 5px;
+  --label-position-top: 50%;
+  --label-float-position-top: -8px;
+  --label-padding: 0px 10px;
+  --label-font-family: 'Gilroy-Regular', serif;
+  --label-font-style: normal;
+  --label-font-weight: 400;
+  --label-font-size: 14px;
+  --label-line-height: 160%;
+  --input-font-color: rgba(255, 255, 255, 0.5);
+  --text-color: #fff;
+  --input-font-family: 'Gilroy-Regular', serif;
+  --input-font-size: 16px;
+  --placeholder-font-size: 16px;
+  --height: 48px;
+  --input-border: none;
+  --input-padding: 11px 15px;
+  --box-shadow: inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7), inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+  --border: 3px solid #fe3c72;
+  --textarea-height: 125px;
+  --textarea-border-radius: 12px;
+  --input-field-width: 100%;
+
+  // For customizing emoji picker trigger
+  --emoji-picker-trigger-left-offset: 8px;
+  --emoji-picker-trigger-icon-size: 24px;
+  --emoji-picker-trigger-icon-active-shadow: 2px 2px 6px 2.5px rgba(238, 239, 235, 0.35), -2px -2px 2.5px rgba(203, 199, 209, 0.25);
+
+  // customization for emoji picker itself
+  --emoji-picker-background: #29252d;
+
+  // image-attachment-toggle
+  --image-attachment-toggle-right-offset: 8px;
+  --image-attachment-toggle-background: #fff;
+  --image-attachment-toggle-color: #29252d;
+  --image-attachment-toggle-size: 20px;
+  --image-attachment-toggle-bars-thickness: 2px; // how thick the horizontal and vertical bars that create the + icons are
+
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--width, 320px);
+
+  border-radius: var(--border-radius);
+  padding: var(--input-padding);
+  margin: unset;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-label {
+  color: var(--label-color);
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: var(--label-position-left);
+  top: var(--label-position-top);
+  padding: var(--label-padding);
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  font-family: var(--label-font-family);
+  font-style: var(--label-font-style);
+  font-weight: var(--label-font-weight);
+  font-size: var(--label-font-size);
+  line-height: var(--label-line-height);
+  z-index: 2;
+  transform: translateY(-50%); // center align this for any offset from the top
+  &.with-value {
+    top: var(--label-float-position-top) !important;
+    font-size: var(--label-font-size-floated) !important;
+    &.card-input-label {
+      transform: translateY(0);
+    }
+  }
+}
+
+.input-group-wrapper {
+  position: relative;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  width: 100%;
+  min-height: var(--height);
+  display: flex;
+  align-items: center;
+  padding: var(--input-padding);
+
+  // padding adjustment on the left when emoji picker is included
+  &.included-emoji-picker {
+    padding-inline-start: calc(var(--emoji-picker-trigger-left-offset) * 2 + var(--emoji-picker-trigger-icon-size));
+    .input-label {
+      left: calc(var(--label-position-left) + var(--emoji-picker-trigger-left-offset) * 2 + var(--emoji-picker-trigger-icon-size));
+      &.with-value {
+        left: var(--label-position-left);
+      }
+    }
+
+    .text {
+      &:focus {
+        ~ .input-label {
+          left: var(--label-position-left);
+        }
+      }
+    }
+  }
+
+  // padding adjustment on the right when image attachment is included
+  &.included-image-attachment {
+    padding-inline-end: calc(var(--image-attachment-toggle-right-offset) * 2 + var(--image-attachment-toggle-size));
+  }
+
+  .text {
+    color: var(--text-color);
+    width: var(--input-field-width);
+    height: var(--input-field-height);
+
+    &:focus {
+      outline: none;
+      ~ .input-label {
+        top: var(--label-float-position-top);
+        font-size: var(--label-font-size-floated);
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .emoji-picker-trigger {
+    position: absolute;
+    top: calc((var(--height) - var(--emoji-picker-trigger-icon-size)) / 2);
+    left: var(--emoji-picker-trigger-left-offset);
+    z-index: 2;
+    font-size: var(--emoji-picker-trigger-icon-size);
+    cursor: pointer;
+    border-radius: 50%;
+
+    &.active {
+      box-shadow: var(--emoji-picker-trigger-icon-active-shadow);
+    }
+  }
+
+  &.emoji-enabled {
+    padding-inline-start: calc(var(--emoji-picker-trigger-icon-size) + 16px);
+
+    .input-label {
+      left: calc(var(--label-position-left) + var(--emoji-icon-size));
+    }
+  }
+
+  emoji-picker {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    --background: var(--emoji-picker-background);
+    --emoji-size: 24px;
+    --emoji-padding: 8px;
+    --num-columns: 5;
+    z-index: 4;
+  }
+
+  .attach-images {
+    position: absolute;
+    top: calc((var(--height) - var(--image-attachment-toggle-size)) / 2);
+    right: var(--image-attachment-toggle-right-offset);
+    z-index: 2;
+    font-size: var(--emoji-icon-size);
+    cursor: pointer;
+    opacity: 0.5;
+    background: var(--image-attachment-toggle-background);
+    width: var(--image-attachment-toggle-size);
+    height: var(--image-attachment-toggle-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: auto;
+    font-weight: 900px;
+    border-radius: 50%;
+
+    & > span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--image-attachment-toggle-color);
+
+      &.vertical {
+        width: var(--image-attachment-toggle-bars-thickness);
+        height: 70%;
+      }
+
+      &.horizontal {
+        width: 70%;
+        height: (var(--image-attachment-toggle-bars-thickness));
+      }
+    }
+  }
+}
+
+.attached-images {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+}
