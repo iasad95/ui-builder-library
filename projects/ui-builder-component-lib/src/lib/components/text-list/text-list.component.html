@@ -1,0 +1,27 @@
+<!-- TODO: Create translations -->
+<div class="text-list">
+  <div class="text-list__div">
+    <div class="text-list__row text-list__item" (mouseenter)="showIndex = i" (mouseleave)="showIndex = -1" *ngFor="let item of textListStrings; let i = index">
+      <div *ngIf="isUrlList" class="text-list__item-url" (click)="openUrl(item)">{{ item }}</div>
+      <div *ngIf="!isUrlList" class="text-list__item-text" #textItem>{{ i + 1 }}. {{ item }}</div>
+      <div class="text-list__trash-icon-div">
+        <i [hidden]="disabled || showIndex !== i" (click)="deleteTextItem(item)" class="icon-trash text-list__trash-icon"></i>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="{ 'text-list__form-container--hidden': disabled }" class="text-list__form-container text-list__row">
+    <input
+      (keyup)="onKeyUp($event, textValue)"
+      #textInput
+      [(ngModel)]="textValue"
+      class="text-list__input"
+      (focus)="handleButtonToggle()"
+      type="text"
+      [placeholder]="placeholderText ? placeholderText : ''"
+    />
+    <div class="text-list__button-container" *ngIf="!buttonsHidden">
+      <lib-primary-btn (click)="addTextItem()"> Add </lib-primary-btn>
+      <lib-secondary-btn (click)="cancel()"> Cancel </lib-secondary-btn>
+    </div>
+  </div>
+</div>
