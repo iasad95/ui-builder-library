@@ -1,0 +1,180 @@
+.message-box.app-toaster-border {
+  &:before {
+    background-image: var(--primary-toaster-glow-layer);
+  }
+
+  &:after {
+    background-image: var(--primary-toaster-transparent-layer);
+  }
+
+  &.app-toaster-success {
+    background-image: var(--primary-toaster-success-border);
+  }
+
+  &.app-toaster-warning {
+    background-image: var(--primary-toaster-warning-border);
+  }
+
+  &.app-toaster-error {
+    background-image: var(--primary-toaster-error-border);
+  }
+
+  &.app-toaster-info {
+    background-image: var(--primary-toaster-info-border);
+  }
+
+  &.toaster-left-top--enter,
+  &.toaster-left-bottom--enter {
+    opacity: 0;
+    animation: move-ltr-enter-anime forwards;
+  }
+
+  &.toaster-left-top--exit,
+  &.toaster-left-bottom--exit {
+    opacity: 1;
+    animation: move-rtl-exit-anime forwards;
+  }
+
+  &.toaster-right-top--enter,
+  &.toaster-right-bottom--enter {
+    opacity: 0;
+    animation: move-rtl-enter-anime forwards;
+  }
+
+  &.toaster-right-top--exit,
+  &.toaster-right-bottom--exit {
+    opacity: 1;
+    animation: move-ltr-exit-anime forwards;
+  }
+}
+
+.message-box-wrapper.app-toaster-wrapper {
+  &:after {
+    background-image: var(--primary-toaster-transparent-layer);
+  }
+}
+
+$app-toaster-backgrounds: (
+  success: var(--primary-toaster-success-background),
+  warning: var(--primary-toaster-warning-background),
+  error: var(--primary-toaster-error-background),
+  info: var(--primary-toaster-info-background),
+);
+
+@each $type, $background in $app-toaster-backgrounds {
+  .app-toaster-#{$type} .app-toaster-wrapper:before {
+    background-image: $background;
+  }
+}
+
+.app-toaster-success,
+.app-toaster-warning,
+.app-toaster-error,
+.app-toaster-info {
+  .app-toaster-wrapper:before {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+  }
+}
+
+.app-action-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 50px;
+  position: relative;
+  .check-icon {
+    position: absolute;
+    bottom: 0;
+  }
+  img {
+    cursor: pointer;
+  }
+}
+
+.app-toaster-checkbox {
+  border: 2px solid var(--checkbox-border);
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: absolute !important;
+  bottom: 0;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.bottom-auto {
+  bottom: auto !important;
+}
+
+.top {
+  top: 0;
+}
+
+@keyframes move-ltr-enter-anime {
+  0% {
+    transform: translateX(-100%) scale(0.75);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes move-rtl-exit-anime {
+  0% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(0.75);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-100%) scale(0.75);
+    opacity: 0;
+  }
+}
+
+@keyframes move-rtl-enter-anime {
+  0% {
+    transform: translateX(100%) scale(0.75);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+  100% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes move-ltr-exit-anime {
+  0% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(0.75);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100%) scale(0.75);
+    opacity: 0;
+  }
+}

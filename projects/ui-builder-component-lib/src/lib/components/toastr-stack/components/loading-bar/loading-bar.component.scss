@@ -1,0 +1,39 @@
+.lib-progress-base {
+  position: relative;
+  background-color: var(--tertiary-color);
+  border-radius: 30px;
+  height: 5px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+  opacity: 0.7;
+
+  &__inner {
+    position: absolute;
+    left: 0;
+    background-color: var(--secondary-color);
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+
+    &--mouse-out {
+      animation: linear forwards loading-bar-anime;
+    }
+
+    &--mouse-in {
+      width: 0;
+    }
+  }
+
+  @keyframes loading-bar-anime {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+}

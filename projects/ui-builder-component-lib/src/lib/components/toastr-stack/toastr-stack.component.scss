@@ -1,0 +1,73 @@
+$screenWidthBreakpoint: 767px;
+:host {
+  bottom: 0;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  touch-action: none;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.toastr-stack {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+
+  &.left-top,
+  &.left-bottom {
+    align-items: start;
+  }
+
+  &.right-top,
+  &.right-bottom {
+    align-items: end;
+  }
+
+  &.left-bottom,
+  &.right-bottom {
+    justify-content: end;
+    flex-direction: column;
+  }
+
+  &.left-top,
+  &.right-top {
+    flex-direction: column-reverse;
+    justify-content: start;
+  }
+}
+
+.toastr-wrapper {
+  lib-toastr {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $screenWidthBreakpoint) {
+  .toastr-wrapper {
+    width: max-content;
+    lib-toastr {
+      width: max-content;
+      display: block;
+    }
+  }
+}
+
+@media only screen and (max-width: $screenWidthBreakpoint) {
+  .toastr-wrapper {
+    width: 100%;
+    lib-toastr {
+      width: 100%;
+      display: block;
+    }
+  }
+}

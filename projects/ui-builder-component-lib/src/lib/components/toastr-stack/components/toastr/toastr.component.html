@@ -1,0 +1,48 @@
+@if (show) {
+  <div
+    (mouseover)="mouseOver(true)"
+    (mouseleave)="mouseOver(false)"
+    class="message-box app-toaster-border app-toaster-{{ config.severity }} toaster-{{ config.position || 'right-top' }} {{
+      toastrExiting ? 'toaster-' + (config.position || 'right-top') + '--exit' : 'toaster-' + (config.position || 'right-top') + '--enter'
+    }}"
+    [ngStyle]="{ 'animation-duration.ms': animationDuration }"
+  >
+    <div class="message-box-wrapper app-toaster-wrapper">
+      <img class="message-box-icon" [src]="'./../../../assets/icons/' + toasterIcon" alt="Toster icon" />
+      <div class="message-box-content">
+        <h2 class="m-0 f-calistoga">{{ config.title | translate }}</h2>
+        @if (config?.description?.type === 'string') {
+          <p class="m-0 f-gilroy-medium">{{ (config?.description?.content | translate) || '' }}</p>
+        } @else if (config?.description?.type === 'template') {
+          <ng-container *ngTemplateOutlet="config.description.content"></ng-container>
+        } @else if (config?.description?.type === 'button') {
+          <p class="m-0 f-gilroy-medium message-box-content__button-wrapper">
+            <span>{{ (config?.description?.content | translate) || '' }}</span>
+            <span class="message-box-content__button-wrapper__button" (click)="config?.button?.onClick()"> &nbsp;{{ config?.button?.name || '' }}</span>
+          </p>
+        } @else {
+          <!-- No Description Content -->
+        }
+        @if (config.loading && !config.clickToClose) {
+          <lib-loading-bar [toasterLife]="toasterLife"></lib-loading-bar>
+        }
+      </div>
+      <div class="app-action-button">
+        @if (!config.hideClose) {
+          <span class="absolute top">
+            <img src="assets/icons/close.svg" alt="Toster Close icon" libTooltip="Close" (click)="onCloseIconClick($event)" />
+          </span>
+        }
+        @if (config.markCheck) {
+          @if (!checkbox) {
+            <span (click)="onCheckboxChange()" libTooltip="Checkbox" class="app-toaster-checkbox"></span>
+          } @else {
+            <span class="absolute bottom">
+              <img (click)="onCheckboxChange()" libTooltip="Checkbox" src="assets/icons/check.svg" class="check-icon" alt="Toster icon" />
+            </span>
+          }
+        }
+      </div>
+    </div>
+  </div>
+}

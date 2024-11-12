@@ -1,0 +1,5 @@
+<div [class]="'toastr-stack ' + position">
+  <div *ngFor="let config of configs" class="toastr-wrapper">
+    <lib-toastr [config]="config"></lib-toastr>
+  </div>
+</div>
