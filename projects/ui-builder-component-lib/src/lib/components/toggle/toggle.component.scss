@@ -1,0 +1,110 @@
+@import './toggle-animations.component.scss';
+
+/* -----INTERNAL VARIABLES----- */
+$toggle-anime-delay: var(--lib-toggle-anime-delay, 400ms);
+$toggle-background-off: var(--toggle-background-off, var(--ion-background-color));
+$toggle-box-shadow-off: var(--toggle-box-shadow-off, var(--input-box-shadow));
+$toggle-box-shadow-on: var(--toggle-box-shadow-on, 0 0 10px var(--cyrano-pink-shade-1));
+$toggle-background-on: var(--toggle-background-on, var(--cyrano-pink-shade-1));
+$toggle-color-off: var(--toggle-color-off, white);
+$toggle-color-on: var(--toggle-color-on, white);
+$knob-color: var(--knob-color, white);
+$lib-toggle-padding: var(--lib-toggle-padding, 0.5em);
+$lib-toggle-height: calc(2em + #{$lib-toggle-padding});
+
+:host {
+  cursor: pointer;
+}
+
+@mixin graphic-text {
+  font-family: inherit;
+  font-size: 1em;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.lib-toggle-wrapper {
+  width: calc(calc(2em * 3) + #{$lib-toggle-padding});
+  height: #{$lib-toggle-height};
+  padding: calc(#{$lib-toggle-padding} / 2);
+  border-radius: calc(#{$lib-toggle-height} / 2);
+  transition: #{$toggle-anime-delay};
+  &--disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  &--inactive {
+    background-color: #{$toggle-background-off};
+    box-shadow: #{$toggle-box-shadow-off};
+  }
+
+  &--active {
+    background-color: #{$toggle-background-on};
+    box-shadow: #{$toggle-box-shadow-on};
+  }
+}
+
+.lib-toggle-container {
+  height: calc(1em * 2);
+  width: calc(1em * 6);
+  pointer-events: none;
+  user-select: none;
+  &__thumb {
+    cx: 1em;
+    cy: 1em;
+    rx: 1em;
+    ry: 1em;
+    &--move-left {
+      animation: toggle-thumb__rtl-anime forwards #{$toggle-anime-delay} linear;
+    }
+
+    &--move-right {
+      animation: toggle-thumb__ltr-anime forwards #{$toggle-anime-delay} linear;
+    }
+  }
+  &__thumb-img-wrapper {
+    transform: translate(-1em, -1em);
+  }
+  &__thumb-img {
+    height: 2em;
+    width: 2em;
+    x: 1em;
+    y: 1em;
+    transform-origin: center center;
+    transform-box: border-box;
+
+    &--move-left {
+      animation: toggle-thumb-img__rtl-anime forwards #{$toggle-anime-delay} linear;
+    }
+
+    &--move-right {
+      animation: toggle-thumb-img__ltr-anime forwards #{$toggle-anime-delay} linear;
+    }
+  }
+  &__graphic-active-text {
+    @include graphic-text;
+    fill: #{$toggle-background-on};
+  }
+  &__graphic-inactive-text {
+    @include graphic-text;
+    fill: #{$toggle-color-off};
+  }
+
+  &__fade-in {
+    animation: text-anime-increase-opacity #{$toggle-anime-delay} forwards linear;
+  }
+
+  &__fade-out {
+    animation: text-anime-decrease-opacity #{$toggle-anime-delay} forwards linear;
+  }
+
+  &__image-variant-group {
+    image {
+      height: 2em;
+      width: 2em;
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(0.8);
+    }
+  }
+}

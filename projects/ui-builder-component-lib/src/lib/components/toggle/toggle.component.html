@@ -1,0 +1,99 @@
+<div
+  class="lib-toggle-wrapper"
+  [ngClass]="{
+    'lib-toggle-wrapper--active': _toggleState,
+    'lib-toggle-wrapper--inactive': !_toggleState,
+    'lib-toggle-wrapper--disabled': disabled,
+  }"
+  (click)="toggleButtonClick()"
+>
+  <svg class="lib-toggle-container" xmlns="http://www.w3.org/2000/svg">
+    <mask [attr.id]="circleMask.primary">
+      <rect x="0" y="0" width="6em" height="2em" fill="black"></rect>
+      <ellipse
+        class="lib-toggle-container__thumb"
+        fill="white"
+        [ngClass]="{
+          'lib-toggle-container__thumb--move-right': currentToggleStatus === TOGGLE_STATUS.MovedRight,
+          'lib-toggle-container__thumb--move-left': currentToggleStatus === TOGGLE_STATUS.MovedLeft,
+        }"
+      />
+    </mask>
+    <mask [attr.id]="circleMask.secondary">
+      <rect x="0" y="0" width="6em" height="2em" fill="white"></rect>
+      <ellipse
+        class="lib-toggle-container__thumb"
+        fill="black"
+        [ngClass]="{
+          'lib-toggle-container__thumb--move-right': currentToggleStatus === TOGGLE_STATUS.MovedRight,
+          'lib-toggle-container__thumb--move-left': currentToggleStatus === TOGGLE_STATUS.MovedLeft,
+        }"
+      />
+    </mask>
+    @if (thumbImg) {
+      <g class="lib-toggle-container__thumb-img-wrapper">
+        <image
+          x="0"
+          y="0"
+          class="lib-toggle-container__thumb-img"
+          [attr.href]="thumbImg"
+          [ngClass]="{
+            'lib-toggle-container__thumb-img--move-right': currentToggleStatus === TOGGLE_STATUS.MovedRight,
+            'lib-toggle-container__thumb-img--move-left': currentToggleStatus === TOGGLE_STATUS.MovedLeft,
+          }"
+        />
+      </g>
+    } @else {
+      <ellipse
+        class="lib-toggle-container__thumb"
+        fill="var(--knob-color)"
+        [ngClass]="{
+          'lib-toggle-container__thumb--move-right': currentToggleStatus === TOGGLE_STATUS.MovedRight,
+          'lib-toggle-container__thumb--move-left': currentToggleStatus === TOGGLE_STATUS.MovedLeft,
+        }"
+      />
+    }
+
+    @switch (variant) {
+      @case (TOGGLE_VARIANT.Image) {
+        <g class="lib-toggle-container__image-variant-group" [attr.mask]="'url(#' + circleMask.primary + ')'">
+          <image *ngIf="left?.enable" x="0" y="0" [attr.href]="left.enable" />
+          <image *ngIf="right?.enable" x="4em" y="0" [attr.href]="right.enable" />
+        </g>
+        <g class="lib-toggle-container__image-variant-group" [attr.mask]="'url(#' + circleMask.secondary + ')'">
+          <image *ngIf="left?.disable" x="0" y="0" [attr.href]="left.disable" />
+          <image *ngIf="right?.disable" x="4em" y="0" [attr.href]="right.disable" />
+        </g>
+      }
+
+      @case (TOGGLE_VARIANT.Text) {
+        <g [attr.mask]="'url(#' + circleMask.primary + ')'">
+          <text y="1em" x="1em" class="lib-toggle-container__graphic-active-text">
+            {{ (left?.enable | translate) || '' }}
+          </text>
+          <text y="1em" x="5em" class="lib-toggle-container__graphic-active-text">
+            {{ (right?.enable | translate) || '' }}
+          </text>
+        </g>
+        <g [attr.mask]="'url(#' + circleMask.secondary + ')'">
+          <text
+            y="1em"
+            x="1em"
+            class="lib-toggle-container__graphic-inactive-text"
+            [ngClass]="{ 'lib-toggle-container__fade-in': _toggleState, 'lib-toggle-container__fade-out': !_toggleState }"
+          >
+            {{ (left?.disable | translate) || '' }}
+          </text>
+          <text
+            y="1em"
+            x="5em"
+            class="lib-toggle-container__graphic-inactive-text"
+            [ngClass]="{ 'lib-toggle-container__fade-in': !_toggleState, 'lib-toggle-container__fade-out': _toggleState }"
+          >
+            {{ (right?.disable | translate) || '' }}
+          </text>
+        </g>
+      }
+    }
+  </svg>
+</div>
