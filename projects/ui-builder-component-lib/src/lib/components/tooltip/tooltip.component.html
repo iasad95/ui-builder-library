@@ -1,0 +1,11 @@
+<div *ngIf="!!title || !!message" class="tooltip" [ngClass]="{ 'tooltip--reversed': directionPreference === directionPreferences.Top }">
+  <div class="lib-tooltip message-box">
+    <div class="message-box-wrapper">
+      <img class="message-box-icon" [src]="'assets/icons/info.svg'" alt="Icon" [style.opacity]="0.5" />
+      <div class="message-box-content">
+        <h2 class="m-0 f-calistoga" *ngIf="title" [innerHTML]="title"></h2>
+        <p class="m-0 f-gilroy-medium" *ngIf="message" [style.opacity]="title ? 0.5 : 1" [innerHTML]="message"></p>
+      </div>
+    </div>
+  </div>
+</div>

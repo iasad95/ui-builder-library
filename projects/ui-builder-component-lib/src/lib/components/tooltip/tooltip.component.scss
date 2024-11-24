@@ -1,0 +1,20 @@
+.lib-tooltip {
+  &--reversed {
+    flex-direction: column-reverse;
+  }
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--horizontal-reversed {
+    flex-direction: row-reverse;
+  }
+  .message-box-wrapper {
+    gap: 10px;
+    .message-box-icon {
+      width: 18px;
+      min-width: 18px;
+    }
+  }
+}
