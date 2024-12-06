@@ -1,0 +1,63 @@
+:host {
+  width: 100%;
+}
+
+.typeahead-result {
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 2px #eeeeee;
+  max-height: 280px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  &__results {
+    max-height: 245px;
+    overflow-y: auto;
+  }
+
+  &__group-name {
+    padding: 5px 20px;
+    font-weight: bold;
+    border-top: 1px solid #dfe0e3;
+    border-bottom: 1px solid #dfe0e3;
+
+    &:first-of-type {
+      border-top: none;
+    }
+  }
+
+  &__no-results {
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+  }
+
+  &__alternate-function {
+    padding: 10px;
+    color: var(--cyrano-pink-shade-1, #fe3c72);
+    cursor: pointer;
+    border-top: 1px solid #dfe0e3;
+    font-size: 12px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__loading-section {
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+  }
+
+  &__progress {
+    --mdc-circular-progress-active-indicator-color: var(--cyrano-pink-shade-1, #fe3c72);
+  }
+
+  lib-info-card-list {
+    overflow: auto;
+  }
+}
