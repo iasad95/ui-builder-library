@@ -1,0 +1,473 @@
+<div class="detail">
+  <h2 class="intro">Buttons</h2>
+  <div class="info">A simple and versatile button component for seamless interaction in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Css Variables</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ primaryBtnCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-primary-button-text-shadow</td>
+              <td>0px 0px 20.000049591064453px #FE3C72, 0px 0px 20.000049591064453px #FE3C72, 0px 0px 4.000010013580322px #FFF;</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn [hoverOutline]="false">Setup availability schedule</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ primaryBtnCodeWithLoading }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-primary-button-text-shadow</td>
+              <td>0px 0px 20.000049591064453px #FE3C72, 0px 0px 20.000049591064453px #FE3C72, 0px 0px 4.000010013580322px #FFF;</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn [loading$]="loading$">primary button Hover</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ primaryBtnCodeHoverOutline }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-primary-button-text-shadow</td>
+              <td>0px 0px 20.000049591064453px #FE3C72, 0px 0px 20.000049591064453px #FE3C72, 0px 0px 4.000010013580322px #FFF;</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn>primary button Hover</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ primaryBtnCodeDisabled }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-primary-button-text-shadow</td>
+              <td>0px 0px 20.000049591064453px #FE3C72, 0px 0px 20.000049591064453px #FE3C72, 0px 0px 4.000010013580322px #FFF;</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn [disabled]="true">primary Disabled</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ primaryBtnCodesShowArrowIcon }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-primary-button-text-shadow</td>
+              <td>0px 0px 20.000049591064453px #FE3C72, 0px 0px 20.000049591064453px #FE3C72, 0px 0px 4.000010013580322px #FFF;</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn [showArrowIcon]="true">Primary with Icon</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ secondaryBtnCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-secondary-button-text-shadow</td>
+              <td>0px 0px 47.31624221801758px #FE3C72, 0px 0px 16px #FE3C72</td>
+            </tr>
+            <tr>
+              <td>--lib-secondary-button-font-color</td>
+              <td>#FE638E</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-secondary-btn>secondary button</lib-secondary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ secondaryBtnDisabledCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-secondary-button-text-shadow</td>
+              <td>0px 0px 47.31624221801758px #FE3C72, 0px 0px 16px #FE3C72</td>
+            </tr>
+            <tr>
+              <td>--lib-secondary-button-font-color</td>
+              <td>#FE638E</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-secondary-btn [disabled]="true">secondary Disabled</lib-secondary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ secondaryBtnShowArrowIconCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-secondary-button-text-shadow</td>
+              <td>0px 0px 47.31624221801758px #FE3C72, 0px 0px 16px #FE3C72</td>
+            </tr>
+            <tr>
+              <td>--lib-secondary-button-font-color</td>
+              <td>#FE638E</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-secondary-btn [showArrowIcon]="true">secondary with Icon</lib-secondary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ listBtnCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-list-button-font-size</td>
+              <td>12.872px</td>
+            </tr>
+            <tr>
+              <td>--lib-list-button-font-family</td>
+              <td>'Gilroy-Regular', serif</td>
+            </tr>
+            <tr>
+              <td>--lib-list-button-container-height</td>
+              <td>47px</td>
+            </tr>
+            <tr>
+              <td>--lib-list-button-height</td>
+              <td>36.5px</td>
+            </tr>
+            <tr>
+              <td>--lib-list-button-icon-color</td>
+              <td>#F7416E</td>
+            </tr>
+            <tr>
+              <td>--lib-list-button-padding</td>
+              <td>7.189px 34.251px 10.018px 18.349px</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-list-btn>List button</lib-list-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ listBtnWithLabelCode }}</code>
+        </td>
+        <td></td>
+        <td class="last-td demo-container">
+          <lib-list-btn [hideActionIcon]="true" [actionLabel]="'action'">With action label</lib-list-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ iconBtnCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-icon-button-container-height</td>
+              <td>33px</td>
+            </tr>
+            <tr>
+              <td>--lib-icon-button-container-width</td>
+              <td>33px</td>
+            </tr>
+            <tr>
+              <td>--lib-icon-button-height</td>
+              <td>30px</td>
+            </tr>
+            <tr>
+              <td>--lib-icon-button-width</td>
+              <td>30px</td>
+            </tr>
+            <tr>
+              <td>--lib-icon-button-border-radius</td>
+              <td>50%</td>
+            </tr>
+            <tr>
+              <td>Notification Count</td>
+              <td>10</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-icon-btn [notificationCount]="10"><img src="assets/icons/back.svg" /></lib-icon-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ bubbleBtnCode }}</code>
+        </td>
+        <td></td>
+        <td class="last-td demo-container">
+          <lib-bubble-btn [title]="'title'" [subTitle]="'description'" [checked]="checked" (click)="onBubbleBtnClick()"></lib-bubble-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ btnWithLabelCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-button-component-label-radius</td>
+              <td>20.162px</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-border</td>
+              <td>0.504px solid #FFF</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-background</td>
+              <td>rgba(255, 255, 255, 0.44)</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-filter</td>
+              <td>blur(10.081077575683594px)</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-color</td>
+              <td>#A8A8A8</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-font</td>
+              <td>Gilroy-Regular, serif</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-font-size</td>
+              <td>12px</td>
+            </tr>
+            <tr>
+              <td>--lib-button-component-label-padding</td>
+              <td>0 10px</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-primary-btn [label]="'Cyrano Plus'" [showArrowIcon]="true">Set advanced preferences</lib-primary-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ btnHoverCode }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td>--lib-hover-button-height</td>
+              <td>40px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-button-width</td>
+              <td>160px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-icon-button-height</td>
+              <td>25px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-icon-button-width</td>
+              <td>25px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-icon-left-margin</td>
+              <td>6px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-button-font-size</td>
+              <td>14px</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-button-font-color</td>
+              <td>#fe3c72</td>
+            </tr>
+            <tr>
+              <td>--lib-hover-button-font-family</td>
+              <td>Gilroy-Regular, serif</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-hover-btn [iconUrl]="'assets/icons/guru-times-icon.svg'">Hover Button</lib-hover-btn>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ButtonsModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>hoverOutline</td>
+          <td>Determines if the button should display a hover outline effect.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Disables the button if set to true.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>type</td>
+          <td>Specifies the button type attribute (e.g., "button" or "submit").</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>form</td>
+          <td>The form attribute for associating the button with a form.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>label</td>
+          <td>The text label displayed on the button.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showArrowIcon</td>
+          <td>Determines if an arrow icon should be displayed on the button.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disableTextShadow</td>
+          <td>Disables the text shadow effect if set to true.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>notificationCount</td>
+          <td>Displays a notification badge with the provided count.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>loading$</td>
+          <td>An observable that controls the button's loading state.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>illuminateIcon</td>
+          <td>Determines if the button's icon should be illuminated.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>--lib-button-font-color</td>
+        <td>#fff</td>
+      </tr>
+      <tr>
+        <td>--lib-button-border-radius</td>
+        <td>30.582px</td>
+      </tr>
+      <tr>
+        <td>--lib-button-border</td>
+        <td>0.917px solid rgba(10, 9, 9, 0.45)</td>
+      </tr>
+      <tr>
+        <td>--lib-button-background</td>
+        <td>
+          linear-gradient(180deg, rgba(62, 64, 69, 0.50) 0%, rgba(62, 64, 69, 0.00) 8.33%), radial-gradient(170.95% 118.01% at 8.39% 32.81%, rgba(67, 64, 70, 0.50) 0%, rgba(41, 37,
+          45, 0.50) 28.24%, rgba(10, 10, 11, 0.50) 100%);
+        </td>
+      </tr>
+      <tr>
+        <td>--lib-button-container-background</td>
+        <td>linear-gradient(90deg, #353039 0.68%, #29252D 99.45%)</td>
+      </tr>
+      <tr>
+        <td>--lib-button-box-shadow</td>
+        <td>6.11634px 6.11634px 12.23267px 0px rgba(0, 0, 0, 0.25);</td>
+      </tr>
+      <tr>
+        <td>--lib-button-container-height</td>
+        <td>50px</td>
+      </tr>
+      <tr>
+        <td>--lib-button-height</td>
+        <td>48.5px</td>
+      </tr>
+      <tr>
+        <td>--lib-button-font-family</td>
+        <td>'Calistoga', serif</td>
+      </tr>
+      <tr>
+        <td>--lib-button-font-size</td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td>--lib-button-padding</td>
+        <td>0 20px</td>
+      </tr>
+      <tr>
+        <td>--lib-button-icon-color</td>
+        <td>#F7416E</td>
+      </tr>
+    </table>
+  </div>
+</div>
