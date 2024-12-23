@@ -1,0 +1,147 @@
+<div class="detail">
+  <h2 class="intro">Circle Progress</h2>
+  <div class="info">A quick and visual way to show progress in a circle.</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Shareable Link</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr [id]="rowIds[0]">
+        <td><a class="link" (click)="getShareableLink(rowIds[0])">Share</a></td>
+        <td>Progress</td>
+        <td>Circlular Progress</td>
+        <td>This component renders progress of earnings</td>
+        <td>value: Number <br />max: Number<br />prefix: string<br />type: string<br />width: string<br />height: string</td>
+        <td>true</td>
+        <td></td>
+        <td class="last-td">
+          <!-- Without image -->
+          <lib-circle-progress [value]="240" [max]="500" prefix="$" type="Earnings" class="earnings"> </lib-circle-progress>
+        </td>
+      </tr>
+      <tr [id]="rowIds[1]">
+        <td><a class="link" (click)="getShareableLink(rowIds[1])">Share</a></td>
+        <td>Progress</td>
+        <td>Circular progress with inner image</td>
+        <td>This component renders profile progress with photo inside.</td>
+        <td>value: Number <br />max: Number<br />prefix: string<br />imageUrl: string<br />width: string<br />height: string</td>
+        <td>true</td>
+        <td></td>
+        <td class="last-td">
+          <!-- With image -->
+          <lib-circle-progress class="profile-img" [max]="50" [value]="36" prefix="" imageUrl="https://i.ibb.co/Cv0FvRb/unsplash-WNo-Ln-Jo7t-S8profile.png"></lib-circle-progress>
+        </td>
+      </tr>
+      <tr [id]="rowIds[2]">
+        <td><a class="link" (click)="getShareableLink(rowIds[2])">Share</a></td>
+        <td>Progress</td>
+        <td>Circular progress with inner image [interactive]</td>
+        <td>
+          <h4>
+            Adjust size of circle progress <mark>[{{ width }}]</mark>
+          </h4>
+          <lib-range-selector [formControl]="rangeControl" [minValue]="50" [maxValue]="300"></lib-range-selector>
+          <!-- <input type="range" min="50" max="300" (input)="onInput($event)" /> -->
+          <div class="width-value">
+            <span class="min-value">50</span>
+            <span class="max-value">300</span>
+          </div>
+        </td>
+        <td>value: Number <br />max: Number<br />prefix: string<br />imageUrl: string<br />width: string<br />height: string</td>
+        <td>true</td>
+        <td></td>
+        <td class="last-td">
+          <!-- With image -->
+          <lib-circle-progress
+            [max]="50"
+            [value]="36"
+            prefix=""
+            [style]="{ width: width }"
+            imageUrl="https://i.ibb.co/Cv0FvRb/unsplash-WNo-Ln-Jo7t-S8profile.png"
+          ></lib-circle-progress>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; CircleProgressModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>width</td>
+          <td>Defines the width of the circle progress.</td>
+          <td>62.6px</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>height</td>
+          <td>Defines the height of the circle progress.</td>
+          <td>63.18px</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>prefix</td>
+          <td>Prefix displayed before the progress value.</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>suffix</td>
+          <td>Suffix displayed after the progress value.</td>
+          <td>empty</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>value</td>
+          <td>Current progress value.</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>max</td>
+          <td>Maximum possible value for the progress.</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>imageUrl</td>
+          <td>URL of the image displayed within the circle progress.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>type</td>
+          <td>Type of the circle progress (custom type description can be added).</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ circleProgressCode }}</code>
+    </div>
+  </div>
+</div>
