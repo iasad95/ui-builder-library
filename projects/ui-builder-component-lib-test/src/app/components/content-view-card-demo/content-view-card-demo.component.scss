@@ -1,0 +1,110 @@
+$fromb-color: #fe3c7280;
+$tob-color: #e1556180;
+$from-color: #fe3c72;
+$to-color: #e15561;
+$from-to-bg-color: linear-gradient(90deg, $fromb-color 0%, $tob-color 100%);
+$from-to-fg-color: linear-gradient(90deg, $from-color 0%, $to-color 100%);
+:host {
+  overflow-y: scroll;
+  display: flex;
+  width: 100%;
+  --lib-percentage-inner-background-color: #{$from-to-fg-color};
+  --lib-percentage-buffer-background-color: #{$from-to-bg-color};
+  --lib-percentage-inner-box-shadow: 0 0 8px 3px #{$fromb-color};
+  --lib-percentage-width: 100%;
+
+  --content-view-card-image-size: 10em;
+}
+
+.demo-container {
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+}
+
+lib-content-view-card {
+  --content-card-font-family: 'Gilroy-Medium';
+  font-size: var(--content-view-demo-font-size);
+}
+
+lib-percentage-bar {
+  font-size: 1.4em;
+}
+
+lib-content-view-card {
+  --content-view-demo-font-size: 1vw;
+  --lib-percentage-height: 2vw;
+}
+
+div[libContentCardFirstColumn] {
+  width: 10vw !important;
+}
+.mid-column {
+  display: flex;
+  width: 20vw;
+}
+.last-column {
+  display: flex;
+  width: 20vw;
+  justify-content: end;
+}
+
+.client-request-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &__top-content {
+    display: flex;
+    width: max-content;
+    gap: 15px;
+  }
+
+  &__bottom-content {
+    &--label {
+      margin: 0;
+      text-align: center;
+    }
+    &--sub-headings {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__sub-heading-wrapper {
+      width: 100%;
+      max-width: 510px;
+      text-align: center;
+
+      a {
+        color: var(--cyrano-pink-shade-1);
+      }
+    }
+  }
+}
+
+.client-prospect-container {
+  .content-card__section {
+    flex-grow: 0 !important;
+  }
+  &__percentage-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+}
+
+.lock-chevron-size {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .header {
+    width: fit-content;
+  }
+}

@@ -1,0 +1,533 @@
+<div class="detail">
+  <h2 class="intro">Content View Card</h2>
+  <div class="info">A compact and interactive content view card for displaying cards for client/matcher dashboard.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      @switch (contentCardType) {
+        @case ('clientProspect') {
+          <ng-container *ngTemplateOutlet="clientProspect"></ng-container>
+        }
+        @case ('matcherClient') {
+          <ng-container *ngTemplateOutlet="matcherClient"></ng-container>
+        }
+        @case ('clientRequests') {
+          <ng-container *ngTemplateOutlet="clientRequests"></ng-container>
+        }
+        @case ('clientMatcher') {
+          <ng-container *ngTemplateOutlet="clientMatcher"></ng-container>
+        }
+      }
+    </div>
+    <div class="detail-section">
+      <div class="header">Required Imports</div>
+      <div>import &#123; ContentViewCardModule &#125; from 'ui-builder-component-lib';</div>
+      <div class="detail-section row-flex">
+        <div class="header">Sample:</div>
+        <select [(ngModel)]="contentCardType">
+          <option value="clientProspect">Client Prospect</option>
+          <option value="matcherClient">Matcher Client</option>
+          <option value="clientRequests">Client Request</option>
+          <option value="clientMatcher">Client Matcher</option>
+        </select>
+      </div>
+      <div class="detail-section">
+        <div class="header">Component Properties</div>
+        <table class="nested-table">
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Usage</th>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>libContentCardFirstColumn</td>
+            <td>Adds profile's image and data for the first column</td>
+            <td>
+              {{ '\<div libContentCardFirstColumn imgSrc="img.jpg"\>\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>heading</td>
+            <td>To declare a heading for a content view card</td>
+            <td>
+              {{ '\<div heading\>Heading\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>libContentLastColumn</td>
+            <td>Last Column container for a content view card</td>
+            <td>
+              {{ '\<div libContentLastColumn\>\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>section</td>
+            <td>Used to create a section inside content view card</td>
+            <td>
+              {{ '\<div section\>\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>subHeadings</td>
+            <td>Container for sub headings for content view card</td>
+            <td>
+              {{ '\<div subHeadings\>\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>xLSubHeadings</td>
+            <td>Container for extra large sub headings for content view card</td>
+            <td>
+              {{ '\<div xLSubHeadings\>\<\/div\>' }}
+            </td>
+          </tr>
+          <tr>
+            <td>Directive</td>
+            <td>libContentToggle</td>
+            <td>Content that should be hidden/visible on 'see more/less' click</td>
+            <td>
+              {{ '\<ng-template libContentToggle\>\<\/ng-template\>' }}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="detail-section">
+        <div class="header">Example usage</div>
+        <div class="code-section">
+          <code>
+            @for (line of demoExampleCard; track demoExampleCard) {
+              <div>{{ line }}</div>
+            }
+          </code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #clientRequests>
+    <lib-content-view-card>
+      <div class="client-request-container">
+        <div class="client-request-container__top-content" #clientRequestRefElement>
+          <div libContentCardFirstColumn imgSrc="assets/content-card/profile-pic-demo.jpg">
+            <div section>
+              <ng-template libContentToggle>
+                <div contentBlock>
+                  <div heading>Options</div>
+                  <div subHeadings>
+                    <span>Handoff after 3rd exchange</span>
+                    <span>Invisible Mode</span>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="mid-column">
+            <div section>
+              <div contentBlock section>
+                <div xLSubHeadings><span>matchingMaster34, 30</span></div>
+                <div>
+                  <div heading>Request Location</div>
+                  <div subHeadings>
+                    <span>Seattle</span>
+                  </div>
+                </div>
+              </div>
+              <ng-template libContentToggle>
+                <div contentBlock>
+                  <div heading>Accepted Date-Time</div>
+                  <div subHeadings>
+                    <span>6/11/24 14:32 CST</span>
+                  </div>
+                </div>
+                <div contentBlock>
+                  <div heading>Msgs/Date(matcher)</div>
+                  <div subHeadings>
+                    <span>30</span>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div libContentLastColumn class="last-column">
+            <div section>
+              <div contentBlock>
+                <div heading>
+                  <ng-container *ngTemplateOutlet="lockChevron"></ng-container>
+                </div>
+              </div>
+              <div contentBlock>
+                <div heading>Fee</div>
+                <div subHeadings>
+                  <span>125</span>
+                </div>
+              </div>
+              <ng-template libContentToggle>
+                <div contentBlock>
+                  <div heading>Meetups</div>
+                  <div subHeadings>
+                    <span>5</span>
+                  </div>
+                </div>
+                <div contentBlock>
+                  <div heading>Timeframe</div>
+                  <div subHeadings>
+                    <span>10 days</span>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <ng-template libContentToggle>
+          <div class="client-request-container__bottom-content" [ngStyle]="{ 'width.px': clientRequestRefElement?.offsetWidth }">
+            <div class="client-request-container__bottom-content--label" heading>Service Enhancement</div>
+            <div class="client-request-container__bottom-content--sub-headings" subHeadings>
+              <div class="client-request-container__bottom-content__sub-heading-wrapper">
+                <span>It is recommended that your Public Profile get enhanced. For best results feel free to use </span>
+                <a>our AI </a>
+                <span>or </span>
+                <a>your matchers </a>
+                <span>to do this</span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </lib-content-view-card>
+  </ng-template>
+
+  <ng-template #clientMatcher>
+    <lib-content-view-card>
+      <div libContentCardFirstColumn imgSrc="assets/content-card/profile-pic-demo.jpg">
+        <div section>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Certifications</div>
+              <div subHeadings>
+                <span>Cognitive</span>
+                <span>Behavioral</span>
+              </div>
+            </div>
+
+            <div contentBlock>
+              <div heading>Superlatives</div>
+              <div subHeadings>
+                <span>Pioneering Tech</span>
+                <span>Pickup Line Ge..</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="mid-column">
+        <div section>
+          <div contentBlock section>
+            <div xLSubHeadings><span>dBeatz56, 30</span></div>
+            <div>
+              <div heading>Familiar Location</div>
+              <div subHeadings>
+                <span>Seattle, NYC, Dubai</span>
+              </div>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Matcher-Client Interests</div>
+              <div subHeadings>
+                <span>0% (non similar interests)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Rank</div>
+              <div subHeadings>
+                <span>Gold II</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Rating</div>
+              <div subHeadings>
+                <span>4.5/5 stars</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Background Check</div>
+              <div subHeadings>
+                <span>Verified</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div libContentLastColumn class="last-column">
+        <div section>
+          <div contentBlock>
+            <div heading>
+              <ng-container *ngTemplateOutlet="lockChevron"></ng-container>
+            </div>
+          </div>
+          <div contentBlock>
+            <div heading>Msgs/Date</div>
+            <div subHeadings>
+              <span>30</span>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Join Date</div>
+              <div subHeadings>
+                <span>01-03-23</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Lifetime Earn</div>
+              <div subHeadings>
+                <span>$10876(~27/ea)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Success Rate</div>
+              <div subHeadings>
+                <span>95%(523)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Lifetime Meetups</div>
+              <div subHeadings>
+                <span>523</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </lib-content-view-card>
+  </ng-template>
+
+  <ng-template #clientProspect>
+    <lib-content-view-card class="client-prospect-container">
+      <div libContentCardFirstColumn imgSrc="assets/content-card/profile-pic-demo.jpg">
+        <div section>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Scores Summary</div>
+              <div subHeadings>
+                <span>34b 34w 36h</span>
+                <span>Celibacy 96</span>
+                <span>Cooperation 90</span>
+                <span>Intelligence 70</span>
+              </div>
+            </div>
+
+            <div contentBlock>
+              <div heading>Profile Summary</div>
+              <div subHeadings>
+                <span>o90c45e56a79n98,</span>
+                <span>ENTJ; Creating </span>
+                <span>Exploring </span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="mid-column">
+        <div section>
+          <div contentBlock section>
+            <div xLSubHeadings><span>Jillian Jacobs, 30</span></div>
+            <div>
+              <div heading>Location</div>
+              <div subHeadings>
+                <span>Seattle</span>
+              </div>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Weight/Height</div>
+              <div subHeadings>
+                <span>56 kg / 160 cm</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Interest Level</div>
+              <div subHeadings>
+                <span>88 / 100</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Goal</div>
+              <div subHeadings>
+                <span>Casual, Friendship</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div class="client-prospect-container__percentage-bar-wrapper">
+                <lib-percentage-bar [value]="95">Match 95.54% (Preferences)</lib-percentage-bar>
+                <lib-percentage-bar [value]="45">Match 45.54% (Personality)</lib-percentage-bar>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div libContentLastColumn class="last-column">
+        <div section>
+          <div contentBlock>
+            <div heading>
+              <ng-container *ngTemplateOutlet="lockChevron"></ng-container>
+            </div>
+          </div>
+          <div contentBlock>
+            <div heading>Score</div>
+            <div subHeadings>
+              <span>6.1</span>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Msgs/Date</div>
+              <div subHeadings>
+                <span>30</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Lifetime Dates</div>
+              <div subHeadings>
+                <span>15</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Current Chats</div>
+              <div subHeadings>
+                <span>2</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div>
+                <lib-percentage-bar [value]="90">Progress 90%</lib-percentage-bar>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </lib-content-view-card>
+  </ng-template>
+
+  <ng-template #matcherClient>
+    <lib-content-view-card>
+      <div libContentCardFirstColumn imgSrc="assets/content-card/profile-pic-demo.jpg">
+        <div section>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Preferences Summary</div>
+              <div subHeadings>
+                <span>Celibacy 96+</span>
+                <span>Cooperation 90+</span>
+                <span>Intelligence 70+</span>
+              </div>
+            </div>
+
+            <div contentBlock>
+              <div heading>Profile Summary</div>
+              <div subHeadings>
+                <span>Masters</span>
+                <span>EU Ivy League</span>
+                <span>$500k+</span>
+                <span>20 Employees</span>
+                <span>Soccer Scholarship</span>
+                <span>Wrestling States</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="mid-column">
+        <div section>
+          <div contentBlock section>
+            <div xLSubHeadings><span>dBeatz56, 30</span></div>
+            <div>
+              <div heading>Location</div>
+              <div subHeadings>
+                <span>Seattle</span>
+              </div>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Preferences Profile</div>
+              <div subHeadings>
+                <span>15.54% (below avg options) (20%)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Weight/Height pref</div>
+              <div subHeadings>
+                <span>56- kg / 160- cm</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Communication Style</div>
+              <div subHeadings>
+                <span>Assertive</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Goal</div>
+              <div subHeadings>
+                <span>Casual, Friendship</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div libContentLastColumn class="last-column">
+        <div section>
+          <div contentBlock>
+            <div heading>
+              <ng-container *ngTemplateOutlet="lockChevron"></ng-container>
+            </div>
+          </div>
+          <div contentBlock>
+            <div heading>Msgs/Date</div>
+            <div subHeadings>
+              <span>30</span>
+            </div>
+          </div>
+          <ng-template libContentToggle>
+            <div contentBlock>
+              <div heading>Lifetime Fee</div>
+              <div subHeadings>
+                <span>$1876(~27/ea)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Join Date</div>
+              <div subHeadings>
+                <span>01-03-23(1.2 years)</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Score/Preferred</div>
+              <div subHeadings>
+                <span>7.4 / 60.1+</span>
+              </div>
+            </div>
+            <div contentBlock>
+              <div heading>Lifetime Meetups</div>
+              <div subHeadings>
+                <span>5</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </lib-content-view-card>
+  </ng-template>
+
+  <ng-template #lockChevron>
+    <img class="lock-chevron-size" src="assets/lock-chevron.svg" />
+  </ng-template>
+</div>
