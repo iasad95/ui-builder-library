@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 24px;
+}
+
+lib-dashed-checkbox {
+  --color: #fe3c72;
+}
