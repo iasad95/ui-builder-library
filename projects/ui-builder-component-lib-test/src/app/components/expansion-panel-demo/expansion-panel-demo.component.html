@@ -1,0 +1,172 @@
+<div class="detail">
+  <h2 class="intro">Expansion Panel</h2>
+  <div class="info">A simple panel that collapses and expands to neatly organize and show or hide information in your interface.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Demo</th>
+        <th>Shareable Link</th>
+      </tr>
+      <tr [id]="rowIds[0]">
+        <td>
+          <code>{{ expansionPanelCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Panel Title'">
+            <h1>panel content</h1>
+          </lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[0])">Share</a></td>
+      </tr>
+      <tr [id]="rowIds[1]">
+        <td>
+          <code>{{ expansionCollapsedPanelCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Collapsed Panel'" [expanded]="false"><h1>panel content</h1></lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[1])">Share</a></td>
+      </tr>
+      <tr [id]="rowIds[2]">
+        <td>
+          <code>{{ collapsedPanelRightContentCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Panel with a custom collapsed icon'" [expanded]="false">
+            <h1>panel content</h1>
+            <ng-container collapsedPanelRightContent>
+              <img src="assets/icons/graph-svg.svg" alt="graph-svg.svg" />
+            </ng-container>
+          </lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[2])">Share</a></td>
+      </tr>
+      <tr [id]="rowIds[3]">
+        <td>
+          <code>{{ panelHeaderRightContentCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Panel with header right'">
+            <h1>panel content</h1>
+            <ng-container panelHeaderRightContent>Right content</ng-container>
+          </lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[3])">Share</a></td>
+      </tr>
+      <tr [id]="rowIds[4]">
+        <td>
+          <code>{{ expansionPanelWithDescriptionCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Panel Title'" [descriptionText]="'Expansion Panel Description'">
+            <h1>panel content with description</h1>
+          </lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[4])">Share</a></td>
+      </tr>
+      <tr [id]="rowIds[5]">
+        <td>
+          <code>{{ expansionPanelWithToggle }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-expansion-panel [title]="'Panel Title'" [descriptionText]="'Expansion Panel with Toggle Text'" [showToggleText]="true">
+            <h1>panel content with show more/less</h1>
+          </lib-expansion-panel>
+        </td>
+        <td><a class="link" (click)="getShareableLink(rowIds[5])">Share</a></td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ExpansionPanelModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>title</td>
+          <td>The title displayed in the expansion panel header.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>expanded</td>
+          <td>Controls whether the panel is expanded or collapsed by default.</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showToggleText</td>
+          <td>If true, prevents the panel from toggling when the header is clicked.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>descriptionText</td>
+          <td>An optional description text displayed within the panel content.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>expandedChange</td>
+          <td>Emits an event when the panel's expanded/collapsed state changes.</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-background</td>
+        <td>#29252d</td>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-color</td>
+        <td>#fff</td>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-title-color</td>
+        <td>#A8A8A8</td>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-font-family</td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-title-font-size</td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td>--lib-expansion-panel-title-line-height</td>
+        <td>150%</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>
+        {{ collapsedPanelRightContentCode }}
+      </code>
+    </div>
+  </div>
+</div>
