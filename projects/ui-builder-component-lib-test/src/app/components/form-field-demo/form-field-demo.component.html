@@ -1,0 +1,503 @@
+<div class="detail">
+  <div class="intro">FormField</div>
+  <div class="info">FormField is a wrapper around Angular's form control adding convenient handling of text, number, and select inputs.</div>
+  <div class="detail-section demo">
+    <div class="header">Demo</div>
+    <lib-form-field
+      class="component-demo"
+      [label]="label"
+      [placeholder]="placeholder"
+      [formFieldControl]="formFieldControl"
+      [submitted]="submitted"
+      [required]="required"
+      [type]="type"
+      [maxLength]="maxLength"
+      [options]="options"
+      [iconHtml]="iconHtml"
+      [hyperlinkTarget]="hyperlinkTarget"
+      [hideCents]="hideCents"
+      [message]="messageValue"
+      [decimalPosition]="decimalPosition"
+      [pinValue]="pinControl.value"
+      [dualKnobs]="dualKnobsControl.value"
+      [reverseBarColor]="reverseBarColorControl.value"
+      [min]="minValue"
+      [max]="maxValue"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [radioDeselectable]="radioDeselectableState"
+      [radioTranslateLabels]="radioTranslateLabels"
+      [radioRippleEffect]="radioRippleEffect"
+    >
+    </lib-form-field>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; FormFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section demo">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>type</td>
+        <td>Determines the type of input</td>
+        <td>string</td>
+        <td>false</td>
+        <td>text</td>
+        <td>
+          <select [(ngModel)]="type" (ngModelChange)="handleTypeChange($event)">
+            <option *ngFor="let type of formTypes" [value]="type" [selected]="type">{{ type }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>label</td>
+        <td>The label that will be displayed next to the form field.</td>
+        <td>string</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="label" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>placeholder</td>
+        <td>The placeholder text that will be displayed in the form field.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="placeholder" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>formFieldControl</td>
+        <td>The Angular FormControl that this FormField is tied to.</td>
+        <td>FormControl</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <div class="value">{{ formFieldControl?.value }}</div>
+          <button (click)="resetForm()">Reset</button>
+        </td>
+      </tr>
+      <ng-container *ngIf="type === 'range'">
+        <tr>
+          <td>Input</td>
+          <td>minValue</td>
+          <td>Minimum value for the range.</td>
+          <td>Number</td>
+          <td>true</td>
+          <td>0</td>
+          <input type="number" [(ngModel)]="minValue" />
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxValue</td>
+          <td>Maximum value for the range.</td>
+          <td>Number</td>
+          <td>true</td>
+          <td>100</td>
+          <input type="number" [(ngModel)]="maxValue" />
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>dualKnobsControl</td>
+          <td>A boolean value whether to show dualKnobs or not.</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>false</td>
+          <td>
+            <lib-toggle id="toggle-button-elem" [formControl]="dualKnobsControl"></lib-toggle>
+          </td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>reverseBarColor</td>
+          <td>A boolean value whether to reverse bar color or not.</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>false</td>
+          <td>
+            <lib-toggle id="toggle-button-elem" [formControl]="reverseBarColorControl"></lib-toggle>
+          </td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>pinValue</td>
+          <td>A boolean value whether to pin or not.</td>
+          <td>percentage</td>
+          <td>number</td>
+          <td>0</td>
+          <td>
+            <lib-toggle id="toggle-button-elem" [formControl]="pinControl"></lib-toggle>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="type === 'date'">
+        <tr>
+          <td>Input</td>
+          <td>minDate</td>
+          <td>Minimum date.</td>
+          <td>Date</td>
+          <td>false</td>
+          <td>n/a</td>
+          <td>new Date(this.currentDate.getFullYear() - 18, this.currentDate.getMonth(), this.currentDate.getDate())</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxDate</td>
+          <td>Maximum date.</td>
+          <td>Date</td>
+          <td>false</td>
+          <td>n/a</td>
+          <td>new Date(this.currentDate.getFullYear() + 120, this.currentDate.getMonth(), this.currentDate.getDate())</td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td>Input</td>
+        <td>submitted</td>
+        <td>
+          Tells the FormField if the form has been submitted. If true, and if the wrapped FormControl contains errors, the UI is updated to indicate the error and display an error
+          message.
+        </td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="submitted"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>required</td>
+        <td>Tells the FormField if this is a required field. If true, an indicator displays next to the label.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="required" (ngModelChange)="handleRequiredChange($event)"></lib-toggle>
+        </td>
+      </tr>
+      <tr *ngIf="type === 'message'">
+        <td>Input</td>
+        <td>message value</td>
+        <td>Determines the maximum length for text inputs.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>test message</td>
+        <td>
+          <input type="text" [(ngModel)]="messageValue" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>maxLength</td>
+        <td>Determines the maximum length for text inputs.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>524288</td>
+        <td>
+          <input type="number" [(ngModel)]="maxLength" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>options</td>
+        <td>Determines the available options in the case that the FormField's type is 'select'.</td>
+        <td>SelectOption[]</td>
+        <td>false</td>
+        <td>[]</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>iconHtml</td>
+        <td>Lets the user specify HTML used to display an icon to the left of the label.</td>
+        <td>SafeHtml</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <ng-container *ngIf="type === 'currency'">
+        <tr>
+          <td>Input</td>
+          <td>hideCents</td>
+          <td>Determines whether to display cents/decimals or not for the currency type field.</td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>false</td>
+          <td>
+            <lib-toggle [(ngModel)]="hideCents"></lib-toggle>
+          </td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td>Input</td>
+        <td>decimalPosition</td>
+        <td>Determines the precision of number/currency/percent inputs. Note that if `hideCents` is on, a `currency` input will ignore this input.</td>
+        <td>number</td>
+        <td></td>
+        <td></td>
+        <td>
+          <input type="number" [(ngModel)]="decimalPosition" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>hyperlinkTarget</td>
+        <td>Specifies where to open the linked document when type is hyperlink</td>
+        <td>string</td>
+        <td>n/a</td>
+        <td>_blank</td>
+        <td>
+          <input type="text" [(ngModel)]="hyperlinkTarget" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>radioDeselectable</td>
+        <td>Specifies whether the radio button is deselectable or not</td>
+        <td>boolean</td>
+        <td>n/a</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="radioDeselectableState"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>radioTranslateLabels</td>
+        <td>Specifies whether the radio button labels to be translated or not</td>
+        <td>boolean</td>
+        <td>n/a</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="radioTranslateLabels"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>radioRippleEffect</td>
+        <td>Specifies whether the radio button on click should display a ripple effect or not</td>
+        <td>boolean</td>
+        <td>n/a</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="radioRippleEffect"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>fieldName</td>
+        <td>The name of the form field.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>message</td>
+        <td>A message to display with the form field.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>useTooltips</td>
+        <td>Determines whether tooltips are used.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>descriptionText</td>
+        <td>Text describing the form field.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>max</td>
+        <td>The maximum value for the input field.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>524288</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>min</td>
+        <td>The minimum value for the input field.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>pinValue</td>
+        <td>Indicates whether the value should be pinned.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dualKnobs</td>
+        <td>Determines if dual knobs are used.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>reverseBarColor</td>
+        <td>Enables reverse bar color.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>invalidPatternMessage</td>
+        <td>Error message displayed for invalid input patterns.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dateFormat</td>
+        <td>Specifies the format for date input.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>MM/DD/YYYY</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>currencySymbol</td>
+        <td>The symbol for currency.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>$</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>hideCents</td>
+        <td>Determines if cents should be hidden.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>isEditable</td>
+        <td>Specifies if the field is editable.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>rowEditConfirmationObsv</td>
+        <td>An observable for row edit confirmation.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>errorInlineMode</td>
+        <td>Specifies if errors should be displayed inline.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showLabelInRequiredErrorMessage</td>
+        <td>Determines if the label should appear in the required field error message.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>readOnly</td>
+        <td>Indicates whether the field is read-only.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>focus</td>
+        <td>Indicates whether the field should be focused.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showRequiredIndicator</td>
+        <td>Determines if the required indicator should be displayed.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>maxDate</td>
+        <td>Specifies the maximum date allowed for date input fields.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>minDate</td>
+        <td>Specifies the minimum date allowed for date input fields.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>rowEdit</td>
+        <td>Emits an event when a row is edited, passing the field name and value.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>focusOut</td>
+        <td>Emits an event when the field loses focus.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ formFieldCode }}</code>
+    </div>
+  </div>
+</div>
