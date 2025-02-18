@@ -1,0 +1,127 @@
+<div class="detail">
+  <div class="intro">Form Generator</div>
+  <div class="info">FormGenerator is used to automatically generate a form with correct groups, labels, and field types when supplied with a FormStructure model.</div>
+  <div class="detail-section demo">
+    <div class="header">Demo</div>
+    <div (click)="changeRequired()">CLICK</div>
+    <lib-form-generator
+      [formStructure]="formStructure"
+      [groupChanges]="groupChangesObsv"
+      [fieldChanges]="fieldChangesObsv"
+      [useTooltips]="useTooltips"
+      (formGroupExpanderChanged)="handleExpanderChanged($event)"
+      (formGroupUpdate)="handleFormGroup($event)"
+      class="component-demo"
+    >
+    </lib-form-generator>
+    <lib-form-generator [formStructure]="formStructure2" class="component-demo"> </lib-form-generator>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; FormGeneratorModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>formStructure</td>
+        <td>Structure to build the form from.</td>
+        <td>FormStructure</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>fieldChange</td>
+        <td>
+          Observable for FormFieldStructure that indicates when a fields config. For text and select value setting this is not needed but must be trigger to detect changes in
+          select, multiselect, and typeahead configs in form structure.
+        </td>
+        <td>Rxjs.Observable Of Object with groupName: string, structure: FormFieldStructure</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>formGroupUpdate</td>
+        <td>FormGroup for the consumer to control and read the form. It will be structured with the subgroups provided with the fields inside those formgroups.</td>
+        <td>FormGroup</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>formGroupExpanderChanged</td>
+        <td>
+          If the form group has expansion panels, this event lets the consumer track the state of each panel. The FormGroupExpanderChange event contains the group name/title as
+          well as a boolean indicating if the panel is opened.
+        </td>
+        <td>FormGroupExpanderChange</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>groupChanges</td>
+        <td>An observable that tracks changes in the form groups.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>formStyle</td>
+        <td>The style of the form, based on the <code>FormGenStyle</code> enum.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dateFormat</td>
+        <td>The format for the date fields.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>MM/DD/YYYY</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>currencySymbol</td>
+        <td>The symbol used for currency fields.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>$</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>hideCents</td>
+        <td>Determines if cents should be hidden for currency fields.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>useTooltips</td>
+        <td>Specifies if tooltips should be used.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>false</td>
+      </tr>
+    </table>
+  </div>
+</div>
