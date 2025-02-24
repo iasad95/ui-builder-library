@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+  color: #fff;
+}
+
+.property-field {
+  padding: 3px 0;
+}
+
+.code-section {
+  padding: 10px;
+  background-color: #666666;
+}
+
+.comment {
+  color: #000;
+}

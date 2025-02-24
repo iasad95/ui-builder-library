@@ -1,0 +1,25 @@
+<div class="detail">
+  <div class="intro">Form Generator Models</div>
+  <div class="info">
+    FormGenerator takes info from the FormStructure model to create a form where the groups have expansion panel and those groups have form fields that supports image, date, text,
+    select, typeahead, textarea, and multiselect.
+  </div>
+  <div class="detail-section" *ngFor="let comments of modelComments">
+    <div class="header">
+      {{ comments.modelName }}
+    </div>
+    <div class="info">
+      {{ comments.comment }}
+    </div>
+    <div class="code-section">
+      &#123;<br />
+      <div class="property-field" *ngFor="let prop of comments.properties">
+        <div class="comment" *ngIf="prop.comment">&nbsp;&nbsp;&nbsp;&nbsp;// {{ prop.comment }}</div>
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ prop.name }}
+        <span *ngIf="prop.isOptional">?</span>
+        <span *ngIf="prop.type">: {{ prop.type }}</span>
+      </div>
+      &#125;
+    </div>
+  </div>
+</div>
