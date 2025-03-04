@@ -1,0 +1,204 @@
+<ng-container #dynamicModal></ng-container>
+<div class="detail">
+  <div class="intro">Grid</div>
+  <div>
+    <select [(ngModel)]="selectedCurrencyCode">
+      <option *ngFor="let code of demoCountryCodes" [value]="code" [selected]="code">{{ code }}</option>
+    </select>
+  </div>
+  <div class="detail-section table">
+    <div class="detail-section">
+      <div class="header">Demo</div>
+      <div class="grid-container">
+        <lib-grid
+          [columns]="columns"
+          [data]="data"
+          [rowsPerPage]="rowsPerPage"
+          [rowsPerPageOptions]="rowsPerPageOptions"
+          [sortField]="sortField"
+          [sortOrder]="sortOrder"
+          [isLoading]="isLoading"
+          [totalRecords]="totalRecords"
+          [paginatorDataTypeLabel]="'Things'"
+          [groupByField]="groupByField"
+          [filterDefinitions]="filterDefinitions"
+          [userFiltersList]="userFiltersList"
+          [currencyDisplayCode]="selectedCurrencyCode"
+          [dateFormat]="dateFormat"
+          [enableGridFilters]="true"
+          (lazyLoad)="onLazyLoad($event)"
+          [gridMiscellaneousData]="gridMiscellaneousData"
+        ></lib-grid>
+      </div>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; GridModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested_table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>enableSelection</td>
+          <td>Enables row selection functionality.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableGridFilters</td>
+          <td>Enables the use of grid filters.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableCreate</td>
+          <td>Enables the "Create" action in the grid.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableRefresh</td>
+          <td>Enables the refresh button in the grid.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableTrash</td>
+          <td>Enables the trash icon in the grid for deletion functionality.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>isLoading</td>
+          <td>Indicates whether the grid is loading data.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>totalRecords</td>
+          <td>Total number of records in the grid.</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>rowsPerPage</td>
+          <td>Number of rows per page in the grid.</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>first</td>
+          <td>Index of the first record to display.</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>rowsPerPageOptions</td>
+          <td>Options for rows per page.</td>
+          <td>[10, 25, 50]</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>paginatorDataTypeLabel</td>
+          <td>Label for paginator data type.</td>
+          <td>Records</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>selectAllConfirmButtonLabel</td>
+          <td>Label for "Select All" confirm button.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>selectAllConfirmMsg</td>
+          <td>Message displayed when "Select All" is confirmed.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>currencyDisplayCode</td>
+          <td>Currency display code.</td>
+          <td>USD</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>minimumColumnWidth</td>
+          <td>Minimum width for columns.</td>
+          <td>-1</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>sortField</td>
+          <td>Field used for sorting in the grid.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>groupByField</td>
+          <td>Field used for grouping the grid.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>gridFilterConfig</td>
+          <td>Configuration for grid filters.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>filterDefinitions</td>
+          <td>Definitions for grid filters.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>userFiltersList</td>
+          <td>List of user filters applied to the grid.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>dateFormat</td>
+          <td>Date format used in the grid.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>lazyLoad</td>
+          <td>Event emitted for lazy loading of grid data.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>columnsChange</td>
+          <td>Event emitted when columns are changed.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>editComplete</td>
+          <td>Event emitted when an edit is completed in the grid.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>refreshData</td>
+          <td>Event emitted to refresh the grid data.</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
