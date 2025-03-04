@@ -1,0 +1,123 @@
+<div class="home">
+  <div class="intro">Quick Start Guide</div>
+  <div class="info">To begin using the UI Builder Component Library in your Angular projects, follow these simple steps:</div>
+  <div class="home__section">
+    <div class="header">Install the Library into Your Angular Project</div>
+    <div class="info">
+      You can install the library into your Angular project using npm. Navigate to your Angular project directory and run:
+      <code>npm install ui-builder-component-lib</code>
+    </div>
+  </div>
+  <div class="home__section">
+    <div class="header">Install The Required fonts</div>
+    <div class="info">
+      <ul>
+        <li>
+          You can download the Gilroy fonts from <a href="https://drive.google.com/file/d/17btm0HQ40a4mcA-ZLbMO-lyeftpqjgI3/view?usp=sharing" target="_blank">this link</a> and put
+          them in your assets folder.
+        </li>
+        <li>
+          For Calistoga and Material Icons, you can add the following lines to your index.html file:
+          <ul>
+            <li>&#60;link rel="preconnect" href="https://fonts.googleapis.com" /&#62;</li>
+            <li>&#60;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&#62;</li>
+            <li>&#60;link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" /&#62;</li>
+            <li>&#60;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /&#62;</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="home__section">
+    <div class="header">Using Assets from ui-builder-component-lib</div>
+    <div class="info">
+      <p>The <b>ui-builder-component-lib</b> library exports required assets that can be accessed from the following path:</p>
+      <pre><code>node_modules/ui-builder-component-lib/src/assets</code></pre>
+      <p>To include these assets in your project, you can configure your Angular workspace's <b>angular.json</b> file as follows:</p>
+      <pre><code>
+      &#123;
+        "assets": [
+          &#123;
+            "glob": "**/*",
+            "input": "node_modules/ui-builder-component-lib/src/assets",
+            "output": "/assets/"
+          &#125;
+        ]
+      &#125;
+      </code></pre>
+    </div>
+  </div>
+  <div class="home__section">
+    <div class="header">CSS Overrides</div>
+    <div class="info">
+      To integrate Angular Material components with the UI Builder design language, it's recommended to include specific CSS overrides in your project. Add the following code
+      snippet to your global styles.scss file:
+
+      <code>
+        <pre>
+          // Custom Theming for Angular Material
+          &#64;use '&#64;angular/material' as mat;
+
+          $custom-typography: mat.define-typography-config(
+            $font-family: 'Gilroy-Regular, serif',
+          );
+
+          &#64;include mat.core();
+
+          $ns-add-in-primary: mat.define-palette(mat.$indigo-palette);
+          $ns-add-in-accent: mat.define-palette(mat.$pink-palette);
+
+          $ns-add-in-warn: mat.define-palette(mat.$red-palette);
+
+          $ns-add-in-theme: mat.define-dark-theme(
+            (
+              color: (
+                primary: $ns-add-in-primary,
+                accent: $ns-add-in-accent,
+                warn: $ns-add-in-warn,
+              ),
+              typography: $custom-typography,
+              density: -12,
+            )
+          );
+
+          &#64;include mat.all-component-themes($ns-add-in-theme);
+
+          &#64;font-face&#123;
+            font-family: 'Gilroy-Medium';
+            src: url('assets/fonts/gilroy/Gilroy-Medium_0.ttf');
+          &#125;
+
+          &#64;font-face&#123;
+            font-family: 'Gilroy-SemiBold';
+            src: url('assets/fonts/gilroy/Gilroy-SemiBold_0.ttf');
+          &#125;
+
+          &#64;font-face&#123;
+            font-family: 'Gilroy-Regular';
+            src: url('assets/fonts/gilroy/Gilroy-Regular_0.ttf');
+          &#125;
+
+          &#64;font-face&#123;
+            font-family: 'Gilroy-Bold';
+            src: url('assets/fonts/gilroy/Gilroy-Bold_0.ttf');
+          &#125;
+
+          &#64;font-face&#123;
+            font-family: 'Gilroy-Thin';
+            src: url('assets/fonts/gilroy/Gilroy-Thin_0.ttf');
+          &#125;
+
+          &#64;import 'node_modules/ui-builder-component-lib/src/lib/shared-styles/styles.scss';
+        </pre>
+      </code>
+    </div>
+  </div>
+  <div class="home__section">
+    <div class="header">Start Using UI Builder Components</div>
+    <div class="info">
+      Once installed, you can start using the UI Builder Component Library's components in your Angular project. Import the required modules and use the components as needed within
+      your application.
+    </div>
+  </div>
+</div>
