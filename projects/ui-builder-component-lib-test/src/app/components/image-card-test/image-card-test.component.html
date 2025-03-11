@@ -1,0 +1,350 @@
+<!-- eslint-disable prettier/prettier -->
+<div class="detail">
+  <h2 class="intro">Image Card</h2>
+  <div class="info">A compact image card component for displaying visuals with style and simplicity.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Demo</th>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ imageCardCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-image-card
+            [imageUrl]="singleImageUploadedUrl"
+            [enableCropper]="true"
+            [cropperModalViewRef]="imageCropperModalRef"
+            [imageLabel]="'main'"
+            (removeImage)="onRemoveSingleImage()"
+            (photosUpload)="onUploadSingleImage($event)"
+          >
+          </lib-image-card>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ imageCardMultiCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-drag-and-drop
+            [cropperModalViewRef]="imageCropperModalRef"
+            [photos]="multiImagesUploadedUrls"
+            (dupPhotosDetect)="onDupPhotoDetected()"
+            (unsupportedFormatsDetect)="onUnsupportedFormatDetected($event)"
+            (maxUploadLimitExceeded)="onMaxUploadLimitExceeded()"
+            (photosUpload)="onUploadImages($event)"
+          >
+            <div class="image-cards">
+              <lib-image-card
+                [imageUrl]="multiImagesUploadedUrls[i]"
+                [photos]="multiImagesUploadedUrls"
+                [cropperModalViewRef]="imageCropperModalRef"
+                [maxNumOfPhotos]="2"
+                [imageLabel]="(i + 1).toString()"
+                (photosUpload)="onUploadImages($event)"
+                (removeImage)="onRemoveImage(i)"
+                (dupPhotosDetect)="onDupPhotoDetected()"
+                (unsupportedFormatsDetect)="onUnsupportedFormatDetected($event)"
+                (maxUploadLimitExceeded)="onMaxUploadLimitExceeded()"
+                *ngFor="let image of [1, 2]; let i = index"
+              >
+              </lib-image-card>
+            </div>
+          </lib-drag-and-drop>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ imageCardDisplayCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-image-card
+            [enableCropper]="true"
+            [cropperModalViewRef]="imageCropperModalRef"
+            (removeImage)="onRemoveSingleFixedImage()"
+            [imageUrl]="singleImagedUrl"
+            [imageLabel]="'main'"
+          ></lib-image-card>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ imageCardLoadingCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-image-card [loading]="true"></lib-image-card>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ imageCardDisabledCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-image-card [disabled]="true"></lib-image-card>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ImageCardModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Data type</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Input Properties -->
+        <tr>
+          <td>Input</td>
+          <td>imageUrl</td>
+          <td>URL of the image to display.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>imageLabel</td>
+          <td>Label for the image.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxNumOfPhotos</td>
+          <td>Maximum number of photos allowed.</td>
+          <td>n/a</td>
+          <td>undefined</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>loading</td>
+          <td>Indicates whether the component is loading.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Disables the component when set to true.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableDelete</td>
+          <td>Enables or disables the delete option.</td>
+          <td>n/a</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableCropper</td>
+          <td>Enables or disables the image cropper.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>imageFormats</td>
+          <td>Array of allowed image formats.</td>
+          <td>n/a</td>
+          <td>all available formats</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>cropperModalViewRef</td>
+          <td>Reference to the view container for the cropper modal.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableCompression</td>
+          <td>Enables or disables image compression.</td>
+          <td>n/a</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxImageSizeInBytes</td>
+          <td>Maximum size of the image in bytes.</td>
+          <td>n/a</td>
+          <td>2MB</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxImageCompressSizeInBytes</td>
+          <td>Maximum size of compressed image in bytes.</td>
+          <td>n/a</td>
+          <td>700KB</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>photoAspectRatio</td>
+          <td>Aspect ratio of the photo.</td>
+          <td>n/a</td>
+          <td>1 (square)</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>photos</td>
+          <td>Array of photos.</td>
+          <td>ImageModel</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disableUploadOnClick</td>
+          <td>Disables the upload action on click.</td>
+          <td>n/a</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>faceDetector</td>
+          <td>Function to detect faces in images.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>nsfwChecker</td>
+          <td>Function to check for NSFW content in images.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableNsfwCheck</td>
+          <td>Enables NSFW checks on the images.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableFaceCheck</td>
+          <td>Enables face detection on the images.</td>
+          <td>n/a</td>
+          <td>n/a</td>
+        </tr>
+
+        <!-- Output Properties -->
+        <tr>
+          <td>Output</td>
+          <td>photosUpload</td>
+          <td>Event emitted when photos are uploaded successfully.</td>
+          <td>ImageModel</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>photoUploadFail</td>
+          <td>Event emitted when photo upload fails.</td>
+          <td>string</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>dupPhotosDetect</td>
+          <td>Event emitted when duplicate photos are detected.</td>
+          <td>number</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>unsupportedFormatsDetect</td>
+          <td>Event emitted when unsupported formats are detected.</td>
+          <td>string</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>maxUploadLimitExceeded</td>
+          <td>Event emitted when the upload limit is exceeded.</td>
+          <td>null</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <h2>CSS Properties</h2>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>lib-image-card-container-width</td>
+        <td>84px</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-container-height</td>
+        <td>84px</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-container-background</td>
+        <td>#28252D</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-container-shadow</td>
+        <td>5.70371px 5.70371px 11.40741px 0px rgba(0, 0, 0, 0.32) inset, -3.42222px -3.42222px 4.56296px 0px rgba(255, 255, 255, 0.10) inset</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-add-btn-background</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>lib-image-card-add-btn-color</td>
+        <td>rgba(254, 60, 114, 1)</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-add-btn-shadow</td>
+        <td>0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-loader-background</td>
+        <td>linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-delete-btn-color</td>
+        <td>rgba(254, 60, 114, 1)</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-delete-btn-container-height</td>
+        <td>23px</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-delete-btn-container-width</td>
+        <td>23px</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-delete-btn-height</td>
+        <td>20px</td>
+      </tr>
+      <tr>
+        <td>lib-image-card-delete-btn-width</td>
+        <td>20px</td>
+      </tr>
+    </table>
+  </div>
+  <ng-container #imageCropperModal></ng-container>
+</div>
