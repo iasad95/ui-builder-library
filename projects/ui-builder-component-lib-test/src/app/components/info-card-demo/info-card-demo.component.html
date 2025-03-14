@@ -1,0 +1,108 @@
+<div class="detail">
+  <div class="intro">InfoCard</div>
+  <div class="info">
+    InfoCard is a flexible component designed to display and interact with an ItemSummary. It displays the ItemSummary's abbreviation, icon, or image (as appropriate), the header,
+    and any subheaders and detail lines. By customizing the second and third arguments of any header, subheader, or detail, the consumer can direct the InfoCard to display tooltips
+    or run relevant functions. The InfoCard is reactive to whether or not the ItemSummary is marked as disabled, and allows for generic execution of the ItemSummary's
+    actionHandler. Additionally, it provides an optional checkbox allowing each ItemSummary to be selected or deselected e.g. as part of a list.
+  </div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-info-card
+      class="component-demo"
+      [item]="item"
+      [checkable]="checkable"
+      [(checked)]="checked"
+      [selectable]="selectable"
+      (checkedChange)="handleDemoCheckedChange($event)"
+      (selected)="handleItemSelected($event)"
+    >
+    </lib-info-card>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InfoCardModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ infoCardDemo }}</code>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>item</td>
+        <td>The ItemSummary to display info from</td>
+        <td>ItemSummary</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>checkable</td>
+        <td>Determines whether a checkbox will be displayed on the InfoCard</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="checkable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>checked</td>
+        <td>Sets the state of the checkbox for an InfoCard</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="checked"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectable</td>
+        <td>
+          Indicates that this InfoCard can be selected by click. If true, selection of individual subelements (header, subheaders, details, actionHandler, checkbox) is disabled.
+        </td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="selectable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>checkedChange</td>
+        <td>Indicates that the checked value has changed, what the current checked value is, and which item was checked/unchecked</td>
+        <td>&#123;item: ItemSummary&#60;any&#62;, checked: boolean&#125;</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>selected</td>
+        <td>Indicates that the item was selected (for InfoCards with selectable set to true). The event contains the InfoCard's ItemSummary.</td>
+        <td>ItemSummary</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+    </table>
+  </div>
+</div>
