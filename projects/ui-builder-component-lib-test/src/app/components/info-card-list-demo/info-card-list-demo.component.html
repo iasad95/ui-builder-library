@@ -1,0 +1,155 @@
+<div class="detail">
+  <div class="intro">InfoCardList</div>
+  <div class="info">InfoCardList provides convenient handling for lists of InfoCards, including an optional filter control for long lists.</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-info-card-list
+      class="component-demo"
+      [itemList]="items"
+      [checkable]="checkable"
+      [(defaultCheckedValue)]="defaultCheckedValue"
+      [filterable]="filterable"
+      [maxCount]="maxCount"
+      [scrollable]="scrollable"
+      [itemType]="itemType"
+      [selectable]="selectable"
+      (itemSelected)="handleItemSelected($event)"
+      (checkedChange)="handleDemoCheckedChange($event)"
+    >
+    </lib-info-card-list>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InfoCardListModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>itemList</td>
+        <td>The list of ItemSummary to display info from</td>
+        <td>ItemSummary[]</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>checkable</td>
+        <td>Determines whether a checkbox will be displayed on the InfoCard</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="checkable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>defaultCheckedValue</td>
+        <td>Sets the state of the checkbox for the InfoCards</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="defaultCheckedValue"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>filterable</td>
+        <td>
+          Determines if a filter bar will be available for long lists. If true, the length of the list is capped at maxCount items and a filter bar appears allowing the user to
+          filter by the item's header. A message displays at the bottom of the list indicating that the list has been truncated.
+        </td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>true</td>
+        <td>
+          <lib-toggle [(ngModel)]="filterable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>maxCount</td>
+        <td>Determines the maximum number of records that will display in the list before a filter bar appears (if filterable is enabled).</td>
+        <td>number</td>
+        <td>false</td>
+        <td>10</td>
+        <td>
+          <input type="number" [(ngModel)]="maxCount" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>scrollable</td>
+        <td>Determines if a scrollbar will be present within the InfoCardList.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="scrollable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>itemType</td>
+        <td>
+          Determines what placeholder text the user sees in the filter bar for long lists, e.g. "Search <i>Contacts</i>". If not provided, the filter bar placeholder simply
+          displays "Search".
+        </td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="itemType" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectable</td>
+        <td>Indicates that the child InfoCards can be selected by click.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="selectable"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>checkedChange</td>
+        <td>Indicates that the search string has changed</td>
+        <td>&#123;item: ItemSummary&#60;any&#62;, checked: boolean&#125;</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>selected</td>
+        <td>Indicates that an item was selected (for InfoLists with selectable set to true). The event contains the selected InfoCard's ItemSummary.</td>
+        <td>ItemSummary</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ infoCardDemo }}</code>
+    </div>
+  </div>
+</div>
