@@ -1,0 +1,54 @@
+<div class="detail">
+  <div class="intro">InfoCardPlaceholder</div>
+  <div class="info">InfoCardPlaceholder is a loading indicator mimicking the appearance of one or more InfoCards.</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-info-card-placeholder class="component-demo" [avatar]="avatar" [count]="count"> </lib-info-card-placeholder>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InfoCardPlaceholderModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>avatar</td>
+        <td>Determines whether the placeholder includes a UI element corresponding to an InfoCard's abbreviation/icon/image.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [(ngModel)]="avatar"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>count</td>
+        <td>Determines how many placeholders are displayed.</td>
+        <td>number</td>
+        <td>false</td>
+        <td>2</td>
+        <td>
+          <input type="number" [(ngModel)]="count" />
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ infoCardPlaceholderCode }}</code>
+    </div>
+  </div>
+</div>
