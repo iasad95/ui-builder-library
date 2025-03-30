@@ -1,0 +1,275 @@
+<div class="detail">
+  <h2 class="intro">Date Field</h2>
+  <div class="info">A user-friendly date input for easy selection in the app.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <form class="form" [formGroup]="form">
+        <div>
+          <lib-input-date-field [readonly]="true" formControlName="dateReadOnly" label="Ready Only"></lib-input-date-field>
+          <lib-input-date-field [disabled]="true" formControlName="dateDisabled" label="Disabled"></lib-input-date-field>
+        </div>
+
+        <div>
+          <lib-input-date-field formControlName="dateInput" label="Date Picker"></lib-input-date-field>
+          <lib-input-date-field formControlName="dateDefaultValue" label="Date Picker Default Value"></lib-input-date-field>
+        </div>
+
+        <div>
+          <lib-input-date-field formControlName="pickerIcon" label="Date Picker Icon" [showIcon]="true"></lib-input-date-field>
+          <lib-input-date-field formControlName="dateTimePicker" label="Date Time Picker" [showTime]="true"></lib-input-date-field>
+        </div>
+
+        <div>
+          <lib-input-date-field formControlName="tmeOnly" [timeOnly]="true" label="Tme Picker"></lib-input-date-field>
+          <lib-input-date-field formControlName="pickerTimeIcon" label="Time Picker Icon" [timeOnly]="true" [showIcon]="true"></lib-input-date-field>
+        </div>
+
+        <div>
+          <lib-input-date-field formControlName="yearPicker" label="Year Picker" [view]="'year'" [showIcon]="true"></lib-input-date-field>
+          <lib-input-date-field formControlName="monthPicker" label="Month Picker" [view]="'month'" [showIcon]="true"></lib-input-date-field>
+        </div>
+        <div>
+          <lib-input-date-field formControlName="dateTWithoutActions" [hieActions]="true" label="Without Actions"></lib-input-date-field>
+        </div>
+        <div>
+          <lib-input-date-field [formControl]="control" [hieActions]="true" label="using formControl"></lib-input-date-field>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InputDateFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>label</td>
+          <td>The label displayed for the input date field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>defaultDate</td>
+          <td>The default date to display in the calendar.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxDate</td>
+          <td>The maximum selectable date in the calendar.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>minDate</td>
+          <td>The minimum selectable date in the calendar.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showTime</td>
+          <td>Indicates whether to show the time picker.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>hieActions</td>
+          <td>Enables HIE-specific actions in the date picker.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>readonly</td>
+          <td>Specifies if the input field is read-only.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>defaultDayHighlight</td>
+          <td>Highlights the default day in the calendar if set.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showIcon</td>
+          <td>Determines if a calendar icon should be shown next to the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>timeOnly</td>
+          <td>Indicates if the picker should only display time.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>view</td>
+          <td>Specifies the view type of the calendar.</td>
+          <td>date</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Specifies whether the input field is disabled.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>dateFormat</td>
+          <td>The format for displaying dates.</td>
+          <td>mm-dd-yy</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>placeholder</td>
+          <td>The placeholder text for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>appendTo</td>
+          <td>Specifies where to append the date picker popup. Can be a string, template, or element reference.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>stepMinute</td>
+          <td>The step interval for minutes in the time picker.</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>mask</td>
+          <td>The input mask for date or time formatting.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>styleClass</td>
+          <td>CSS classes to apply to the input field for styling.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>timeFormat</td>
+          <td>The format for displaying time.</td>
+          <td>hh:mm</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>focusEvent</td>
+          <td>Emits an event when the input field is focused or loses focus.</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td><code>--border-radius</code></td>
+        <td>100px</td>
+      </tr>
+      <tr>
+        <td><code>--input-field-margin</code></td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size-floated</code></td>
+        <td>11.0084px</td>
+      </tr>
+      <tr>
+        <td><code>--label-color</code></td>
+        <td>rgba(255, 255, 255, 0.5)</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-left</code></td>
+        <td>7px</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-top</code></td>
+        <td>19px</td>
+      </tr>
+      <tr>
+        <td><code>--label-float-position-top</code></td>
+        <td>-3px</td>
+      </tr>
+      <tr>
+        <td><code>--label-padding</code></td>
+        <td>0 7px</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-family</code></td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-style</code></td>
+        <td>normal</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-weight</code></td>
+        <td>400</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size</code></td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td><code>--label-line-height</code></td>
+        <td>160%</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-color</code></td>
+        <td>rgba(255, 255, 255, 0.5)</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-family</code></td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-size</code></td>
+        <td>16px</td>
+      </tr>
+      <tr>
+        <td><code>--input-border</code></td>
+        <td>none</td>
+      </tr>
+      <tr>
+        <td><code>--input-padding</code></td>
+        <td>11px 15px</td>
+      </tr>
+      <tr>
+        <td><code>--input-field-box-shadow</code></td>
+        <td>inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7), inset -2px -2px 8px rgba(203, 199, 209, 0.5)</td>
+      </tr>
+      <tr>
+        <td><code>--border</code></td>
+        <td>3px solid #fe3c72</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ dateFieldCode }}</code>
+    </div>
+  </div>
+</div>
