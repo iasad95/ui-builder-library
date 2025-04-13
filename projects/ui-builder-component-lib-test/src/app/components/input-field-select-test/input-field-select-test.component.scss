@@ -1,0 +1,40 @@
+:host {
+  --input-width: 100%;
+  --input-height: 48px;
+  --border-radius: 100px;
+  --input-icon-color: #fe3c72;
+  --input-font-color: rgba(255, 255, 255, 0.5);
+  --dropdown-background: linear-gradient(191.18deg, #27242c 61.33%, #0c0b0e 101.43%);
+  --input-font-family: 'Gilroy-Regular', serif;
+  --label-color: rgba(255, 255, 255, 0.5);
+  --input-field-box-shadow: inset 17px 22px 20px 2.5px rgba(17, 16, 20, 0.7), inset -2px -2px 8px rgba(203, 199, 209, 0.5);
+}
+
+.container {
+  width: 70%;
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 15px;
+  width: 370px;
+}
+
+.css-properties-container {
+  margin-top: 50px;
+  padding-bottom: 50px;
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  table,
+  tr,
+  th,
+  td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
