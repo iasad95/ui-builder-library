@@ -1,0 +1,222 @@
+<div class="detail">
+  <h2 class="intro">Timepicker</h2>
+  <div class="info">TimePicker is a component allowing users to select times using either manual entry or a dropdown.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <div class="form" [formGroup]="form">
+        <div>
+          <lib-input-time-field [startDate]="startDate" formControlName="fromTime" label="Timepicker" [showIcon]="true"></lib-input-time-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InputTimeFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>startDate</td>
+          <td>The date from which the time slots are generated.</td>
+          <td>two days from today</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>interval</td>
+          <td>The interval in minutes between time slots.</td>
+          <td>30 minutes</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>displaySlotTime</td>
+          <td>Whether to display the time difference between slots and the starting time.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>fromTime</td>
+          <td>The starting time used to generate slots relative to this value.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>format</td>
+          <td>The time format for displaying time slots, such as 'hh:mm aa'.</td>
+          <td>hh:mm</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>label</td>
+          <td>The label for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>readonly</td>
+          <td>Disables the input if true.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showIcon</td>
+          <td>Determines if an icon is shown beside the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Disables the component entirely if true.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>focusEvent</td>
+          <td>Emits a boolean value when the input field gains or loses focus.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>timeSlots</td>
+          <td>An array of generated time slots based on the provided start date and interval.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>filteredTimeSlots</td>
+          <td>The filtered list of time slots used for display in the dropdown.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>control</td>
+          <td>A reactive form control used to manage the selected time slot.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>focused</td>
+          <td>A flag indicating whether the input field is currently focused.</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><code>--border-radius</code></td>
+        <td>Border radius of input and it's container.</td>
+      </tr>
+      <tr>
+        <td><code> --input-field-margin </code></td>
+        <td>Margin around input field to separate other content like error messages.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size-floated</code></td>
+        <td>Label font size after floated to top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-color</code></td>
+        <td>Label text color.</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-left</code></td>
+        <td>Label position distance from left.</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-top</code></td>
+        <td>Label position distance from top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-float-position-top</code></td>
+        <td>Label top position after floated to top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-padding</code></td>
+        <td>Label padding to make space around.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-family</code></td>
+        <td>Font family for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-style</code></td>
+        <td>Font style for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-weight</code></td>
+        <td>Font weight for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size</code></td>
+        <td>Label font size.</td>
+      </tr>
+      <tr>
+        <td><code>--label-line-height</code></td>
+        <td>Label line height.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-color</code></td>
+        <td>Input text color.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-family</code></td>
+        <td>Font family for input field.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-size</code></td>
+        <td>Font size for input text.</td>
+      </tr>
+      <tr>
+        <td><code>--height</code></td>
+        <td>Height of the input field.</td>
+      </tr>
+      <tr>
+        <td><code>--width</code></td>
+        <td>Width of the input field.</td>
+      </tr>
+      <tr>
+        <td><code>--input-border</code></td>
+        <td>Border around input field only.</td>
+      </tr>
+      <tr>
+        <td><code>--input-padding</code></td>
+        <td>Input field space inside.</td>
+      </tr>
+      <tr>
+        <td><code>--box-shadow</code></td>
+        <td>Input field box shadow.</td>
+      </tr>
+      <tr>
+        <td><code>--border</code></td>
+        <td>Border around the full component.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>
+        {{ codeExample }}
+      </code>
+    </div>
+  </div>
+</div>
