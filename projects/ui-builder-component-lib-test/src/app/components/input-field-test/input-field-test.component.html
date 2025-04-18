@@ -1,0 +1,322 @@
+<div class="detail">
+  <h2 class="intro">Input Field</h2>
+  <div class="info">A concise input component for capturing user data in your application.</div>
+  <div class="detail-section">
+    <div class="header">Code</div>
+    <table class="nested-table" [formGroup]="form">
+      <tr>
+        <th>Type</th>
+        <th>Code</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input Text</td>
+        <td>
+          <code>{{ inputTextCode }}</code>
+        </td>
+        <td>
+          <lib-input-field formControlName="fullName" type="text" label="Name"></lib-input-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>
+          <code>{{ inputEmailCode }}</code>
+        </td>
+        <td>
+          <lib-input-field formControlName="email" type="email" label="Email"></lib-input-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Addresses Auto complete</td>
+        <td>
+          <code>{{ inputAddressCode }}</code>
+        </td>
+        <td>
+          <lib-input-field formControlName="googleAddress" label="Google Address" [enableGoogleAddress]="true"></lib-input-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Textarea</td>
+        <td>
+          <code>{{ inputTextareaCode }}</code>
+        </td>
+        <td>
+          <lib-input-field formControlName="textarea" label="Textarea" [textarea]="true"></lib-input-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Card Number</td>
+        <td>
+          <code>{{ inputCardNumberCode }}</code>
+        </td>
+        <td>
+          <lib-input-field-card-number formControlName="cardNumber" label="Card Number" [cardBrands]="cardBrands"></lib-input-field-card-number>
+        </td>
+      </tr>
+      <tr>
+        <td>Card Expiry</td>
+        <td>
+          <code>{{ inputCardExpiryCode }}</code>
+        </td>
+        <td>
+          <lib-input-field-card-expiry formControlName="cardExpiry" label="Card Expiry"></lib-input-field-card-expiry>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; InputFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>name</td>
+          <td>The name attribute for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>autocomplete</td>
+          <td>Autocomplete attribute for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>label</td>
+          <td>The label for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>placeholder</td>
+          <td>Placeholder text for the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>type</td>
+          <td>The type of the input field (e.g., 'text', 'email').</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>readonly</td>
+          <td>Specifies if the input field is read-only.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>focus</td>
+          <td>Determines if the input field should be focused on load.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableGoogleAddress</td>
+          <td>Enables Google address autocomplete for the input field.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>locationAutocompleteConfig</td>
+          <td>Configuration object for Google Maps location autocomplete.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>defaultLocation</td>
+          <td>Coordinates for the default location (latitude and longitude).</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>mask</td>
+          <td>Mask for formatting the input value.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>prefix</td>
+          <td>Prefix displayed before the input value.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>suffix</td>
+          <td>Suffix displayed after the input value.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxLength</td>
+          <td>The maximum number of characters allowed in the input field.</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>value</td>
+          <td>The value of the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>address</td>
+          <td>Address used when Google address autocomplete is enabled.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>textarea</td>
+          <td>Determines if the input field is a textarea.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>resize</td>
+          <td>Specifies if the textarea is resizable.</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>patterns</td>
+          <td>Defines custom patterns for input masking.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>trimWhiteSpace</td>
+          <td>Specifies if whitespace should be trimmed from the input.</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>locationChange</td>
+          <td>Emits an event when the location is changed using Google address autocomplete.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>keyDown</td>
+          <td>Emits an event when a key is pressed in the input field.</td>
+          <td>n/a</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>onBlur</td>
+          <td>Emits an event when the input field loses focus.</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><code>--border-radius</code></td>
+        <td>Border radius of input and it's container.</td>
+      </tr>
+      <tr>
+        <td><code> --input-field-margin </code></td>
+        <td>Margin around input field to separate other content like error messages.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size-floated</code></td>
+        <td>Label font size after floated to top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-color</code></td>
+        <td>Label text color.</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-left</code></td>
+        <td>Label position distance from left.</td>
+      </tr>
+      <tr>
+        <td><code>--label-position-top</code></td>
+        <td>Label position distance from top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-float-position-top</code></td>
+        <td>Label top position after floated to top.</td>
+      </tr>
+      <tr>
+        <td><code>--label-padding</code></td>
+        <td>Label padding to make space around.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-family</code></td>
+        <td>Font family for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-style</code></td>
+        <td>Font style for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-weight</code></td>
+        <td>Font weight for label.</td>
+      </tr>
+      <tr>
+        <td><code>--label-font-size</code></td>
+        <td>Label font size.</td>
+      </tr>
+      <tr>
+        <td><code>--label-line-height</code></td>
+        <td>Label line height.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-color</code></td>
+        <td>Input text color.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-family</code></td>
+        <td>Font family for input field.</td>
+      </tr>
+      <tr>
+        <td><code>--input-font-size</code></td>
+        <td>Font size for input text.</td>
+      </tr>
+      <tr>
+        <td><code>--height</code></td>
+        <td>Height of the input field.</td>
+      </tr>
+      <tr>
+        <td><code>--width</code></td>
+        <td>Width of the input field.</td>
+      </tr>
+      <tr>
+        <td><code>--input-border</code></td>
+        <td>Border around input field only.</td>
+      </tr>
+      <tr>
+        <td><code>--input-padding</code></td>
+        <td>Input field space inside.</td>
+      </tr>
+      <tr>
+        <td><code>--box-shadow</code></td>
+        <td>Input field box shadow.</td>
+      </tr>
+      <tr>
+        <td><code>--border</code></td>
+        <td>Border around the full component.</td>
+      </tr>
+    </table>
+  </div>
+</div>
