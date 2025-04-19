@@ -1,0 +1,67 @@
+<div class="detail">
+  <h2 class="intro">JSON Editor</h2>
+  <div class="info">A concise JSON editor component for easy manipulation and visualization of JSON data in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-json-editor [data]="data" [expandAll]="true" [language]="activeLanguage" [mode]="'tree'"></lib-json-editor>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LibJsonEditorModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ jsonEditorTemplate }}</code>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>data</td>
+        <td>The data you want to display.</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>expandAll</td>
+        <td>Expand/collapse JSON data, with a value of true/false.</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>language</td>
+        <td>The language to display the JSON data, e.g., 'en', 'es', 'fr'.</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>mode</td>
+        <td>Set the mode to 'edit' or 'view'.</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>search</td>
+        <td>If true, a search bar will be displayed in the editor.</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>mainMenuBar</td>
+        <td>If true, the main menu bar (for features like undo, redo, etc.) will be shown.</td>
+        <td>false</td>
+      </tr>
+    </table>
+  </div>
+</div>
