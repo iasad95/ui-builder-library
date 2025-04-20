@@ -1,0 +1,144 @@
+<div class="detail">
+  <h2 class="intro">List</h2>
+  <div class="info">A concise list component for organizing and displaying information in a clear and structured manner.</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <div class="detail-section">
+      <div class="header">Required Imports</div>
+      <div>import &#123; ListModule &#125; from 'ui-builder-component-lib';</div>
+    </div>
+    <div class="detail-section">
+      <div class="header">Input and Output Properties</div>
+      <table class="nested-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Input</td>
+            <td>listItems</td>
+            <td>An array of <code>ListItemModel</code> objects representing the items to display in the list.</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td>Input</td>
+            <td>hideMenuIcon</td>
+            <td>If true, the menu icon for each list item will be hidden.</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>Input</td>
+            <td>listTitle</td>
+            <td>The title of the list displayed at the top.</td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td>Input</td>
+            <td>disableTranslation</td>
+            <td>If true, disables translation for the list items.</td>
+            <td>false</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Css Variables</th>
+        <th>Demo</th>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ listItemsCode }}</code>
+        </td>
+        <td></td>
+        <td class="last-td demo-container">
+          <lib-list [listItems]="listItems" [disableTranslation]="true"></lib-list>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ listItems2Code }}</code>
+        </td>
+        <td>
+          <table class="nested-table">
+            <tr>
+              <td><code>--lib-list-title-color</code></td>
+              <td>#A8A8A8</td>
+              <td>'My Lifestyle' color</td>
+            </tr>
+            <tr>
+              <td><code>--lib-list-item-action-color</code></td>
+              <td>#666</td>
+              <td>'Add' color</td>
+            </tr>
+          </table>
+        </td>
+        <td class="last-td demo-container">
+          <lib-list [listItems]="listItems2" [listTitle]="'My Lifestyle'" [disableTranslation]="true"></lib-list>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ listItems2Code }}</code>
+        </td>
+        <td></td>
+        <td class="last-td demo-container">
+          <lib-list-toggle [listItems]="listToggleItems" [disableTranslation]="true"></lib-list-toggle>
+        </td>
+      </tr>
+    </table>
+
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td><code>--lib-list-title-font-family</code></td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-title-font-size</code></td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-label-color</code></td>
+        <td>#A8A8A8</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-label-font-family</code></td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-label-font-size</code></td>
+        <td>14px</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-value-font-size</code></td>
+        <td>12px</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-value-font-family</code></td>
+        <td>'Gilroy-Regular', serif</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-arrow-icon-color</code></td>
+        <td>#F7416E</td>
+      </tr>
+      <tr>
+        <td><code>--lib-list-item-value-icon-colorr</code></td>
+        <td>#F7416E</td>
+      </tr>
+    </table>
+  </div>
+</div>
