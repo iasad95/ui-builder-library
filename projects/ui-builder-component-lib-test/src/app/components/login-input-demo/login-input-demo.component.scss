@@ -1,0 +1,25 @@
+:host {
+  .input-error {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 2px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .custom-input {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px 0 0;
+  }
+  .iti--allow-dropdown .iti__flag-container {
+    right: auto;
+    left: 2px !important;
+    top: 3px !important;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="detail">
+  <h2 class="intro">Phone Number / Email or Username</h2>
+  <div class="info">An input field used for entering phone numbers or email/username using a toggle button.</div>
+
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <form [formGroup]="loginForm">
+      <div class="custom-input">
+        <lib-login-input [icons]="icons" [usernameLabel]="'Username or email'" [phoneNumberPlaceHolder]="'Phone Number'" formControlName="username"></lib-login-input>
+      </div>
+    </form>
+    <p>Current value: {{ loginForm.get('username').value }}</p>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LoginInputModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>usernameLabel</td>
+          <td>The label displayed for the username input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>phoneNumberPlaceHolder</td>
+          <td>The placeholder text for the phone number input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>icons</td>
+          <td>An object of type <code>AuthIcons</code> representing the icons used in the login input field.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
