@@ -1,0 +1,666 @@
+<div class="detail">
+  <h2 class="intro">Google Maps</h2>
+  <div class="info">Google Maps along with CRUD implementations</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="demo-container">
+      <lib-map
+        #libMaps
+        [mapType]="mapType"
+        [searchMapsString]="searchMapsString"
+        [disableNotification]="disableNotification.value"
+        [markers]="locationsMarkers"
+        [enableDrag]="enableDrag.value"
+        [initialLocation]="initialLocation"
+        (mapActionEvent)="onMapActionEvent($event)"
+      ></lib-map>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LibMapModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Here is how to import Maps module</div>
+    <div class="code-section">
+      <code>{{ importCode }}</code>
+    </div>
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ mapCode }}</code>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>disableNotification</td>
+        <td>Flag to enable or disable notifications.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td><lib-toggle class="map-toggle-option" [formControl]="disableNotification"></lib-toggle></td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>markers</td>
+        <td>Array of map markers as MapMarkerModel objects.</td>
+        <td>MapMarkerModel[]</td>
+        <td>false</td>
+        <td>[]</td>
+        <td>{{ demoMarkers }}</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>initialLocation</td>
+        <td>Initial geographical location as PositionModel.</td>
+        <td>PositionModel</td>
+        <td>false</td>
+        <td>DEFAULT_POSITION</td>
+        <td>{{ initialLocationDemo }}</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>mapType</td>
+        <td>Type of map to display, defined by google.maps.MapTypeId.</td>
+        <td>google.maps.MapTypeId</td>
+        <td>false</td>
+        <td>undefined</td>
+        <td>google.maps.MapTypeId.ROADMAP</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>enableDrag</td>
+        <td>Boolean to enable or disable dragging of map markers.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td><lib-toggle class="map-toggle-option" [formControl]="enableDrag"></lib-toggle></td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>locations</td>
+        <td>Array of location strings.</td>
+        <td>string[]</td>
+        <td>false</td>
+        <td>[]</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>searchMapsString</td>
+        <td>Search string used for querying map locations.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td><lib-input-field type="text" id="searchMapsString" [(ngModel)]="searchMapsString" placeholder="Search" #search></lib-input-field></td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>mapOptions</td>
+        <td>Google Maps options.</td>
+        <td>google.maps.MapOptions</td>
+        <td>false</td>
+        <td>DEFAULT_MAP_OPTIONS</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>directions$</td>
+        <td>Observable stream of map directions.</td>
+        <td>Observable 'google.maps.DirectionsResult'</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>directionRenderOptions</td>
+        <td>Options for rendering directions on the map.</td>
+        <td>google.maps.DirectionsRendererOptions</td>
+        <td>false</td>
+        <td>{{ polyOptions }}</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>mapActionEvent</td>
+        <td>
+          Emits various map-related events through a single output. The 'type' field in the emitted event defines which action occurred, while other fields carry the relevant data.
+        </td>
+        <td>MapActionEvent</td>
+        <td>false</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>mapLoaded</td>
+        <td>Emits a boolean when the map is fully loaded.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>markerClick</td>
+        <td>Emits the marker object when a marker is clicked.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>markerUpdated</td>
+        <td>Emits an array of markers when the markers are updated.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>mapsAlertsEvent</td>
+        <td>Emits alerts related to the map (e.g., location added/deleted).</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>updatedLocations</td>
+        <td>Emits updated location strings after a location change.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>setMapsSearch</td>
+        <td>Emits the search string for map searches.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>setDeleteLocationIndex</td>
+        <td>Emits the index of the location to be deleted.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>setEditLocationIndex</td>
+        <td>Emits the index of the location to be edited.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>mapClick</td>
+        <td>Emits a Google Maps mouse event when the map is clicked.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section map-action-event">
+    <h2 class="map-action-event__heading">mapActionEvent</h2>
+    <div>
+      The
+      <b>mapActionEvent</b>
+      is emitted with various types of actions, each distinguished by the
+      <b>type</b>
+      field. The payload of the event contains relevant data for each action.
+    </div>
+    <div>Below is the detailed description of each possible action.</div>
+    <h3>Properties</h3>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>type</b></td>
+          <td><b>MapActionTypes</b></td>
+          <td>Yes</td>
+          <td>Determines the type of action being emitted.</td>
+        </tr>
+        <tr>
+          <td><b>mapLoaded</b></td>
+          <td><b>boolean</b></td>
+          <td>No</td>
+          <td>True when the map has fully loaded.</td>
+        </tr>
+        <tr>
+          <td><b>markerClick</b></td>
+          <td><b>MapMarkerModel</b></td>
+          <td>No</td>
+          <td>Contains the clicked marker's data.</td>
+        </tr>
+        <tr>
+          <td><b>markerUpdated</b></td>
+          <td><b>MapMarkerModel[]</b></td>
+          <td>No</td>
+          <td>An array of updated markers.</td>
+        </tr>
+        <tr>
+          <td><b>mapsAlertsEvent</b></td>
+          <td><b>MapsAlertModel</b></td>
+          <td>No</td>
+          <td>Contains the details of any map-related alerts.</td>
+        </tr>
+        <tr>
+          <td><b>updatedLocations</b></td>
+          <td><b>string[]</b></td>
+          <td>No</td>
+          <td>An array of updated location names.</td>
+        </tr>
+        <tr>
+          <td><b>setMapsSearch</b></td>
+          <td><b>string</b></td>
+          <td>No</td>
+          <td>Search string for filtering map results.</td>
+        </tr>
+        <tr>
+          <td><b>setDeleteLocationIndex</b></td>
+          <td><b>number</b></td>
+          <td>No</td>
+          <td>Index of the location to be deleted.</td>
+        </tr>
+        <tr>
+          <td><b>setEditLocationIndex</b></td>
+          <td><b>number</b></td>
+          <td>No</td>
+          <td>Index of the location to be edited.</td>
+        </tr>
+        <tr>
+          <td><b>mapClick</b></td>
+          <td><b>google.maps.MapMouseEvent</b></td>
+          <td>No</td>
+          <td>Data from a click event on the map.</td>
+        </tr>
+        <tr>
+          <td><b>mapCenterChanged</b></td>
+          <td><b>google.maps.LatLngLiteral</b></td>
+          <td>No</td>
+          <td>The new center position of the map.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 class="map-action-event__heading">Example usage</h2>
+    <div>
+      <div class="">HTML</div>
+      <pre><code [highlight]="mapActionEventCode['html']" language="html" lineNumbers></code></pre>
+    </div>
+    <div>
+      <div class="">Typescript</div>
+      <pre><code [highlight]="mapActionEventCode['typescript']" language="typescript" lineNumbers></code></pre>
+    </div>
+
+    <div class="action-types">
+      <div class="action-types__heading">
+        <h2>Action Types and Associated Fields:</h2>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>1. mapLoaded</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MapLoaded</div>
+          <p><strong>Description:</strong> Emitted when the map has fully loaded. The <b>mapLoaded</b> field in the event payload is set to <b>true</b>.</p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MapLoaded</b></td>
+                <td>Yes</td>
+                <td>The action type for the map loading event.</td>
+              </tr>
+              <tr>
+                <td><b>mapLoaded</b></td>
+                <td><b>boolean</b></td>
+                <td>No</td>
+                <td>Set to <b>true</b> when the map is loaded.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['mapLoaded']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>2. markerClick</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MarkerClick</div>
+          <p><strong>Description:</strong> Emitted when a marker is clicked. The <b>markerClick</b> field in the event payload contains the clicked marker's data.</p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MarkerClick</b></td>
+                <td>Yes</td>
+                <td>The action type for the marker click event.</td>
+              </tr>
+              <tr>
+                <td><b>markerClick</b></td>
+                <td><b>MapMarkerModel</b></td>
+                <td>No</td>
+                <td>Contains the clicked marker's data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['markerClick']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>3. markerUpdated</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MarkerUpdated</div>
+          <p><strong>Description:</strong> Emitted when markers are updated. The <b>markerUpdated</b> field in the event payload contains the array of updated markers.</p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MarkerUpdated</b></td>
+                <td>Yes</td>
+                <td>The action type for the marker update event.</td>
+              </tr>
+              <tr>
+                <td><b>markerUpdated</b></td>
+                <td><b>MapMarkerModel[]</b></td>
+                <td>No</td>
+                <td>An array of updated marker data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['markerUpdated']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>4. mapsAlertsEvent</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MapsAlertsEvent</div>
+          <p><strong>Description:</strong> Emitted when a map alert event occurs. The <b>mapsAlertsEvent</b> field in the event payload contains details of the alert.</p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MapsAlertsEvent</b></td>
+                <td>Yes</td>
+                <td>The action type for map alerts.</td>
+              </tr>
+              <tr>
+                <td><b>mapsAlertsEvent</b></td>
+                <td><b>MapsAlertModel</b></td>
+                <td>No</td>
+                <td>Contains the alert details for the map event.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['mapsAlertsEvent']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>5. updatedLocations</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.UpdatedLocations</div>
+          <p>
+            <strong>Description:</strong> Emitted when the map's locations are updated. The <b>updatedLocations</b> field in the event payload contains the array of updated
+            location names or IDs.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.UpdatedLocations</b></td>
+                <td>Yes</td>
+                <td>The action type for location updates.</td>
+              </tr>
+              <tr>
+                <td><b>updatedLocations</b></td>
+                <td><b>string[]</b></td>
+                <td>No</td>
+                <td>An array of updated location names or IDs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['updatedLocations']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>6. setMapsSearch</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.SetMapsSearch</div>
+          <p>
+            <strong>Description:</strong> Emitted when a search string is set for map filtering or searching. The <b>setMapsSearch</b> field in the event payload contains the
+            search string.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.SetMapsSearch</b></td>
+                <td>Yes</td>
+                <td>The action type for setting the search string.</td>
+              </tr>
+              <tr>
+                <td><b>setMapsSearch</b></td>
+                <td><b>string</b></td>
+                <td>No</td>
+                <td>The search string to filter map data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['setMapsSearch']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>7. setDeleteLocationIndex</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.SetDeleteLocationIndex</div>
+          <p>
+            <strong>Description:</strong> Emitted when a specific location index is selected for deletion. The <b>setDeleteLocationIndex</b> field in the event payload contains the
+            index of the location to be deleted.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.SetDeleteLocationIndex</b></td>
+                <td>Yes</td>
+                <td>The action type for deleting a location.</td>
+              </tr>
+              <tr>
+                <td><b>setDeleteLocationIndex</b></td>
+                <td><b>number</b></td>
+                <td>No</td>
+                <td>The index of the location to be deleted.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['setDeleteLocationIndex']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>8. setEditLocationIndex</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.SetEditLocationIndex</div>
+          <p>
+            <strong>Description:</strong> Emitted when a specific location index is selected for editing. The <b>setEditLocationIndex</b> field in the event payload contains the
+            index of the location to be edited.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.SetEditLocationIndex</b></td>
+                <td>Yes</td>
+                <td>The action type for editing a location.</td>
+              </tr>
+              <tr>
+                <td><b>setEditLocationIndex</b></td>
+                <td><b>number</b></td>
+                <td>No</td>
+                <td>The index of the location to be edited.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['setEditLocationIndex']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>9. mapClick</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MapClick</div>
+          <p>
+            <strong>Description:</strong> Emitted when a click event occurs on the map. The <b>mapClick</b> field in the event payload contains the details of the map mouse event,
+            such as the location where the click occurred.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MapClick</b></td>
+                <td>Yes</td>
+                <td>The action type for map click events.</td>
+              </tr>
+              <tr>
+                <td><b>mapClick</b></td>
+                <td><b>google.maps.MapMouseEvent</b></td>
+                <td>No</td>
+                <td>Details of the map click event, including the location where the click occurred.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['mapClick']" language="json"></code></pre>
+        </div>
+      </div>
+      <div class="action-types__action">
+        <div class="action-types__description">
+          <h3>10. mapCenterChanged</h3>
+          <div><b>Type:</b>&nbsp;MapActionTypes.MapCenterChanged</div>
+          <p>
+            <strong>Description:</strong> Emitted when the center of the map changes. The <b>mapCenterChanged</b> field in the event payload contains the new center coordinates of
+            the map as a <b>LatLngLiteral</b> object.
+          </p>
+          <table class="nested-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Required</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>type</b></td>
+                <td><b>MapActionTypes.MapCenterChanged</b></td>
+                <td>Yes</td>
+                <td>The action type for map center change events.</td>
+              </tr>
+              <tr>
+                <td><b>mapCenterChanged</b></td>
+                <td><b>google.maps.LatLngLiteral</b></td>
+                <td>No</td>
+                <td>The new center coordinates of the map.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="action-types__example">
+          <h3>Example</h3>
+          <pre><code [highlight]="mapActionEventsSample['mapCenterChanged']" language="json"></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

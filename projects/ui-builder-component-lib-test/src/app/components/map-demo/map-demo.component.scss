@@ -1,0 +1,99 @@
+.button-container {
+  display: grid;
+  max-width: 300px;
+}
+
+.maps-api {
+  width: 500px;
+  margin-right: 15px;
+}
+
+.detail {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+:host {
+  width: 100%;
+}
+
+dt {
+  font-weight: bold;
+}
+
+.interact {
+  display: flex;
+  align-items: center;
+}
+
+.m-b-20px {
+  margin-bottom: 20px !important;
+}
+
+.demo-container {
+  width: 90%;
+}
+
+.key-section {
+  flex-direction: row;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.map-action-event {
+  &__heading {
+    margin: 20px 0;
+  }
+}
+
+.map-toggle-option {
+  --knob-color: white;
+}
+
+.action-types {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__heading {
+    display: flex;
+    justify-content: center;
+
+    h2 {
+      width: max-content;
+    }
+  }
+
+  &__action {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  &__description {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__example {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    code {
+      text-align: start;
+    }
+  }
+  &__payload {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: max-content;
+    align-items: start;
+  }
+}
