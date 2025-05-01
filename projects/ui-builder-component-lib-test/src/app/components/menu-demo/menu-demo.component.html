@@ -1,0 +1,150 @@
+<div class="detail">
+  <h2 class="intro">Menu</h2>
+  <div class="info">A menu component enables easy navigation within a web application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Demo</th>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ menuBtnCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-menu-btn
+            [menuBtnImgUrl]="'https://semantic-ui.com/images/avatar2/large/matthew.png'"
+            [hasNotification]="true"
+            [disableTranslation]="true"
+            [menuBtnNotificationIconUrl]="'assets/icons/notification-pop.svg'"
+            [menuItems]="menuItems"
+          >
+          </lib-menu-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ nestedMenuBtnCode }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-menu-btn [disableTranslation]="true" [menuItems]="nestedMenuItems">Nested Menu Btn</lib-menu-btn>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <code>{{ menuBtnCodeWithTemplate }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-menu-btn [disableTranslation]="true" [menuItems]="menuItemsTemplate">Menu item template</lib-menu-btn>
+          <ng-template #menuItemTemplate>
+            <img src="assets/icons/practise-mode.svg" alt="test" />
+            <p>template</p>
+          </ng-template>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ButtonsModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>hasNotification</td>
+        <td>Determines if a notification indicator should be displayed. Default is false.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>disableTranslation</td>
+        <td>Disables automatic translation for the menu button labels or items. Default is false.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnNotificationIconUrl</td>
+        <td>URL for the notification icon displayed on the menu button. If not set, no icon will be displayed.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuItems</td>
+        <td>An array of menu items (LibMenuItem[]) that defines the structure and content of the menu.</td>
+        <td>LibMenuItem[]</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnIcon</td>
+        <td>Indicates whether the button displays an icon.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnTooltip</td>
+        <td>The tooltip text displayed when hovering over the button.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnTooltipPosition</td>
+        <td>Position of the tooltip, default is 'below'.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnIconName</td>
+        <td>Name of the icon to be displayed in the button.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuBtnImgUrl</td>
+        <td>URL of the image to be displayed on the button.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>menuDirection</td>
+        <td>Direction of the menu ('ltr' for left-to-right, 'rtl' for right-to-left).</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>listItem</td>
+        <td>An object representing the list item associated with the button.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>listItemIndex</td>
+        <td>The index of the list item.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectable</td>
+        <td>Indicates whether the list item is selectable.</td>
+      </tr>
+    </table>
+  </div>
+</div>
