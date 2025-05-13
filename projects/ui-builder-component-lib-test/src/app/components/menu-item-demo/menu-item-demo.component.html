@@ -1,0 +1,84 @@
+<div class="detail">
+  <div class="intro">LibMenuItem</div>
+  <div class="info">LibMenuItem is a simple generic class holding a label and a generically typed value.</div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+      </tr>
+      <tr>
+        <td>templateRef</td>
+        <td>A reference to a template that can be used to render custom content for the MenuItem.</td>
+        <td>TemplateRef&#60;HTMLElement&#62;</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>The title text displayed for the MenuItem.</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>titlePrefix</td>
+        <td>Additional text that is prefixed to the title of the MenuItem.</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>titleSuffix</td>
+        <td>Additional text that is suffixed to the title of the MenuItem.</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>iconUrl</td>
+        <td>The URL of an icon image to be displayed alongside the MenuItem.</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>iconName</td>
+        <td>The name of an icon to be displayed alongside the MenuItem (alternative to iconUrl).</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>cssClass</td>
+        <td>A CSS class to be applied to the MenuItem for styling purposes.</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>A boolean indicating whether the MenuItem is currently active.</td>
+        <td>boolean</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>A boolean indicating whether the MenuItem is disabled.</td>
+        <td>boolean</td>
+      </tr>
+      <tr>
+        <td>separator</td>
+        <td>A boolean indicating whether the MenuItem is a separator, used to visually separate groups of items.</td>
+        <td>boolean</td>
+      </tr>
+      <tr>
+        <td>subMenu</td>
+        <td>An array of LibMenuItem objects representing a sub-menu associated with the MenuItem.</td>
+        <td>LibMenuItem[]</td>
+      </tr>
+      <tr>
+        <td>listItem</td>
+        <td>An unknown type representing additional data associated with the MenuItem.</td>
+        <td>unknown</td>
+      </tr>
+      <tr>
+        <td>listItemIndex</td>
+        <td>An index indicating the position of the MenuItem in a list.</td>
+        <td>number</td>
+      </tr>
+      <tr>
+        <td>command</td>
+        <td>A callback function to be executed when the MenuItem is triggered.</td>
+        <td>(event?: LibMenuItem) => void</td>
+      </tr>
+    </table>
+  </div>
+</div>
