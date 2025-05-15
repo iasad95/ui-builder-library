@@ -1,0 +1,161 @@
+<div class="detail">
+  <div class="intro">Multiselect</div>
+  <div class="info">
+    ExpansionPanel is a wrapper around Angular Material's MatExpansionPanel with a standardized UI Builder look and feel. It supports a conventional expansion behavior as well as a
+    "flyout" style menu. When there are more than 50 items in the list it will switch to search mode with allows the user to filter options based on a non-case sensitive includes
+    on the select option label.
+  </div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-multiselect
+      class="component-demo"
+      [headerIconTray]="headerIconTray"
+      [optionGroups]="optionGroups"
+      [selectedOptions]="selectedOptions"
+      [dialogTitle]="dialogTitle"
+      [showDialogMessage]="showDialogMessage"
+      [submitted]="submitted"
+      [disabled]="disabled"
+      [required]="required"
+      [optionDeleteConfirmationObsv]="confirmationObservable"
+      (optionDelete)="handleOptionDeleted($event)"
+    >
+    </lib-multiselect>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; MultiselectModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dialogTitle</td>
+        <td>The title of the modal that opens when the Add button is clicked.</td>
+        <td>string</td>
+        <td>true</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="dialogTitle" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>options</td>
+        <td>The available options to select from.</td>
+        <td>SelectOption[]</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectedOptions</td>
+        <td>The selected options to select from.</td>
+        <td>SelectOption[]</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>submitted</td>
+        <td>Tells the MultiSelect if the form has been submitted. If true, and if required is also true, the UI is updated to indicate the error and display an error message.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="submitted"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>required</td>
+        <td>Tells the MultiSelect if this is a required field. If true, an indicator displays next to the label.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="required"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>disabled</td>
+        <td>Tells the MultiSelect if this is a disabled field.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="disabled"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showDialogMessage</td>
+        <td>Toggle show/hide of dialog message.</td>
+        <td>string</td>
+        <td>true</td>
+        <td>true</td>
+        <td>
+          <lib-toggle [(ngModel)]="showDialogMessage"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>selectedOptionsChange</td>
+        <td>Emits an event indicating that the selected options have changed and containing the new set of selected options.</td>
+        <td>SelectOption[]</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>optionGroups</td>
+        <td>An array of option groups, each containing a group name and an array of options of type <code>SelectOption</code>.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>fieldName</td>
+        <td>The name of the field for reference in forms and events.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showRequiredIndicator</td>
+        <td>Boolean to display an asterisk (*) if the field is required.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>optionDeleteConfirmationObsv</td>
+        <td>An observable for confirming the deletion of an option.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>headerIconTray</td>
+        <td>An array of <code>ItemActionHandler</code> objects for handling icon actions in the dialog header.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>optionDelete</td>
+        <td>An event emitted when an option is deleted, containing the field name and the deleted option.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ multiSelectCode }}</code>
+    </div>
+  </div>
+</div>
