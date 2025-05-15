@@ -1,0 +1,109 @@
+<div class="detail">
+  <div class="intro">MultiField</div>
+  <div class="info">MultiField is an editable list component where each row can consist of one or more fields of various types.</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-multi-field
+      class="component-demo"
+      [formFieldControl]="formControl"
+      [config]="config"
+      [maxLength]="3"
+      [currencySymbol]="currencySymbol"
+      [errorMessage]="errorMessage"
+      [disabled]="disabled"
+      [rowDeleteConfirmationObsv]="confirmationObservable"
+      (rowEdit)="handleRowEdited($event)"
+      (rowDelete)="handleRowDeleted($event)"
+      (valueChanges)="handleValueChanged($event)"
+    >
+    </lib-multi-field>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; MultiFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>fieldName</td>
+          <td>The name of the field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>config</td>
+          <td>Configuration object for form section variables, defining field settings.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>formFieldControl</td>
+          <td>The form control associated with this component.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>newRowText</td>
+          <td>Text to display on the button for adding a new row.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>useTooltips</td>
+          <td>Boolean to enable or disable tooltips for fields.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Determines if the entire component is disabled.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>rowDeleteConfirmationObsv</td>
+          <td>An observable that tracks row deletion confirmation actions.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxLength</td>
+          <td>The maximum length allowed for the field's input value.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>currencySymbol</td>
+          <td>Defines the currency symbol to use in currency input fields.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>errorMessage</td>
+          <td>Custom error message to display if validation fails.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>editDisabled</td>
+          <td>Boolean to disable row editing functionality.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>rowDelete</td>
+          <td>Event emitted when a row is deleted, sending the field name and row index.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>rowEdit</td>
+          <td>Event emitted when a row is being edited, containing form controls and the configuration object.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>valueChanges</td>
+          <td>Event emitted when there are value changes in the fields, passing the updated form control and configuration.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
