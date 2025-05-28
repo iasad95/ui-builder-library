@@ -1,0 +1,9 @@
+:host {
+  overflow-y: scroll;
+}
+
+.button-container {
+  max-width: 70%;
+  gap: 20px;
+  display: flex;
+}

@@ -1,0 +1,53 @@
+<lib-notification-banner [notification$]="notification$"></lib-notification-banner>
+
+<div class="detail">
+  <div class="intro">Notification Banner</div>
+  <div class="info">
+    Notification Banner's main use is for temparary messages to the user. Typically alerting them to a status of an uncertain operation. Selector is lib-notification-banner.
+  </div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+
+    <div class="button-container">
+      <button class="button" (click)="handleSuccessClick()">Trigger Success</button>
+      <button class="button" (click)="handleWarnClick()">Trigger Warning</button>
+      <button class="button" (click)="handleErrorClick()">Trigger Error</button>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; NotificationBannerModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <td>Input</td>
+      <td>notification$</td>
+      <td>Used for showing the notification banner.</td>
+      <td>
+        <code>{{ 'Observable<{ message: string; type: NotificationBannerType }>' }}</code>
+      </td>
+      <td>true</td>
+      <td>n/a</td>
+      <td>n/a</td>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>
+        {{ codeExample }}
+      </code>
+    </div>
+  </div>
+</div>
