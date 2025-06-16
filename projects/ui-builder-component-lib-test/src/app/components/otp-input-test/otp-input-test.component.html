@@ -1,0 +1,55 @@
+<div class="detail">
+  <h2 class="intro">OTP Input Field</h2>
+  <div class="info">An OTP input field for one-time password code entry and verification.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-otp-input [formCtrl]="code" [length]="length"></lib-otp-input>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; OtpInputModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>length</td>
+        <td>Sets the number of boxes for otp code.</td>
+        <td>number</td>
+        <td>true</td>
+        <td>6</td>
+        <td>
+          <input type="number" [(ngModel)]="length" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>placeholder</td>
+        <td>The placeholder text for each OTP input field.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>formCtrl</td>
+        <td>The FormControl to bind the OTP input value.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ otpInputCode }}</code>
+    </div>
+  </div>
+</div>
