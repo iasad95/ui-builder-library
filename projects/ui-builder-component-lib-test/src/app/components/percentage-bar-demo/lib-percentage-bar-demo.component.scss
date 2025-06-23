@@ -1,0 +1,13 @@
+$fromb-color: #fe3c7280;
+$tob-color: #e1556180;
+$from-color: #fe3c72;
+$to-color: #e15561;
+$from-to-bg-color: linear-gradient(90deg, $fromb-color 0%, $tob-color 100%);
+$from-to-fg-color: linear-gradient(90deg, $from-color 0%, $to-color 100%);
+:host {
+  --lib-percentage-inner-background-color: #{$from-to-fg-color};
+  --lib-percentage-buffer-background-color: #{$from-to-bg-color};
+  --lib-percentage-inner-box-shadow: 0 0 8px 3px #{$fromb-color};
+  --lib-percentage-height: 20px;
+  --lib-percentage-width: 500px;
+}

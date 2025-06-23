@@ -1,0 +1,80 @@
+<div class="detail">
+  <h2 class="intro">Percentage Bar</h2>
+  <div class="info">A compact and interactive percentage bar.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-percentage-bar [value]="90">90% Counter-Strike Downloaded</lib-percentage-bar>
+    </div>
+    <div class="detail-section">
+      <div class="header">Component Properties</div>
+      <table class="nested-table">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+        <tr>
+          <td>
+            <code>--lib-percentage-width</code>
+          </td>
+          <td>Width of Percentage Bar</td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td>
+            <code>--lib-percentage-height</code>
+          </td>
+          <td>Height of Percentage Bar</td>
+          <td>1em</td>
+        </tr>
+        <tr>
+          <td><code>--lib-percentage-buffer-background-color</code></td>
+          <td>Background Color of Percentage Bar</td>
+          <td>rgb(255, 0, 0, 0.4)</td>
+        </tr>
+        <tr>
+          <td><code>--lib-percentage-inner-background-color</code></td>
+          <td>Foreground Color of Percentage Bar</td>
+          <td>red</td>
+        </tr>
+        <tr>
+          <td><code>--lib-percentage-inner-box-shadow</code></td>
+          <td>Box Shadow of Percentage Bar</td>
+          <td>0px 0px 30px 10px rgb(255, 0, 0, 0.7)</td>
+        </tr>
+      </table>
+    </div>
+    <div class="detail-section">
+      <div class="header">Example usage</div>
+      <div class="code-section">
+        <code>
+          {{ libDemoPercentageBar || 'code here' }}
+        </code>
+      </div>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LibPercentageBarModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>value</td>
+          <td>The percentage value displayed by the percentage bar, represented as a number.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
