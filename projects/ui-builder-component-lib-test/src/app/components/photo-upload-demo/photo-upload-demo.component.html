@@ -1,0 +1,134 @@
+<div class="detail">
+  <h2 class="intro">Photo Upload Component</h2>
+  <div class="info">A simple tool for quickly uploading photos in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-picture-gallery [faceDetector]="faceDetector.bind(this)" [nsfwChecker]="nsfwDetector.bind(this)" [enableNsfwCheck]="true" [enableFaceCheck]="true"></lib-picture-gallery>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; PhotoUploadModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>maxNumOfPhotos</td>
+          <td>The maximum number of photos that can be uploaded.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>photos</td>
+          <td>An array of uploaded photos represented by <code>ImageModel</code>.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>slotsPerRow</td>
+          <td>The number of photo slots to display per row.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>gridGap</td>
+          <td>The gap (in pixels) between the photo slots.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableDragAndDrop</td>
+          <td>Enables drag-and-drop functionality for uploading images.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>infoIcon</td>
+          <td>The icon used to display help or information about image uploading.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>largeFileUploadWarningParams</td>
+          <td>Settings for warning the user when uploading large files.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>photoAspectRatio</td>
+          <td>The aspect ratio of the photos being uploaded.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableNsfwCheck</td>
+          <td>Enables checking if an uploaded image contains NSFW content.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enableFaceCheck</td>
+          <td>Enables checking if an uploaded image contains a face.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>faceDetector</td>
+          <td>A function to detect faces in the uploaded image.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>nsfwChecker</td>
+          <td>A function to check for NSFW content in the uploaded image.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>compressRatio</td>
+          <td>Maximum scale factor as a percentage.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>compressQuality</td>
+          <td>Image quality factor as a percentage.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>photosUpload</td>
+          <td>Emits an array of <code>ImageModel</code> whenever photos are uploaded.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>photosDelete</td>
+          <td>Emits an array of <code>ImageModel</code> whenever a photo is deleted.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>photoUploadFail</td>
+          <td>Emits the file name if the photo upload fails.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>dupPhotosDetect</td>
+          <td>Emits the index of the duplicate photo if detected during upload.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>unsupportedFormatsDetect</td>
+          <td>Emits a list of unsupported file formats detected during upload.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>maxUploadLimitExceeded</td>
+          <td>Emits a notification when the maximum upload limit is exceeded.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ codeExample }}</code>
+    </div>
+  </div>
+</div>
