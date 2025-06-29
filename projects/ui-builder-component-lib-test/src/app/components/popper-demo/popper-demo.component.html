@@ -1,0 +1,77 @@
+<div class="detail">
+  <h2 class="intro">Popper</h2>
+  <div class="info">A concise popper component for creating dynamic and interactive tooltips or pop-up elements in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-primary-btn
+        libPopper
+        [popper]="popperContent"
+        [popperTrigger]="'click'"
+        [popperHideOnClickOutside]="true"
+        [popperApplyArrowClass]="'popperArrowStyle'"
+        [popperHideOnScroll]="false"
+        [popperShowBackdrop]="false"
+        [popperShowOnStart]="true"
+        >Open Popper</lib-primary-btn
+      >
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; PopperModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="detail-section">
+      <div class="header">Input and Output Properties</div>
+      <table class="nested-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Input</td>
+            <td>checked</td>
+            <td>Determines whether the checkbox is checked.</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>Input</td>
+            <td>disabled</td>
+            <td>Determines whether the checkbox is disabled.</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>Output</td>
+            <td>toggle</td>
+            <td>Emits an event when the checkbox is toggled, passing the new checked state.</td>
+            <td>n/a</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ popperContentTemplate }}</code>
+      <code>{{ popperCode }}</code>
+    </div>
+  </div>
+</div>
+
+<lib-popper-content #popperContent>
+  <div class="popover-container">
+    <div class="m-title f-w-700 f-lg h-160 f-white">Popper Title</div>
+    <span class="message f-w-400 f-md h-150 f-gray">Popper content</span>
+    <div class="buttons">
+      <lib-secondary-btn (click)="popperContent.hide()" type="button"> Cancel </lib-secondary-btn>
+      <lib-primary-btn (click)="popperContent.hide()" type="button"> Confirm </lib-primary-btn>
+    </div>
+  </div>
+</lib-popper-content>
