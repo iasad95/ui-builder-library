@@ -1,0 +1,182 @@
+<div class="detail">
+  <h2 class="intro">Popup Component</h2>
+  <div class="info">A compact and interactive chip for displaying and interacting with small pieces of information.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <ion-button class="app-primary-button" (click)="toggle()">Open Modal</ion-button>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LibModalModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>isOpen</td>
+          <td>Controls whether the modal is open or closed.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>icon</td>
+          <td>The icon displayed in the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>title</td>
+          <td>The title text of the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>message</td>
+          <td>The main message or content of the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>extendedMessage</td>
+          <td>An optional extended message for additional information.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>cancelButton</td>
+          <td>Text for the cancel button in the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>confirmButton</td>
+          <td>Text for the confirm button in the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>checkboxText</td>
+          <td>Text displayed for the optional checkbox within the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>progBarCurrentStep</td>
+          <td>Current step value for a progress bar, if used.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>progBarTotalSteps</td>
+          <td>Total steps for a progress bar, if used.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>customClass</td>
+          <td>Custom class applied to the modal for styling.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>backdropDismiss</td>
+          <td>Determines if the modal can be dismissed by clicking on the backdrop.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>modalComponent</td>
+          <td>Component to dynamically load into the modal.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>modalComponentData</td>
+          <td>Data passed to the dynamically loaded modal component.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>modalConfirm</td>
+          <td>Emits when the confirm button is clicked.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>modalDismiss</td>
+          <td>Emits when the modal is dismissed or closed.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>afterCloseEvent</td>
+          <td>Emits after the modal is closed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>--lib-chip-radius</td>
+        <td>20px</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-background</td>
+        <td>#433A47</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-background-before</td>
+        <td>linear-gradient(to left, #FFB5E980, #00000000)</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-background-after</td>
+        <td>linear-gradient(to left, #00000000, #FFB5E980)</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-border</td>
+        <td>1px solid #FFB5E980</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-color</td>
+        <td>#d9cfcf</td>
+      </tr>
+      <tr>
+        <td>--lib-button-component-label-filter</td>
+        <td>blur(10.081077575683594px)</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-font</td>
+        <td>Gilroy-Regular, serif</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-font-size</td>
+        <td>12px</td>
+      </tr>
+      <tr>
+        <td>--lib-chip-padding</td>
+        <td>3px 10px</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>
+        {{ code }}
+      </code>
+    </div>
+  </div>
+</div>
+<ng-container #dynamicModal></ng-container>
+<lib-popup
+  [isOpen]="toggleModal"
+  [confirmButton]="'POPUP.CONFIRM'"
+  [cancelButton]="'POPUP.CANCEL'"
+  [title]="'POPUP.WARNING'"
+  [message]="'POPUP.WARNING_MESSAGE'"
+  [progBarCurrentStep]="3"
+  [progBarTotalSteps]="5"
+  [extendedMessage]="'POPUP.WARNING_MESSAGE_EXTENDED'"
+>
+</lib-popup>
