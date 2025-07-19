@@ -1,0 +1,70 @@
+<div class="detail">
+  <h2 class="intro">Premium Chip</h2>
+  <div class="info">A compact and interactive chip for displaying and interacting with small pieces of information.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <div class="demo-chip-background">
+        <img class="demo-chip-background__img" [src]="this.selectedImageFormControl.value" alt="" />
+        <div class="demo-chip-background__chip-container">
+          <lib-premium-chip [variant]="selectedPremiumChipVariantType" class="app-premium-chip">
+            <div class="app-premium-chip__content">Cyrano Premium</div>
+          </lib-premium-chip>
+        </div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="header">Required Imports</div>
+      <div>import &#123; PremiumChipModule &#125; from 'ui-builder-component-lib';</div>
+    </div>
+    <div class="detail-section">
+      <div class="header">Component Properties</div>
+      <table class="nested-table">
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Data Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Demo</th>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>variant</td>
+          <td>Variant type of premium chip</td>
+          <td>string</td>
+          <td>false</td>
+          <td>primary</td>
+          <td>
+            <select [(ngModel)]="selectedPremiumChipVariantType" (ngModelChange)="handleTypeChange()">
+              <option [value]="PREMIUM_CHIP_VARIANT_TYPES.PRIMARY" [selected]="selectedPremiumChipVariantType === PREMIUM_CHIP_VARIANT_TYPES.PRIMARY">primary</option>
+              <option [value]="PREMIUM_CHIP_VARIANT_TYPES.GLASS" [selected]="selectedPremiumChipVariantType === PREMIUM_CHIP_VARIANT_TYPES.GLASS">glass</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="detail-section">
+      <div class="header">Example usage</div>
+      <div class="code-section">
+        <code>
+          {{ libChipCode }}
+        </code>
+      </div>
+    </div>
+    <div class="header">Demo Configurations</div>
+    <table class="nested-table">
+      <tr>
+        <th>Description</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Change background image</td>
+        <td>
+          <lib-form-field [type]="FORM_FIELD_TYPE.select" [placeholder]="selectedImageFormControl.value" [options]="images" [formFieldControl]="selectedImageFormControl" />
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

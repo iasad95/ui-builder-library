@@ -1,0 +1,49 @@
+.component-demo {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.demo-chip-background {
+  position: relative;
+  &__img {
+    position: relative;
+    height: 500px;
+  }
+
+  &__chip-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 50px 0;
+  }
+}
+
+.app-premium-chip {
+  width: 200px;
+  &__content {
+    display: flex;
+    width: 200px;
+    margin: 3px 0;
+    justify-content: center;
+    font-family: 'Gilroy-Medium';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+table {
+  --mat-select-trigger-text-size: 12px;
+  tr {
+    td > * {
+      width: 100%;
+    }
+  }
+}
