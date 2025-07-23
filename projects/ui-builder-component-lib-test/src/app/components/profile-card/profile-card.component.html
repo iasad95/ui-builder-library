@@ -1,0 +1,52 @@
+<div class="detail">
+  <h2 class="intro">Profile Card</h2>
+  <div class="info">Card component for displaying user information in a compact format.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-profile-card [profile]="profileWithProgress"></lib-profile-card>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ProfileCardModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>profile</td>
+        <td>Profile informaion to display.</td>
+        <td [innerHTML]="dataType"></td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>progressText</td>
+        <td>Text displayed above the progress bar.</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>Progress</td>
+        <td>n/a</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ profileCardDemo }}</code>
+    </div>
+  </div>
+</div>
