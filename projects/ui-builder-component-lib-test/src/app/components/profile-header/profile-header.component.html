@@ -1,0 +1,121 @@
+<div class="detail">
+  <h2 class="intro">Profile Header</h2>
+  <div class="info">A brief profile header component for showcasing key user details in a stylish and compact layout.</div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Component</td>
+        <td>Profile header component</td>
+        <td>This component demo's header part of profile with different type of orientation</td>
+        <td>
+          orientation: string<br />
+          photo: string <br />
+          name: string<br />
+          leftIcon: string<br />
+          leftText: string <br />
+          rightIcon: string<br />
+          rightText: string
+        </td>
+        <td>true</td>
+        <td></td>
+        <td class="last-td">
+          <lib-profile-header
+            class="vertical"
+            [orientation]="vertical"
+            [photo]="client.photo"
+            [name]="client.name"
+            [leftIcon]="icons.hash"
+            [leftText]="client.age + ' ' + 'Years old'"
+            [rightIcon]="icons.location"
+            [rightText]="client.address"
+          >
+          </lib-profile-header>
+        </td>
+      </tr>
+      <tr>
+        <td>Component</td>
+        <td>Profile header component</td>
+        <td>This component demo's header part of profile with different type of orientation</td>
+        <td>
+          orientation: string<br />
+          photo: string <br />
+          name: string<br />
+          leftIcon: string<br />
+          leftText: string <br />
+          rightIcon: string<br />
+          rightText: string
+        </td>
+        <td>true</td>
+        <td></td>
+        <td class="last-td">
+          <lib-profile-header
+            class="horizontal"
+            [orientation]="horizontal"
+            [photo]="client.photo"
+            [name]="client.name"
+            [leftIcon]="icons.hash"
+            [leftText]="client.age + ' ' + 'Years old'"
+            [rightIcon]="icons.location"
+            [rightText]="client.address"
+          >
+          </lib-profile-header>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>photo</td>
+        <td>URL or path to the profile photo image.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>name</td>
+        <td>The name of the person displayed on the profile header.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>leftIcon</td>
+        <td>Icon displayed on the left side of the header.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>rightIcon</td>
+        <td>Icon displayed on the right side of the header.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>leftText</td>
+        <td>Text displayed alongside the left icon.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>rightText</td>
+        <td>Text displayed alongside the right icon.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>orientation</td>
+        <td>Orientation of the profile header, defaults to <code>ProfileHeaderOrientation.horizontal</code>.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ProfileHeaderModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ progressbarCode }}</code>
+    </div>
+  </div>
+</div>
