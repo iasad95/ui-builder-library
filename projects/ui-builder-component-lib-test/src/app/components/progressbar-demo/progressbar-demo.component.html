@@ -1,0 +1,152 @@
+<div class="detail">
+  <h2 class="intro">Progressbar</h2>
+  <div class="info">
+    A progress bar component that visually indicates the completion status of a task or process, providing users with a clear and simple way to track ongoing activities.
+  </div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-preview-window
+        [includeStepsCount]="includeStepsCount.value"
+        [includeSteps]="includeSteps.value"
+        [routes]="routes"
+        [stepWeight]="stepWeight"
+        [progress]="progress"
+        [availableFarthestProgress]="availableFarthestProgress"
+        [farthestProgress]="farthestProgress"
+        [router]="routeFns"
+      ></lib-preview-window>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ProgressBarModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>stepWeight</td>
+        <td>Weight of each step in percentage.</td>
+        <td>Number</td>
+        <td>true</td>
+        <td>25</td>
+        <input type="number" [(ngModel)]="stepWeight" />
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>routes</td>
+        <td>Routes that appear on progressbar.</td>
+        <td>IRouteParams[]</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>routes with sub routes</td>
+        <td>The Routes JSON objects can include sub-routes as a list of IRouteParams[].</td>
+        <td>
+          <code>{{ 'IRouteParams[] = [{ subRoutes:IRouteParams[] }]' }}</code>
+        </td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>includeSteps</td>
+        <td>A boolean value whether to show steps or not.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="includeSteps"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>includeStepsCount</td>
+        <td>A boolean value whether to show step count or not.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="includeStepsCount"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>progress</td>
+        <td>Progress made in percentage.</td>
+        <td>percentage</td>
+        <td>number</td>
+        <td>0</td>
+        <td>
+          <input type="number" [(ngModel)]="progress" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>farthestProgress</td>
+        <td>Farthest progress made by user in percentage.</td>
+        <td>number</td>
+        <td>false</td>
+        <td>0</td>
+        <td>
+          <input type="number" [(ngModel)]="farthestProgress" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>router</td>
+        <td>Functions which executes to navigate user on clicking certain step of progressbar.</td>
+        <td>&#124; routeToNextPage: Function; routeBackinRegistrationFlow: Function &#125;</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>progBarCurrentStep</td>
+        <td>The current step that the progress bar has reached.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>progBarTotalSteps</td>
+        <td>The total number of steps in the progress bar.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>--preview-window-color-active</td>
+        <td>Used to show visited routes</td>
+        <td>#fe3c72</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ progressbarCode }}</code>
+    </div>
+  </div>
+</div>

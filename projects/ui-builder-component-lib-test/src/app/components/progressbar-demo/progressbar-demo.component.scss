@@ -1,0 +1,30 @@
+.button-container {
+  display: grid;
+  max-width: 300px;
+}
+
+:host {
+  width: 100%;
+}
+
+dt {
+  font-weight: bold;
+}
+
+.interact {
+  display: flex;
+  align-items: center;
+}
+
+.m-b-20px {
+  margin-bottom: 20px !important;
+}
+
+.demo-container {
+  width: 100%;
+}
+
+lib-preview-window {
+  padding-bottom: 100px;
+  width: 400px;
+}
