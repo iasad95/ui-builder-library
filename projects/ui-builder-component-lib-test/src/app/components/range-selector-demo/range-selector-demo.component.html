@@ -1,0 +1,127 @@
+<div class="detail">
+  <h2 class="intro">Range Selector</h2>
+  <div class="info">A range lets users choose an approximate value on a slider.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-range-selector
+        [formControl]="rangeControl"
+        [pinValue]="pinControl.value"
+        [dualKnobs]="dualKnobsControl.value"
+        [reverseBarColor]="reverseBarColorControl.value"
+        [minValue]="minValue"
+        [maxValue]="maxValue"
+      ></lib-range-selector>
+      <ng-template [ngIf]="dualKnobsControl.value" [ngIfElse]="unSelectedRange">
+        <p *ngIf="!dualKnobsControl.value">Selected Value: {{ rangeControl.value }}</p>
+      </ng-template>
+      <ng-template #unSelectedRange>
+        <p>Selected Value: {{ rangeControl.value }}</p>
+      </ng-template>
+      <p *ngIf="dualKnobsControl.value">Selected Range: {{ rangeControl.value.lower }} - {{ rangeControl.value.upper }}</p>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; RangeSelectorModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>minValue</td>
+        <td>Minimum value for the range.</td>
+        <td>Number</td>
+        <td>true</td>
+        <td>0</td>
+        <input type="number" [(ngModel)]="minValue" />
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>maxValue</td>
+        <td>Maximum value for the range.</td>
+        <td>Number</td>
+        <td>true</td>
+        <td>100</td>
+        <input type="number" [(ngModel)]="maxValue" />
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dualKnobsControl</td>
+        <td>A boolean value whether to show dualKnobs or not.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="dualKnobsControl"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>reverseBarColor</td>
+        <td>A boolean value whether to reverse bar color or not.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="reverseBarColorControl"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>pinValue</td>
+        <td>A boolean value whether to pin or not.</td>
+        <td>percentage</td>
+        <td>number</td>
+        <td>0</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="pinControl"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>stepValue</td>
+        <td>The interval between each selectable value in the range selector.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>dualKnobs</td>
+        <td>Enables dual knobs for selecting a range instead of a single value.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>enablePinFormatter</td>
+        <td>Enables custom formatting for the pin value on the range selector.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Default Value</th>
+      </tr>
+      <tr>
+        <td>--width</td>
+        <td>300px</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ codeExample }}</code>
+    </div>
+  </div>
+</div>
