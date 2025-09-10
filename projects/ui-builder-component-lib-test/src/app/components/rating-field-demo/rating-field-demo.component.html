@@ -1,0 +1,126 @@
+<div class="detail">
+  <div class="intro">Rating</div>
+  <div class="info">Rating is a field control that allows the user to select a number of stars based on the configuration.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-rating-field
+        [required]="required"
+        [label]="label"
+        [formFieldControl]="formFieldControl"
+        [submitted]="submitted"
+        [readOnly]="readOnly"
+        [options]="options"
+        [showLabelInRequiredErrorMessage]="showLabelInRequiredErrorMessage"
+      ></lib-rating-field>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; RatingFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>label</td>
+        <td>The label that will be displayed next to the form field.</td>
+        <td>string</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="label" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>formFieldControl</td>
+        <td>The Angular FormControl that this FormField is tied to.</td>
+        <td>FormControl</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <div>Value: {{ formFieldControl?.value }}</div>
+          <button (click)="resetForm()">Reset</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>submitted</td>
+        <td>
+          Tells the FormField if the form has been submitted. If true, and if the wrapped FormControl contains errors, the UI is updated to indicate the error and display an error
+          message.
+        </td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>
+          <lib-toggle [(ngModel)]="submitted"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>required</td>
+        <td>Tells the FormField if the form is required.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>
+          <lib-toggle [(ngModel)]="required" (ngModelChange)="handleRequiredChange($event)"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>readonly</td>
+        <td>Tells the FormField if the form is read only.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>
+          <lib-toggle [(ngModel)]="readOnly"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showLabelInRequiredErrorMessage</td>
+        <td>Tells if the Required text should include the Label in the message</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>true</td>
+        <td>
+          <lib-toggle [(ngModel)]="showLabelInRequiredErrorMessage"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>options</td>
+        <td>Select Options</td>
+        <td>SelectOption[]</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showRequiredIndicator</td>
+        <td>Displays a required indicator next to the label.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ ratingFieldCode }}</code>
+    </div>
+  </div>
+</div>
