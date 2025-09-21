@@ -1,0 +1,125 @@
+<div class="detail">
+  <div class="intro">SearchBar</div>
+  <div class="info">
+    SearchBar is a wrapper around an HTML input element that makes it convenient to capture changes in user input, often for the purpose of searching or filtering a list.
+  </div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-search-bar class="component-demo" [placeholderText]="placeholderText" [inputText]="inputText"> </lib-search-bar>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; SearchBarModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>placeholderText</td>
+        <td>Sets the placeholder text in the search bar.</td>
+        <td>string</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="placeholderText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>inputText</td>
+        <td>Sets the value of the search bar.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="inputText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>order</td>
+        <td>Sets the order of arrangement of the the search bar parts in the order: Input, Clear icon and Search Icon</td>
+        <td>Order</td>
+        <td>Order.CIS (it can either be SIC, ICS, CIS )</td>
+        <td>n/a</td>
+        <td>
+          <lib-search-bar [placeholderText]="'Search another'" [order]="searchbarOrder"></lib-search-bar>
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>handleSearchStringChange</td>
+        <td>Determines how many placeholders are displayed.</td>
+        <td>number</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>cleared</td>
+        <td>Emits when clear button pressed</td>
+        <td>null</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>clearIcon</td>
+        <td>The icon displayed for clearing the input.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>searchIcon</td>
+        <td>The icon displayed for triggering a search.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>searchStringChange</td>
+        <td>Emits the current value of the search input whenever it changes.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>focused</td>
+        <td>Emits an event when the input field gains focus.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>unfocused</td>
+        <td>Emits an event when the input field loses focus.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ searchBarCode1 }}</code>
+    </div>
+    <lib-search-bar class="component-demo" [placeholderText]="placeholderText" [inputText]="inputText"></lib-search-bar>
+    <lib-search-bar [placeholderText]="'Search something'"></lib-search-bar>
+    <lib-search-bar [placeholderText]="'Search another'" [order]="searchbarOrder"></lib-search-bar>
+  </div>
+
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ searchBarCode2 }}</code>
+    </div>
+    <lib-search-bar placeholderText="Search" class="search-bar">
+      <div right class="search-bar__right-icon">
+        <img src="assets/icons/side-search-icon.svg" />
+      </div>
+    </lib-search-bar>
+  </div>
+</div>

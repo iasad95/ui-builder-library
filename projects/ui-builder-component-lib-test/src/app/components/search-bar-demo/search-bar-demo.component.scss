@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+}
+
+.detail-section {
+  margin: 10px 0;
+}
+
+.search-bar {
+  &__right-icon {
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
