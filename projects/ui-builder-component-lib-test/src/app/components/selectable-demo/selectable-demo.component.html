@@ -1,0 +1,75 @@
+<div class="detail">
+  <h2 class="intro">Selectable</h2>
+  <div class="info">A short and versatile selectable component for easy user interaction in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-selectable
+        [options]="ethnicities"
+        [singleSelectionOnly]="singleSelectionOnlyControl.value"
+        [maxSelectionPossible]="maxSelectionPossible"
+        [formControl]="formControl"
+      ></lib-selectable>
+
+      <p class="value">Selected Value: {{ formControl.value }}</p>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; SelectableModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>maxSelectionPossible</td>
+        <td>Maximum selection Possible.</td>
+        <td>Number</td>
+        <td>false</td>
+        <td>0</td>
+        <input type="number" [(ngModel)]="maxSelectionPossible" />
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>singleSelectionOnly</td>
+        <td>A boolean value to allow only single item selection.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle id="toggle-button-elem" [formControl]="singleSelectionOnlyControl"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>options</td>
+        <td>Options.</td>
+        <td>&#x7B; label: string, value: string&#x7D;[]</td>
+        <td>false</td>
+        <td>false</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>maxSelectionsReached</td>
+        <td>Emits a boolean value indicating whether the maximum number of selections has been reached.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ codeExample }}</code>
+    </div>
+  </div>
+</div>
