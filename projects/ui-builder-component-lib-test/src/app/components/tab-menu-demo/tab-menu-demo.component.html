@@ -1,0 +1,49 @@
+<div class="detail">
+  <h2 class="intro">Tab Menu</h2>
+  <div class="info">A concise tab menu component for organized navigation and content display in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-tab-menu [items]="items" (activeItemChange)="onActiveItemChange($event)" #libTabMenu></lib-tab-menu>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; LibTabMenuModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>items</td>
+          <td>An array of <code>MenuItem</code> objects representing the tab menu items.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>activeItemChange</td>
+          <td>An event emitter that emits the label of the active item when it changes.</td>
+        </tr>
+        <tr>
+          <td>ViewChild</td>
+          <td>tabMenu</td>
+          <td>Reference to the PrimeNG <code>TabMenu</code> component used to interact with the tab menu DOM and its methods.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ codeExample }}</code>
+    </div>
+  </div>
+</div>
