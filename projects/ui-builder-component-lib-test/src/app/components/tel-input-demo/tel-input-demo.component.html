@@ -1,0 +1,178 @@
+<div class="detail">
+  <h2 class="intro">Phone Number</h2>
+  <div class="info">A specialized input used for entering phone numbers.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <form #f="ngForm" [formGroup]="phoneForm">
+        <lib-tel-input
+          [cssClass]="'custom'"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="false"
+          [searchCountryField]="searchCountryFieldValue"
+          [selectFirstCountry]="false"
+          [showDropDownArrow]="true"
+          [maxLength]="15"
+          [phoneValidation]="true"
+          [separateDialCode]="separateDialCode"
+          [numberFormat]="PhoneNumberFormat.National"
+          name="phone"
+          formControlName="phone"
+          #tel
+        >
+        </lib-tel-input>
+
+        <code>{{ phoneForm.controls.phone.value | json }}</code>
+      </form>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; TelInputModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>value</td>
+          <td>The current phone number value entered in the input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>enablePlaceholder</td>
+          <td>Determines whether the placeholder should be displayed.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maskPhoneNumber</td>
+          <td>Enables masking of the phone number as it's entered.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>eagerMask</td>
+          <td>Determines if the mask should be applied eagerly.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>customPlaceholder</td>
+          <td>A custom placeholder for the input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>numberFormat</td>
+          <td>Format for displaying the phone number, e.g., International or National.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>cssClass</td>
+          <td>The CSS class applied to the input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>onlyCountries</td>
+          <td>Limits the countries available for selection.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>searchCountryFlag</td>
+          <td>Enables the country flag search in the dropdown.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>searchCountryField</td>
+          <td>Specifies which fields to use for searching the country, e.g., name or dial code.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>searchCountryPlaceholder</td>
+          <td>Placeholder text for the country search field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>maxLength</td>
+          <td>The maximum length allowed for the phone number input.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>selectFirstCountry</td>
+          <td>Automatically selects the first country in the list.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>selectedCountryISO</td>
+          <td>Sets the default selected country by its ISO code.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>phoneValidation</td>
+          <td>Enables phone number validation.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>inputId</td>
+          <td>The ID attribute for the phone input field.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>separateDialCode</td>
+          <td>Displays the dial code separately from the phone number.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>showDropDownArrow</td>
+          <td>Determines if the dropdown arrow should be displayed for the country selection.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>icons</td>
+          <td>Custom icons for the input field.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>countryChange</td>
+          <td>Emits the selected country whenever it changes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Options</div>
+    <table class="nested-table">
+      <tr>
+        <th>Description</th>
+        <th>Option</th>
+      </tr>
+      <tr>
+        <td>Toggle country selection input.</td>
+        <td><button (click)="tel.toggleFreeInputMode()">Toggle FreeInput mode</button></td>
+      </tr>
+      <tr>
+        <td>Mark the input field as touched.</td>
+        <td><button (click)="phoneForm.controls.phone.markAsTouched()">Mark as touched</button></td>
+      </tr>
+      <tr>
+        <td>Write string.</td>
+        <td><button (click)="writeString()">Write string</button></td>
+      </tr>
+      <tr>
+        <td>Reset the control value.</td>
+        <td><button (click)="f.reset()">Reset</button></td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ codeExample }}</code>
+    </div>
+  </div>
+</div>
