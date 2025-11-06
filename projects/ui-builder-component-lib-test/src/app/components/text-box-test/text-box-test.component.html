@@ -1,0 +1,72 @@
+<form>
+  <lib-text-box [includeEmojiPicker]="true" [emojiPickerConfig]="emojiPickerconfig" [includeImageAttachment]="true" [formControl]="messageControl"></lib-text-box>
+</form>
+
+<section class="usage">
+  <table class="nested-table">
+    <thead>
+      <tr>
+        <th>Form</th>
+        <th>Sample</th>
+        <th>Appearance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td>
+          <code>
+            {{ defaultTextBox }}
+          </code>
+        </td>
+        <td>
+          <lib-text-box></lib-text-box>
+        </td>
+      </tr>
+      <tr>
+        <td>With image attachment enabled</td>
+        <td>
+          <code>
+            {{ textBoxWithImageAttachment }}
+          </code>
+        </td>
+        <td>
+          <lib-text-box [includeImageAttachment]="true"></lib-text-box>
+        </td>
+      </tr>
+      <tr>
+        <td>With file emoji picker included</td>
+        <td>
+          <code>
+            {{ textBoxWithEmojiPicker }}
+          </code>
+        </td>
+        <td>
+          <lib-text-box [includeEmojiPicker]="true"></lib-text-box>
+        </td>
+      </tr>
+      <tr>
+        <td>With file emoji picker and emojiPickerConfiguration included</td>
+        <td>
+          <code>
+            {{ textBoxWithEmojiPickerAndConfig }}
+          </code>
+        </td>
+        <td>
+          <lib-text-box [includeEmojiPicker]="true" [emojiPickerConfig]="emojiPickerconfig" [label]="'Comment'"></lib-text-box>
+        </td>
+      </tr>
+      <tr>
+        <td>Texbox with a maxlenght set to 200</td>
+        <td>
+          <code>
+            {{ textBoxWithMaxLength }}
+          </code>
+        </td>
+        <td>
+          <lib-text-box [maxLength]="200" [label]="'Comment'"></lib-text-box>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
