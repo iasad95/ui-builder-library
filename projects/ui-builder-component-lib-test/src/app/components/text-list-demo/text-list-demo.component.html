@@ -1,0 +1,82 @@
+<div class="detail">
+  <div class="intro">TextList</div>
+  <div class="info">TextList is a generic text list that the user can add to/delete from</div>
+  <div class="detail-section">
+    <div class="header">Demo</div>
+    <lib-text-list class="component-demo" [placeholderText]="placeholderText" [textListStrings]="textListStrings"> </lib-text-list>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; TextListModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>placeholderText</td>
+        <td>Sets the default placeholder text for the 'add-item' input</td>
+        <td>string</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="placeholderText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>textListStrings</td>
+        <td>An array of strings representing the list</td>
+        <td>string[]</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>isUrlList</td>
+        <td>A flag to specify whether the list items should be treated as URLs.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>disabled</td>
+        <td>A flag to disable the text input and list modification functionalities.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>listChange</td>
+        <td>An event emitter that outputs the updated list of text items when changes are made.</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>buttonsHidden</td>
+        <td>A boolean to control the visibility of action buttons.</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>showIndex</td>
+        <td>An index that tracks the currently active or visible item in the list.</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>textValue</td>
+        <td>The value currently entered in the input field, used for adding new items.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ testListCode }}</code>
+    </div>
+  </div>
+</div>
