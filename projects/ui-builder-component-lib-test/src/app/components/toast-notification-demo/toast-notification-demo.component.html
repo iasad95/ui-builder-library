@@ -1,0 +1,94 @@
+<lib-toast></lib-toast>
+
+<div class="detail">
+  <h2 class="intro">Toast Notification</h2>
+  <div class="info">A brief pop-up notification for delivering quick messages or alerts in your application.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample0 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <button (click)="onShowTemplatedToast()">Show Templated Toast</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample1 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <button (click)="onShowToastSuccess()">Show Success Toast</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample2 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <button (click)="onShowToastInfo()">Show Info Toast</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample3 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <button (click)="onShowToastWarning()">Show Warning Toast</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample4 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <button (click)="onShowToastError()">Show Error Toast</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; NotificationsModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>position</td>
+          <td>The position where the toast will appear.</td>
+          <td>topRight</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>message</td>
+          <td>The <code>StatusMessage</code> object containing the message details (type, content, etc.).</td>
+          <td>n/a</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>
+        {{ codeExample }}
+      </code>
+    </div>
+  </div>
+</div>
