@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+  --tertiary-color: rgba(255, 255, 255, 0.5);
+  --secondary-color: rgba(255, 255, 255, 0.7);
+  --checkbox-border: rgb(118 116 116 / 50%);
+}
+
+.button-container {
+  max-width: 70%;
+  gap: 20px;
+  display: flex;
+}
+
+.toastr-usage-table {
+  td > * {
+    height: 35px;
+    width: 100%;
+  }
+}
