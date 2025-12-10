@@ -1,0 +1,221 @@
+<div class="detail">
+  <h2 class="intro">Toggle</h2>
+  <div class="info">
+    A custom toggle button component that allows users to toggle a state on or off. The state of the toggle button is controlled by a boolean property and a method is invoked
+    whenever a user clicks the button to change the state.
+  </div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <table class="nested-table">
+      <tr>
+        <th>Component</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample0 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-toggle id="toggle-button-elem" [(toggleState)]="toggleState" (toggleStateChange)="onToggleChange($event)"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample1 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-toggle id="toggle-button-elem" [formControl]="fcToggleState"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample2 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-toggle id="toggle-button-elem" [disabled]="true"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample4 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-toggle
+            id="toggle-button-elem-custom-icon"
+            [formControl]="fcToggleState"
+            thumbImg="assets/icons/practise-mode.svg"
+            [left]="{ disable: 'ON' }"
+            [right]="{ disable: 'OFF' }"
+            [variant]="TOGGLE_VARIANTS.Text"
+          ></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>{{ codeExample5 }}</code>
+        </td>
+        <td class="last-td demo-container">
+          <lib-toggle
+            id="toggle-button-elem-custom-icon"
+            [formControl]="fcToggleState"
+            [left]="{ enable: 'assets/icons/phone.svg', disable: 'assets/icons/disable-phone.svg' }"
+            [right]="{
+              enable: 'assets/icons/mail.svg',
+              disable: 'assets/icons/disable-mail.svg',
+            }"
+            [variant]="TOGGLE_VARIANTS.Image"
+          ></lib-toggle>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; ToggleModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Input and Output Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input</td>
+          <td>disabled</td>
+          <td>Determines if the toggle button is disabled, preventing user interaction.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>toggleState</td>
+          <td>The current state of the toggle button, which can be either true (on) or false (off).</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>variant</td>
+          <td>Defines the style variant of the toggle button, using values from the <code>ToggleVariants</code> enum.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>left</td>
+          <td>Configuration for the left graphic (icon or image) in the toggle button, using the <code>ToggleGraphics</code> interface.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>right</td>
+          <td>Configuration for the right graphic (icon or image) in the toggle button, using the <code>ToggleGraphics</code> interface.</td>
+        </tr>
+        <tr>
+          <td>Input</td>
+          <td>thumbImg</td>
+          <td>Specifies an image to display on the thumb or knob of the toggle button.</td>
+        </tr>
+        <tr>
+          <td>Output</td>
+          <td>toggleStateChange</td>
+          <td>Emits an event whenever the state of the toggle button changes, passing the new state (true or false).</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>_toggleState</td>
+          <td>Stores the current internal state of the toggle button (true or false).</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>currentToggleStatus</td>
+          <td>Keeps track of the toggle's animation status using the <code>ToggleStatuses</code> enum.</td>
+        </tr>
+        <tr>
+          <td>Public</td>
+          <td>circleMask</td>
+          <td>An object containing unique identifiers for the toggle's SVG masks to differentiate multiple toggle instances.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>--knob-color</td>
+          <td>fill</td>
+          <td>This is a property used that sets the knobs color to a desired value.</td>
+          <td>white</td>
+        </tr>
+        <tr>
+          <td>--toggle-background-off</td>
+          <td>background-color</td>
+          <td>This is a property used that sets the toggle button background color to a desired value when the button is off.</td>
+          <td>black</td>
+        </tr>
+        <tr>
+          <td>--toggle-background-on</td>
+          <td>background-color</td>
+          <td>This is a property used that sets the toggle button background color to a desired value when the button is on.</td>
+          <td>red</td>
+        </tr>
+        <tr>
+          <td>--toggle-box-shadow-off</td>
+          <td>box-shadow</td>
+          <td>This is a property used that sets the toggle button box-shadow color to a desired value when the button is off.</td>
+          <td>0 0 10px blue</td>
+        </tr>
+        <tr>
+          <td>--toggle-box-shadow-on</td>
+          <td>box-shadow</td>
+          <td>This is a property used that sets the toggle button box-shadow color to a desired value when the button is on.</td>
+          <td>0 0 10px red</td>
+        </tr>
+        <tr>
+          <td>--lib-toggle-anime-delay</td>
+          <td>animation-duration</td>
+          <td>This is a property that sets the animation delay of toggle</td>
+          <td>400ms</td>
+        </tr>
+        <tr>
+          <td>left.enable</td>
+          <td>&#64;Input&#40;&#41;&nbsp;&#91;left&#93;</td>
+          <td>Left side image/text toggle enabled state value</td>
+          <td>`assets/icons/enable.svg` or `On`</td>
+        </tr>
+        <tr>
+          <td>left.disable</td>
+          <td>&#64;Input&#40;&#41;&nbsp;&#91;left&#93;</td>
+          <td>Left side image/text toggle disabled state value</td>
+          <td>`assets/icons/disable.svg` or `Off`</td>
+        </tr>
+        <tr>
+          <td>right.enable</td>
+          <td>&#64;Input&#40;&#41;&nbsp;&#91;right&#93;</td>
+          <td>Right side image/text toggle enabled state value</td>
+          <td>`assets/icons/enable.svg` or `On`</td>
+        </tr>
+        <tr>
+          <td>right.disable</td>
+          <td>&#64;Input&#40;&#41;&nbsp;&#91;right&#93;</td>
+          <td>Right side image/text toggle disabled state value</td>
+          <td>`assets/icons/disable.svg` or `Off`</td>
+        </tr>
+        <tr>
+          <td>thumbImg</td>
+          <td>&#64;Input&#40;&#41;&nbsp;&#91;thumbImg&#93;</td>
+          <td>thumb/knob image</td>
+          <td>assets/icons/knob.svg</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

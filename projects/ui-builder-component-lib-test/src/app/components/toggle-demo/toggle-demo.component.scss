@@ -1,0 +1,25 @@
+:host {
+  overflow-y: scroll;
+}
+
+.toggle-page {
+  padding: 20px;
+}
+
+.toggles-container {
+  margin-top: 10px;
+  .toggle-container {
+    background: var(--ion-background-color);
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    p {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+lib-toggle {
+  --lib-toggle-anime-delay: 400ms; // Keep this value high to make the animation look smooth and slow
+  --knob-color: white;
+}
