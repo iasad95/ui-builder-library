@@ -1,0 +1,134 @@
+<div class="detail">
+  <h2 class="intro">Tooltip</h2>
+  <div class="info">The Tooltip is a directive that adds a message to a Tooltip component and binds it to the Angular CDK.</div>
+  <div class="detail-section component-section">
+    <div class="header">Demo</div>
+    <div class="component-demo tooltip-demo" libTooltip="Single line tooltip" [directionPreference]="directionPreference" [delayTime]="tooltipDelay">
+      Single line tooltip. Hover over me!
+    </div>
+
+    <div class="component-demo tooltip-demo" libTooltip="Tooltip  message" title="Test Title" [directionPreference]="directionPreference" [delayTime]="tooltipDelay">
+      Title & Message Tooltip
+    </div>
+
+    <div class="component-demo tooltip-demo" [libTooltip]="tooltipText" [directionPreference]="directionPreference" [delayTime]="tooltipDelay">
+      Multi line tooltip. Hover over me!
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; TooltipModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>libTooltip</td>
+        <td>Sets the tooltip content.</td>
+        <td>SafeHTML</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>delayTime</td>
+        <td>Sets time to wait to display tooltip in milliseconds.</td>
+        <td>number</td>
+        <td>false</td>
+        <td>1000</td>
+        <td>
+          <input type="number" [(ngModel)]="tooltipDelay" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>directionPreference</td>
+        <td>Where to display tooltip in reference to the target</td>
+        <td>TooltipDirectionPreference</td>
+        <td>false</td>
+        <td>TooltipDirectionPreference.Bottom</td>
+        <td>
+          <select [(ngModel)]="directionPreference" name="directionPreference">
+            <option *ngFor="let item of directionPreferenceOptions" [ngValue]="item.value">
+              {{ item.caption }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>title</td>
+        <td>Tooltip title</td>
+        <td>SafeHTML</td>
+        <td>false</td>
+        <td>null</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>hideIcon</td>
+        <td>hide tooltip icon</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>mouseEnter()</td>
+        <td>Event listener for mouse enter, triggers the tooltip to be shown after a delay.</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>mouseOut()</td>
+        <td>Event listener for mouse leave, hides the tooltip.</td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>onClick()</td>
+        <td>Event listener for mouse click, hides the tooltip when clicked.</td>
+      </tr>
+    </table>
+
+    <div class="header">CSS Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+      <tr>
+        <td>--tooltip-bg-color</td>
+        <td>Default tooltip background color</td>
+        <td><code>#4f4150</code></td>
+      </tr>
+      <tr>
+        <td>--message-card-bg-color</td>
+        <td>Default tooltip background linear-gradient</td>
+        <td><code>linear-gradient(160.44deg, #8a75da 1%, #574e96 20%, #736980 50%, #332e39 80%)</code></td>
+      </tr>
+      <tr>
+        <td>--message-card-bg-transparent-color</td>
+        <td>Default tooltip background radial-gradient</td>
+        <td><code>radial-gradient(#fe3c72, #fff0 55%)</code></td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ tooltipCode }}</code>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  align-items: center;
+}
+
+.tooltip-demo {
+  color: #fff;
+}
