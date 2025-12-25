@@ -1,0 +1,265 @@
+<div class="detail">
+  <div class="intro">TypeaheadField</div>
+  <div class="info">TypeaheadField provides a generic way to implement a form field in which the user can search for available items.</div>
+  <div class="detail-section typeahead-demo">
+    <div class="header">Demo</div>
+    <div class="component-demo">
+      <lib-typeahead-field
+        [entityFunctions]="exampleEntityFunctions"
+        [selectionFunction]="exampleSelectionFunction"
+        [placeholderText]="placeholderText"
+        [resultLimit]="resultLimit"
+        [alternateText]="alternateText"
+        [alternateFunction]="alternateFunction"
+        [error]="error"
+        [defaultSearchString]="defaultSearchString"
+        [suggestionText]="suggestionText"
+        [defaultText]="defaultText"
+        [required]="required"
+        [isMultiselectMode]="isMultiselectMode"
+        [entitySelectMode]="entitySelectMode"
+        (inputStringChange)="handleSearchStringChange($event)"
+      >
+      </lib-typeahead-field>
+    </div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Required Imports</div>
+    <div>import &#123; TypeaheadFieldModule &#125; from 'ui-builder-component-lib';</div>
+  </div>
+  <div class="detail-section">
+    <div class="header">Properties</div>
+    <table class="nested-table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Data type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Demo</th>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>entityFunctions</td>
+        <td>
+          A set of functions describing how to work with a generic entity. Includes a function defining how to search for entities, how to map them to ItemSummarys, and how to
+          filter unwanted entities from the search results.
+        </td>
+        <td>
+          &#123;<br />
+          &nbsp;&nbsp;searchFunction: (value: string) =&#62; any[],<br />
+          &nbsp;&nbsp;mappingFunction: (entity: any) =&#62; ItemSummary&#60;any&#62;,<br />
+          &nbsp;&nbsp;filterFunction: (entity: any) =&#62; boolean<br />
+          &#125; []
+        </td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>sortingFunction</td>
+        <td>A function defining how to sort the returned search results,</td>
+        <td>(a: ItemSummary&#60;any&#62;, b: ItemSummary&#60;any&#62;) =&#62; number</td>
+        <td>true</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectionFunction</td>
+        <td>A function defining what to do when a result is selected. If not defined, the selected Output Event is emitted instead.</td>
+        <td>(item: ItemSummary&#60;any&#62;) =&#62; void</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>placeholderText</td>
+        <td>Sets the placeholder text for the SearchBar</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="placeholderText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>resultLimit</td>
+        <td>The maximum number of results that will be displayed in the dropdown. If 0, no limit.</td>
+        <td>number</td>
+        <td>false</td>
+        <td>0</td>
+        <td>
+          <input type="number" [(ngModel)]="resultLimit" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>alternateText</td>
+        <td>Text to display below the results. Offers the user an option if the result they are expecting isn't found.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="alternateText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>alternateFunction</td>
+        <td>A function to execute if the UI element corresponding to alternateText is clicked. Passes the current input text as an argument.</td>
+        <td>(value: string) => any</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>defaultText</td>
+        <td>This sets a default value for the search string.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>n/a</td>
+        <td>
+          <input type="text" [(ngModel)]="defaultText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>error</td>
+        <td>If set, the border around the typeahead becomes red and the error text is displayed below the search field.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="error" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>suggestionText</td>
+        <td>Text to be displayed below the typeahead indicating that there are suggested results.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="suggestionText" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>defaultSearchString</td>
+        <td>The search string to be used when the user clicks the suggestionText. The string will not be displayed. Use defaultText if that functionality is desired.</td>
+        <td>string</td>
+        <td>false</td>
+        <td>''</td>
+        <td>
+          <input type="text" [(ngModel)]="defaultSearchString" />
+        </td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>required</td>
+        <td>Tells the TypeaheadField if this is a required field. If true, an indicator displays next to the label.</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>false</td>
+        <td>
+          <lib-toggle [(ngModel)]="required"></lib-toggle>
+        </td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>searchStringChange</td>
+        <td>Indicates that the search string has changed.</td>
+        <td>Observable &#60; string &#62;</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td [innerText]="searchString"></td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>selected</td>
+        <td>Indicates that an item was selected. The event contains the selected ItemSummary.</td>
+        <td>ItemSummary</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>deselect</td>
+        <td>Indicates that an item was deselected.</td>
+        <td>null</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>groups</td>
+        <td>Array of grouped search results to be displayed in the typeahead component.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>loading</td>
+        <td>Indicates whether search results are loading or not.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>alternateCalled</td>
+        <td>Event emitted when the alternate function is called.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>selectedEntityIndex</td>
+        <td>Index of the currently selected entity in the entityFunctions array.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>fieldName</td>
+        <td>Name of the input field for the typeahead component.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>defaultText</td>
+        <td>Default text to display in the input field.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>isMultiselectMode</td>
+        <td>Indicates if the typeahead supports multi-selection of items.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>rowEditConfirmationObsv</td>
+        <td>Observable to confirm row edits when interacting with the typeahead.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>entitySelectMode</td>
+        <td>Indicates if the component is in entity selection mode.</td>
+      </tr>
+      <tr>
+        <td>Input</td>
+        <td>showRequiredIndicator</td>
+        <td>Displays an indicator showing the field is required.</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>inputStringChange</td>
+        <td>Event that emits the current search string entered by the user.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="detail-section">
+    <div class="header">Example usage</div>
+    <div class="code-section">
+      <code>{{ typeaheadCode }}</code>
+    </div>
+  </div>
+</div>
