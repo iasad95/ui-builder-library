@@ -1,0 +1,49 @@
+<svg width="100%" height="100%" viewBox="0 0 99 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g style="transform: translate(0.5px,-28.1px) scale(2.32); transform-origin: center center">
+        <g filter="url(#filter1_f_298_85)">
+            <rect x="70.5723" y="59.2026" width="42.4695" height="28.1443" rx="14.0722"
+                transform="rotate(-180 70.5723 59.2026)" fill="url(#paint1_linear_298_85)" />
+        </g>
+        <rect x="68.9622" y="58.0409" width="39.2508" height="25.8209" rx="12.9105"
+            transform="rotate(-180 68.9622 58.0409)" fill="url(#paint2_linear_298_85)"
+            stroke="#D3264A" stroke-width="0.564376" />
+        <g filter="url(#filter2_f_298_85)">
+            <rect x="69.2444" y="58.3231" width="39.8152" height="26.3853" rx="13.1927"
+                transform="rotate(-180 69.2444 58.3231)" fill="url(#paint3_linear_298_85)" />
+        </g>
+    </g>
+    <defs>
+        <filter id="filter1_f_298_85" x="27.5384" y="30.4939" width="103.598" height="89.273"
+            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="0.282188" result="effect1_foregroundBlur_298_85" />
+        </filter>
+        <filter id="filter2_f_298_85" x="28.8648" y="31.3734" width="100.943" height="87.5141"
+            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="0.282188" result="effect1_foregroundBlur_298_85" />
+        </filter>
+        <linearGradient id="paint0_linear_298_85" x1="104.92" y1="83.539" x2="88.5268" y2="55.8673"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#CC4AA6" />
+            <stop offset="1" stop-color="#DD123C" />
+        </linearGradient>
+        <linearGradient id="paint1_linear_298_85" x1="105.61" y1="83.8289" x2="90.561" y2="56.125"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#CC4AA6" />
+            <stop offset="1" stop-color="#DD123C" />
+        </linearGradient>
+        <linearGradient id="paint2_linear_298_85" x1="102.092" y1="81.4102" x2="87.9838"
+            y2="55.4378" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DD123C" />
+            <stop offset="1" stop-color="#CC4AA6" />
+        </linearGradient>
+        <linearGradient id="paint3_linear_298_85" x1="102.092" y1="81.4102" x2="87.9838"
+            y2="55.4378" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DD123C" />
+            <stop offset="1" stop-color="#CC4AA6" />
+        </linearGradient>
+    </defs>
+</svg>

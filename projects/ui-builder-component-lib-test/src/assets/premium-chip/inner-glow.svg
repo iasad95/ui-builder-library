@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%">
+    <rect width="100%" height="100%" mask="url(#fade-mask-inner)" fill="url(#premium-chip-inner)" />
+    <defs>
+    <mask id="fade-mask-inner">
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#premium-chip-inner-mask-gradient)" />
+    </mask>
+    <linearGradient id="premium-chip-inner-mask-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color: black" />
+        <stop offset="15%" style="stop-color: rgb(150, 150, 150)" />
+        <stop offset="30%" style="stop-color: white" />
+        <stop offset="70%" style="stop-color: white" />
+        <stop offset="85%" style="stop-color: rgb(150, 150, 150)" />
+        <stop offset="100%" style="stop-color: black" />
+    </linearGradient>
+    <linearGradient id="premium-chip-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color: rgb(145, 46, 76)" />
+        <stop offset="70%" style="stop-color: rgb(116, 42, 66)" />
+        <stop offset="100%" style="stop-color: rgb(116, 42, 66)" />
+    </linearGradient>
+    </defs>
+</svg>
